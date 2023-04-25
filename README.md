@@ -1,6 +1,6 @@
 <div style="object-fit:cover;">
-  <img src="https://cdn.jsdelivr.net/gh/ActiveTK/MetaNote@giticons/MetaNote.png" style="width:40px;height:40px;">
-  <img src="https://cdn.jsdelivr.net/gh/ActiveTK/MetaNote@giticons/MetaNote-ASCII.png" style="width:auto;height:40px;">
+  <img src="https://cdn.jsdelivr.net/gh/ActiveTK/MetaNote@giticons/MetaNote.png" style="width:120px;height:120px;">
+  <img src="https://cdn.jsdelivr.net/gh/ActiveTK/MetaNote@giticons/MetaNote-ASCII.png" style="width:auto;height:120px;">
 </div>
                                            
 # About

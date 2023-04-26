@@ -276,7 +276,7 @@
   else if ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
   {
     $title = "MetaNote. - " . _MetaNote_SubTitle;
-    include(MetaNote_Home . "public_html/MetaNote.Server.Default.php");
+    include(MetaNote_Home . "objects/script/default.php");
     exit();
   }
 
@@ -291,12 +291,7 @@
   if ( _MetaNote_URI_LOW == "home" ) {
 
     $msg = AdminAttention;
-    include(MetaNote_Home . "public_html/MetaNote.Server.Home.php");
-    exit();
-
-  } else if ( _MetaNote_URI_LOW == "keijiban" ) {
-
-    include(MetaNote_Home . "public_html/MetaNote.Service.Keijiban.php");
+    include(MetaNote_Home . "objects/script/home.php");
     exit();
 
   } else if ( empty( _MetaNote_URI_LOW ) ) {
@@ -313,7 +308,7 @@
       {
         try {
           $Try_User = _MetaNote_URI_LOW;
-          $stmt = $dbh->prepare('select * from MetaNote_X_Users where Mailadd = ? or UserIntID = ? or DisplayID = ? limit 1;');
+          $stmt = $dbh->prepare('select * from MetaNoteUsers where Mailadd = ? or UserIntID = ? or DisplayID = ? limit 1;');
           $stmt->execute( [$Try_User, $Try_User, $Try_User] );
           $row = $stmt->fetch( PDO::FETCH_ASSOC );
         } catch ( \Throwable $e ) {
@@ -325,76 +320,7 @@
         {
           $UnLocalUser = $row;
           $title = $UnLocalUser["UserName"] . " - MetaNote.";
-          ?>
-<!DOCTYPE html>
-<html lang="ja" dir="ltr">
-  <head>
-
-    <title><?=$title?></title>
-
-    <?=MetaNote_Header_Default()?>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
-
-  </head>
-  <body>
-    <?=Get_Body_Header();?>
-
-    <div align="center" class="mainobj">
-
-      <noscript>
-        <div title="NO SCRIPT ERROR" class="p-noscript">
-          <h1>JavaScriptが無効です</h1>
-          <p>MetaNoteを利用するには、お使いのブラウザのJavaScriptを有効化する必要があります。</p>
-        </div>
-      </noscript>
-      
-      <br>
-      
-      <div style="width:80%;margin-left:auto;margin-right:auto;">
-        <h1><span style="background-color:#404ff0;border-radius:10px;"><span style="color:#00ff00;"><?=$UnLocalUser["UserName"]?></span><span style="color:#a9a9a9;"><?=$UnLocalUser["DisplayID"]?></span></span></h1>
-
-        <?php
-          if ( $UnLocalUser["baninfo"] != "" ) {
-        ?>
-        <div title="凍結済みのアカウント" class="p-noscript">
-          <h1>このアカウントは凍結されています。</h1>
-          <p>このアカウントは、<a href="/license" target="_blank">[利用規約]</a>への重大な違反を行ったため、凍結されています。</p>
-        </div>
-        <?php } ?>
-
-        <?php if ( $UnLocalUser["UserIntID"] != $LocalUser["UserIntID"] ) { ?>
-          <a href="/DirectChat?to=<?=$UnLocalUser["UserIntID"]?>"><input type="button" value="ダイレクトチャットを開く"></a>
-          <a href="/ReportUser?to=<?=$UnLocalUser["UserIntID"]?>"><input type="button" value="ユーザーを報告"></a>
-          <br><br>
-        <?php } ?>
-
-        <p><?=date("Y/m/d", $UnLocalUser["CreateTime"])?> からMetaNote.を利用しています。</p>
-
-        <hr size="10" color="#7fffd4">
-
-        <?php if (trim($UnLocalUser["Profile"]) != "") { ?>
-
-        <div style="overflow-x:hidden;overflow-y:visible;">
-          <h2>【プロフィール】</h2>
-          <b><?=nl2br($UnLocalUser["Profile"])?></b>
-        </div>
-
-        <hr size="10" color="#7fffd4">
-
-        <?php } ?>
-
-        <br><br>
-        <?=MetaNote_View_Option()?>
-      
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="./js/navbar.js"></script>
-  </body>
-</html>
-          <?php
+          exit($title);
         }
       }
     } catch ( \Throwable $e ) {

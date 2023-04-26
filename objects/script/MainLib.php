@@ -293,7 +293,38 @@
    */
   function Get_Body_Header() {
 
-    include("./component/header.php");
+    ?>
+    <nav class="navbar navbar-expand-lg p-metanotecolor" style="z-index:5;position:fixed;top:0px;left:0px;width:100%;height:12% !important;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color:#000000;">
+          MetaNote.
+        </a>
+        <button class="navbar-toggler" id="toggler-button" type="button" data-bs-toggle="collapse" data-bs-target="navbar-toggler" aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <br>
+            <li class="nav-item">
+              <a class="nav-link active p-selectcolor1 p-link2home" aria-current="page" href="/" style="color:#000000; !important;"><b>ホーム</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active p-selectcolor2 p-link2about" href="/about" style="color:#0403f9 !important;"><b>サービス概要</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active p-selectcolor1" href="/license" style="color:#ffa500 !important;"><b>利用規約</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active p-selectcolor2" href="/privacy" style="color:#ff00ff !important;"><b>プライバシー</b></a>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link active p-selectcolor1" title="著作権情報"><?=Copyright?></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <?php
 
   }
 
@@ -311,7 +342,7 @@
           <img src="https://<?=Domain?>/icon/setting.png" style="width:73px;height:73px;" title="設定">
         </a>
         <a href="/logout" rel="noopener noreferrer">
-          <img src="https://<?=Domain?>/icon/alllogout.png" style="width:73px;height:73px;" title="ログアウト">
+          <img src="https://<?=Domain?>/icon/logout.png" style="width:73px;height:73px;" title="ログアウト">
         </a>
       </div>
 <?php

@@ -1,0 +1,8 @@
+if ( ! ( /^netowl\-Filter: $LOGNAME$/ ) )
+{
+        xfilter "/usr/local/bin/reformail -A \"netowl-Filter: $LOGNAME\"";
+}
+else
+{
+        to "./"
+}

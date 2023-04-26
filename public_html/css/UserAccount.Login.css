@@ -24,14 +24,6 @@ body {
 .Nodisplay {
     display: none;
 }
-.LicenseAgree {
-    height: 20px;
-    width: 20px;
-}
-.CreateAcBtn {
-    height: 60px;
-    width: 180px;
-}
 .mainobj {
     position: fixed;
     top: 12%;

@@ -3,12 +3,12 @@
   /*!
    * NCPRedirect.php
    * (c) 2023 MetaNote.
-   * “Á’è‚ÌURL‚ÖƒŠƒ_ƒCƒŒƒNƒg‚µ‚Ü‚·B
-   * ƒŠƒ_ƒCƒŒƒNƒgæ‚ÌURL $url ‚ª•K—vB
+   * ç‰¹å®šã®URLã¸ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã—ã¾ã™ã€‚
+   * ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå…ˆã®URL $url ãŒå¿…è¦ã€‚
    */
 
   if (!isset($url))
-    MetaNote_Fatal_Die( "ƒŠƒ_ƒCƒŒƒNƒgˆ—‚É‚ÍURL‚ª•K—v‚Å‚·B" );
+    MetaNote_Fatal_Die( "ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå‡¦ç†ã«ã¯URLãŒå¿…è¦ã§ã™ã€‚" );
 
   http_response_code( 308 );
   header( "Location: {$url}" );

@@ -1,8 +1,8 @@
 <?php
 
   /*!
-   * ƒƒOƒCƒ“‰æ–Ê‚ð•\Ž¦
-   * ƒ^ƒCƒgƒ‹ $title ‚ª•K—v
+   * ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢ã‚’è¡¨ç¤º
+   * ã‚¿ã‚¤ãƒˆãƒ« $title ãŒå¿…è¦
    */
 
 ?>
@@ -23,11 +23,11 @@
     function CSubmit() {
       if (_("password").value == "")
       {
-        alert("ƒpƒXƒ[ƒh‚ð‹ó‚É‚·‚éŽ–‚Í‚Å‚«‚Ü‚¹‚ñIIIIIII");
+        alert("ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ç©ºã«ã™ã‚‹äº‹ã¯ã§ãã¾ã›ã‚“ï¼ï¼ï¼ï¼ï¼ï¼ï¼");
         return false;
       }
       _("login").disabled = "true";
-      _("login").value = "ƒƒOƒCƒ“‚µ‚Ä‚¢‚Ü‚·BB";
+      _("login").value = "ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ã¾ã™ã€‚ã€‚";
       var shaObj = new jsSHA("SHA3-512","TEXT",{encoding:"UTF8"});
       shaObj.update(_("password").value);
       _("_trykey").value = CybozuLabs.MD5.calc(shaObj.getHash("HEX").toLowerCase()+"<?=$_SESSION['login_token']?>");
@@ -48,9 +48,9 @@
       <br>
       <?php if ( isset( $_GET["error"] ) ) { ?>
         <?php if ( $_GET["error"] == "ban" ) { ?>
-          <div style="background-color:#404ff0;color:#ff4500;" align="center"><h2>ƒAƒJƒEƒ“ƒg‚Í“€Œ‹‚³‚ê‚Ä‚¢‚Ü‚·</h2></div>
+          <div style="background-color:#404ff0;color:#ff4500;" align="center"><h2>ã‚¢ã‚«ã‚¦ãƒ³ãƒˆã¯å‡çµã•ã‚Œã¦ã„ã¾ã™</h2></div>
         <?php } else { ?>
-          <div style="background-color:#404ff0;color:#ff4500;" align="center"><h2>ƒ[ƒ‹ƒAƒhƒŒƒX/ƒ†[ƒU[ID–”‚ÍƒpƒXƒ[ƒh‚ªˆá‚¢‚Ü‚·</h2></div>
+          <div style="background-color:#404ff0;color:#ff4500;" align="center"><h2>ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹/ãƒ¦ãƒ¼ã‚¶ãƒ¼IDåˆã¯ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé•ã„ã¾ã™</h2></div>
         <?php } ?>
       <?php } else { ?>
         <br>
@@ -59,24 +59,24 @@
         <form action='' method='POST' onsubmit='return CSubmit();' style="margin-left:auto;margin-right:auto;<?php
           if (!Phone) { ?>background-image:url('/icon/login_background.jpg');color:#6495ed;width:80%;<?php } else { ?>width:30%;<?php } ?>">
           <br>
-          <p id="gousername"><b>ƒ[ƒ‹ƒAƒhƒŒƒX:</b> <input type="text" name="_username" id="username" value="" placeholder="ƒ[ƒ‹–”‚Íƒ†[ƒU[ID" required></p>
-          <p id="gopassword"><b>ƒpƒXƒ[ƒh:</b> <input type="password" id="password" name="password" value="" placeholder="ƒpƒXƒ[ƒh" required></p>
-          <input type="submit" style="height:60px;width:140px;" id="login" value="ƒƒOƒCƒ“" title="ƒƒOƒCƒ“">
+          <p id="gousername"><b>ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹:</b> <input type="text" name="_username" id="username" value="" placeholder="ãƒ¡ãƒ¼ãƒ«åˆã¯ãƒ¦ãƒ¼ã‚¶ãƒ¼ID" required></p>
+          <p id="gopassword"><b>ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰:</b> <input type="password" id="password" name="password" value="" placeholder="ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰" required></p>
+          <input type="submit" style="height:60px;width:140px;" id="login" value="ãƒ­ã‚°ã‚¤ãƒ³" title="ãƒ­ã‚°ã‚¤ãƒ³">
           <input type="hidden" name="_login_trykey" id="_trykey" value="" style="display:none;">
           <input type="hidden" name="_return_back_address" value="<?php if (isset($_GET["return"])) echo htmlspecialchars($_GET["return"]); ?>" style="display:none;">
           <br><br>
         </form>
         <br>
-        <p title="–{ƒTƒCƒg‚Å‚Íƒ`ƒƒƒŒƒ“ƒWƒŒƒXƒ|ƒ“ƒX”FØ‚ª—˜—p‚³‚ê‚Ä‚¢‚Ü‚·B">
+        <p title="æœ¬ã‚µã‚¤ãƒˆã§ã¯ãƒãƒ£ãƒ¬ãƒ³ã‚¸ãƒ¬ã‚¹ãƒãƒ³ã‚¹èªè¨¼ãŒåˆ©ç”¨ã•ã‚Œã¦ã„ã¾ã™ã€‚">
           <img style="height:14px;width:14px;" src="data:image/png;base64,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">
-          TLS‚É‚æ‚éˆÃ†‰»/ƒ`ƒƒƒŒƒ“ƒWƒŒƒXƒ|ƒ“ƒX”FØ
+          TLSã«ã‚ˆã‚‹æš—å·åŒ–/ãƒãƒ£ãƒ¬ãƒ³ã‚¸ãƒ¬ã‚¹ãƒãƒ³ã‚¹èªè¨¼
         </p>
       </div>
 
       <noscript>
         <div title="NO SCRIPT ERROR" class="p-noscript">
-          <h1>JavaScript‚ª–³Œø‚Å‚·</h1>
-          <p>MetaNote‚ð—˜—p‚·‚é‚É‚ÍA‚¨Žg‚¢‚Ìƒuƒ‰ƒEƒU‚ÌJavaScript‚ð—LŒø‰»‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B</p>
+          <h1>JavaScriptãŒç„¡åŠ¹ã§ã™</h1>
+          <p>MetaNoteã‚’åˆ©ç”¨ã™ã‚‹ã«ã¯ã€ãŠä½¿ã„ã®ãƒ–ãƒ©ã‚¦ã‚¶ã®JavaScriptã‚’æœ‰åŠ¹åŒ–ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚</p>
         </div>
       </noscript>
 

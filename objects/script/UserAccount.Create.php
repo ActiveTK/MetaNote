@@ -1,8 +1,8 @@
 <?php
 
   /*!
-   * ���[�U�[�A�J�E���g�쐬�@�\��񋟂��܂��B
-   * �^�C�g�� $title ���K�v�ł��B
+   * ユーザーアカウント作成機能を提供します。
+   * タイトル $title が必要です。
    */
 
   if ( isset( $_GET["s"] ) && $_GET["s"] == "2" )
@@ -25,7 +25,7 @@
     $_SESSION["account_create_token"] = "_" . MetaNote_GetRand(256);
 
     if ( !isset( $_POST["_call"] ) || empty($_POST["_call"]) ||
-         !preg_match( "/^[��-��@-���[a-zA-Z0-9��-ꞂO-�X�A�B,. \n\r]+$/u" , $_POST["_call"] ) )
+         !preg_match( "/^[ぁ-んァ-ヶーa-zA-Z0-9一-龠０-９、。,. \n\r]+$/u" , $_POST["_call"] ) )
     {
       NCPRedirect( "/new?error=4" );
       exit();
@@ -127,11 +127,11 @@
     <div class="mainobj">
       <?php if (!Phone) { ?><br><?php } ?>
       <div align="center" style="background-color:#e6e6fa;text:#363636;width:60%;margin-left:auto;margin-right:auto;">
-        <h1>�A�J�E���g�쐬����</h1>
+        <h1>アカウント作成完了</h1>
       </div>
       <div align="center">
-        <p>�A�J�E���g�̍쐬���������܂����B</p>
-        <p><a href="/home">�z�[��</a>�ֈړ����Ă��������B</p>
+        <p>アカウントの作成が完了しました。</p>
+        <p><a href="/home">ホーム</a>へ移動してください。</p>
       </div>
       <?=MetaNote_View_Option()?>
     </div>
@@ -162,15 +162,15 @@
     <?=MetaNote_SHA512Js()?>
     <script>
       window.onload = function() {
-        document.getElementById("v").innerText = "(��\��)";
+        document.getElementById("v").innerText = "(非表示)";
         document.getElementById("v").onclick = function() {
           let v = document.getElementById("v");
-          if (v.innerText == "(��\��)") {
-            v.innerText = "(�\��)";
+          if (v.innerText == "(非表示)") {
+            v.innerText = "(表示)";
             document.getElementById("_password").type = "password";
           }
           else {
-            v.innerText = "(��\��)";
+            v.innerText = "(非表示)";
             document.getElementById("_password").type = "text";
           }
         }
@@ -198,35 +198,35 @@
       </div>
       <?php if ( isset( $_GET["error"] ) ) { ?><div class="errortext" align="center"><h2><?php
         if ( $_GET["error"] == "1" )
-          echo "���[���A�h���X�̓��͌`�����s���ł��B";
+          echo "メールアドレスの入力形式が不正です。";
         else if ( $_GET["error"] == "2" )
-          echo "�w�肳�ꂽ���[���A�h���X�͊��Ɏg�p����Ă��܂��B";
+          echo "指定されたメールアドレスは既に使用されています。";
         else if ( $_GET["error"] == "3" )
-          echo "�A�J�E���g���쐬����ɂ́A���p�K��ɑS�ē��ӂ���K�v������܂��B";
+          echo "アカウントを作成するには、利用規約に全て同意する必要があります。";
         else if ( $_GET["error"] == "4" )
-          echo "�w�肳�ꂽ���[�U�[���͖����ł��B";
+          echo "指定されたユーザー名は無効です。";
         else if ( $_GET["error"] == "5" )
-          echo "�w�肳�ꂽ�p�X���[�h�͐Ǝ�Ȃ��߁A�����ł��B";
+          echo "指定されたパスワードは脆弱なため、無効です。";
         else
-          echo "�Z�p�I�ȃG���[���������܂����B";
+          echo "技術的なエラーが発生しました。";
       ?></h2></div><?php } else { ?><?php } ?>
       <div align="center">
-        <p title="1���ŃA�J�E���g���쐬�ł��܂��I">
-          �j�b�N�l�[���ƃ��[���A�h���X�A�p�X���[�h�݂̂ŃA�J�E���g���쐬�ł��܂��B
+        <p title="1分でアカウントを作成できます！">
+          ニックネームとメールアドレス、パスワードのみでアカウントを作成できます。
         </p>
-        <p>���ɃA�J�E���g���������ł����H<a href="/login">���O�C��</a>���Ă��������B</p>
+        <p>既にアカウントをお持ちですか？<a href="/login">ログイン</a>してください。</p>
         <form action='/new?s=2' method='POST' id='subm' class="formof">
           <br>
-          <p id="gousername"><b>�j�b�N�l�[��:</b> <input type="text" name="_call" value="" id="_call" placeholder="�R�c���Y" required>(�K�{)</p>
-          <p id="gomailadd"><b>���[���A�h���X:</b> <input type="email" name="_mailaddress" value="" placeholder="yamada@example.com" id="_mailaddress" required>(�K�{)</p>
-          <p id="gopassword"><b>�p�X���[�h:</b> <input type="text" name="_password" id="_password" value="<?=MetaNote_GetRand(8)?>" pattern="^[a-zA-Z0-9!-/:-@\[-`{-~]*$" placeholder="Password" required><a href="javascript:void(0);"><span id="v"></span></a>(�K�{)</p>
-          <pre>���p�X���[�h�͕K��8���ȏ�ɂ��Ă��������B</pre>
+          <p id="gousername"><b>ニックネーム:</b> <input type="text" name="_call" value="" id="_call" placeholder="山田太郎" required>(必須)</p>
+          <p id="gomailadd"><b>メールアドレス:</b> <input type="email" name="_mailaddress" value="" placeholder="yamada@example.com" id="_mailaddress" required>(必須)</p>
+          <p id="gopassword"><b>パスワード:</b> <input type="text" name="_password" id="_password" value="<?=MetaNote_GetRand(8)?>" pattern="^[a-zA-Z0-9!-/:-@\[-`{-~]*$" placeholder="Password" required><a href="javascript:void(0);"><span id="v"></span></a>(必須)</p>
+          <pre>※パスワードは必ず8桁以上にしてください。</pre>
           <br>
           <input type="checkbox" name="licenseread" id="license" value="true" class="LicenseAgree" required>
-          <label for="license"><b>���́AMetaNote�� <a href="/license">���p�K��</a> �ɑS�ē��ӂ��܂��B</b></label>(�K�{)
+          <label for="license"><b>私は、MetaNoteの <a href="/license">利用規約</a> に全て同意します。</b></label>(必須)
           <br><br>
           <input type="text" name="_NoSpamHash" id="_NoSpamHash" class="Nodisplay" value="">
-          <input type="submit" class="CreateAcBtn" id="_createbutton" value="�A�J�E���g��V�K�쐬" title="�N���b�N����ƃA�J�E���g��V�K�쐬���܂��B">
+          <input type="submit" class="CreateAcBtn" id="_createbutton" value="アカウントを新規作成" title="クリックするとアカウントを新規作成します。">
           <br><br>
         </form>
         <br>

@@ -3,28 +3,28 @@
   /*!
    * @namespace utilities.php(MetaNote.Server)
    * (c) 2022 MetaNote.
-   * •Ö—˜‚Èˆ—‚ğ‚Ü‚Æ‚ß‚½ƒtƒ@ƒCƒ‹
+   * ä¾¿åˆ©ãªå‡¦ç†ã‚’ã¾ã¨ã‚ãŸãƒ•ã‚¡ã‚¤ãƒ«
    */
 
   /**
-   * •¶š—ñ‚ğHTMLê—p‚Ì•¶š—ñ‚É•ÏŠ·‚·‚éŠÖ”
+   * æ–‡å­—åˆ—ã‚’HTMLå°‚ç”¨ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹é–¢æ•°
    * 
    * e.g.
    * & -> &amp;
    * < -> &lt;
    * 
-   * @param string $text •ÏŠ·‘O‚Ì•¶š—ñ
-   * @return string •ÏŠ·Œã‚Ì•¶š—ñ
+   * @param string $text å¤‰æ›å‰ã®æ–‡å­—åˆ—
+   * @return string å¤‰æ›å¾Œã®æ–‡å­—åˆ—
    */
   function MetaNote_Plain2HtmlCode ( string $text = "" ) : string { 
     return htmlspecialchars( $text );
   }
 
   /**
-   * •¶š—ñ‚ª‰p”š(alphanumeric)‚©”»’è‚·‚éŠÖ”
+   * æ–‡å­—åˆ—ãŒè‹±æ•°å­—(alphanumeric)ã‹åˆ¤å®šã™ã‚‹é–¢æ•°
    * 
-   * @param string $text ”»’è‚·‚é•¶š—ñ
-   * @return bool ‰p”š‚©‚Ç‚¤‚©Btrue‚Å‰p”šBfalse‚Å‚»‚¤‚Å‚È‚¢B
+   * @param string $text åˆ¤å®šã™ã‚‹æ–‡å­—åˆ—
+   * @return bool è‹±æ•°å­—ã‹ã©ã†ã‹ã€‚trueã§è‹±æ•°å­—ã€‚falseã§ãã†ã§ãªã„ã€‚
    */
   function is_alnum(string $text) : bool {
     if ( preg_match( "/^[a-zA-Z0-9]+$/", $text ) )
@@ -34,9 +34,9 @@
   } 
 
   /**
-   * ƒGƒ‰[‚ğ–³‹‚µ‚½ƒZƒbƒVƒ‡ƒ“‚ÌunsetŠÖ”
+   * ã‚¨ãƒ©ãƒ¼ã‚’ç„¡è¦–ã—ãŸã‚»ãƒƒã‚·ãƒ§ãƒ³ã®unseté–¢æ•°
    * 
-   * @return bool ƒGƒ‰[‚ª“Š‚°‚ç‚ê‚½ê‡‚É‚ÍfalseB‚»‚êˆÈŠO‚Ítrue‚Å‚·B
+   * @return bool ã‚¨ãƒ©ãƒ¼ãŒæŠ•ã’ã‚‰ã‚ŒãŸå ´åˆã«ã¯falseã€‚ãã‚Œä»¥å¤–ã¯trueã§ã™ã€‚
    */
   function MetaNote_Session_Close() : bool {
     try {
@@ -49,7 +49,7 @@
   }
 
   /**
-   * ŠÈˆÕ“I‚ÈFatalƒGƒ‰[•\¦ŠÖ”
+   * ç°¡æ˜“çš„ãªFatalã‚¨ãƒ©ãƒ¼è¡¨ç¤ºé–¢æ•°
    */
   function MetaNote_Fatal_Die( string $ErrorInfo = "" ) {
 
@@ -66,9 +66,9 @@
   }
 
   /**
-   * ƒ†[ƒU[‚ğƒŠƒ_ƒCƒŒƒNƒg‚³‚¹‚éŠÖ”
+   * ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚’ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã•ã›ã‚‹é–¢æ•°
    * 
-   * @param string $url ƒŠƒ_ƒCƒŒƒNƒgæ‚ÌURL‚Å‚·B
+   * @param string $url ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå…ˆã®URLã§ã™ã€‚
    */
   function NCPRedirect( $url ) {
 
@@ -79,9 +79,9 @@
   }
 
   /**
-   * ActiveTK.min.js‚ğ•`Ê‚·‚éŠÖ”
+   * ActiveTK.min.jsã‚’æå†™ã™ã‚‹é–¢æ•°
    * 
-   * @param string $nonce HTMLã‚Ìnonce‚Å‚·B
+   * @param string $nonce HTMLä¸Šã®nonceã§ã™ã€‚
    */
   function MetaNote_ActiveTKMinJs( string $nonce = "" ) {
     if ( $nonce == "" )
@@ -91,9 +91,9 @@
   }
 
   /**
-   * SHA512.js‚ğ•`Ê‚·‚éŠÖ”
+   * SHA512.jsã‚’æå†™ã™ã‚‹é–¢æ•°
    * 
-   * @param string $nonce HTMLã‚Ìnonce‚Å‚·B
+   * @param string $nonce HTMLä¸Šã®nonceã§ã™ã€‚
    */
   function MetaNote_SHA512Js( string $nonce = "" ) {
     if ( $nonce == "" )
@@ -103,7 +103,7 @@
   }
 
   /**
-   * o—Íƒf[ƒ^‚ÌƒLƒƒƒbƒVƒ…‚ğ‹–‰Â‚·‚éŠÖ”
+   * å‡ºåŠ›ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’è¨±å¯ã™ã‚‹é–¢æ•°
    */
   function AllowCache() {
     header( 'Last-Modified: Fri Jan 01 2010 00:00:00 GMT' );
@@ -113,10 +113,10 @@
   }
 
   /**
-   * ˆÃ†Šw“I‚ÉˆÀ‘S‚Æ‚³‚ê‚é—”‚ğ”­¶‚³‚¹‚éŠÖ”
+   * æš—å·å­¦çš„ã«å®‰å…¨ã¨ã•ã‚Œã‚‹ä¹±æ•°ã‚’ç™ºç”Ÿã•ã›ã‚‹é–¢æ•°
    * 
-   * @param int $len —”‚ÌƒoƒCƒg”‚Å‚·B
-   * @return string ¶¬‚³‚ê‚½—”
+   * @param int $len ä¹±æ•°ã®ãƒã‚¤ãƒˆæ•°ã§ã™ã€‚
+   * @return string ç”Ÿæˆã•ã‚ŒãŸä¹±æ•°
    */
   function MetaNote_GetRand( int $len = 32 ) : string {
 
@@ -131,17 +131,17 @@
   }
 
   /**
-   * ƒtƒbƒ^[‚ğ•\¦‚·‚éŠÖ”
+   * ãƒ•ãƒƒã‚¿ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹é–¢æ•°
    */
   function MetaNote_View_Option() {
 
     ?>
     <div class="p-lastinfo" align="center">
       <p>
-        <a href="/" style="color:#00ff00 !important;">ƒz[ƒ€</a>E
-        <a href="/about" style="color:#0403f9 !important;">ƒT[ƒrƒXŠT—v</a>E
-        <a href="/license" style="color:#ffa500 !important;">—˜—p‹K–ñ</a>E
-        <a href="/privacy" style="color:#ff00ff !important;">ƒvƒ‰ƒCƒoƒV[</a> 
+        <a href="/" style="color:#00ff00 !important;">ãƒ›ãƒ¼ãƒ </a>ãƒ»
+        <a href="/about" style="color:#0403f9 !important;">ã‚µãƒ¼ãƒ“ã‚¹æ¦‚è¦</a>ãƒ»
+        <a href="/license" style="color:#ffa500 !important;">åˆ©ç”¨è¦ç´„</a>ãƒ»
+        <a href="/privacy" style="color:#ff00ff !important;">ãƒ—ãƒ©ã‚¤ãƒã‚·ãƒ¼</a> 
         <?=Copyright?>
       </p>
     </div>
@@ -150,8 +150,8 @@
   }
 
   /**
-   * ƒ†[ƒU[”‚ğŒv‘ª‚·‚éŠÖ”
-   * @return int Œ»İ‚Ìƒ†[ƒU[”
+   * ãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°ã‚’è¨ˆæ¸¬ã™ã‚‹é–¢æ•°
+   * @return int ç¾åœ¨ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°
    */
   function MetaNote_UserCount() : int {
 
@@ -167,9 +167,9 @@
   }
 
   /**
-   * ƒ†[ƒU[”‚ğŒv‘ª‚·‚éŠÖ”(SQLî•ñ‚ ‚è)
-   * @parm PDO $pdo ƒf[ƒ^ƒx[ƒXÚ‘± 
-   * @return int Œ»İ‚Ìƒ†[ƒU[”
+   * ãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°ã‚’è¨ˆæ¸¬ã™ã‚‹é–¢æ•°(SQLæƒ…å ±ã‚ã‚Š)
+   * @parm PDO $pdo ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹æ¥ç¶š 
+   * @return int ç¾åœ¨ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°
    */
   function MetaNote_UserCount_bySQL($pdo) : int {
 
@@ -184,9 +184,9 @@
   }
 
   /**
-   * ƒ†[ƒU[ID‚©‚çƒ†[ƒU[–¼‚ÆƒfƒBƒXƒvƒŒƒCID‚ğæ“¾‚·‚éŠÖ”
-   * @param string[] $ID ƒ†[ƒU[‚Ìƒ†ƒj[ƒNID‚Å‚·B
-   * @return array ƒ†[ƒU[–¼(‘¶İ‚µ‚È‚¢ê‡‚É‚ÍuíœÏ‚İ‚Ìƒ†[ƒU[v)‚ÆƒfƒBƒXƒvƒŒƒCID‚Ì”z—ñB
+   * ãƒ¦ãƒ¼ã‚¶ãƒ¼IDã‹ã‚‰ãƒ¦ãƒ¼ã‚¶ãƒ¼åã¨ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤IDã‚’å–å¾—ã™ã‚‹é–¢æ•°
+   * @param string[] $ID ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ãƒ¦ãƒ‹ãƒ¼ã‚¯IDã§ã™ã€‚
+   * @return array ãƒ¦ãƒ¼ã‚¶ãƒ¼å(å­˜åœ¨ã—ãªã„å ´åˆã«ã¯ã€Œå‰Šé™¤æ¸ˆã¿ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã€)ã¨ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤IDã®é…åˆ—ã€‚
    */
   function MetaNote_GetNameByID($ID) : array {
 
@@ -202,7 +202,7 @@
         $akz = $value["DisplayID"];
 	  }
       if (empty($akm))
-        $akm = "íœÏ‚İ‚Ìƒ†[ƒU[";
+        $akm = "å‰Šé™¤æ¸ˆã¿ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼";
       if (empty($akz))
         $akz = "DELETED";
       return array($akm, $akz);
@@ -213,16 +213,16 @@
   }
 
   /**
-   * ƒ†[ƒU[ID‚©‚çƒ†[ƒU[–¼‚ÆƒfƒBƒXƒvƒŒƒCID‚ğæ“¾‚·‚éŠÖ”
-   * @oarm PDO $dbh ƒf[ƒ^ƒx[ƒXƒf[ƒ^ƒx[ƒXî•ñ
-   * @param string[] $ID ƒ†[ƒU[‚Ìƒ†ƒj[ƒNID‚Å‚·B
-   * @return array ƒ†[ƒU[–¼(‘¶İ‚µ‚È‚¢ê‡‚É‚ÍuíœÏ‚İ‚Ìƒ†[ƒU[v)‚ÆƒfƒBƒXƒvƒŒƒCID‚Ì”z—ñB
+   * ãƒ¦ãƒ¼ã‚¶ãƒ¼IDã‹ã‚‰ãƒ¦ãƒ¼ã‚¶ãƒ¼åã¨ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤IDã‚’å–å¾—ã™ã‚‹é–¢æ•°
+   * @oarm PDO $dbh ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹æƒ…å ±
+   * @param string[] $ID ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ãƒ¦ãƒ‹ãƒ¼ã‚¯IDã§ã™ã€‚
+   * @return array ãƒ¦ãƒ¼ã‚¶ãƒ¼å(å­˜åœ¨ã—ãªã„å ´åˆã«ã¯ã€Œå‰Šé™¤æ¸ˆã¿ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã€)ã¨ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤IDã®é…åˆ—ã€‚
    */
   function MetaNote_GetNameByID_bySQL($dbh, $ID) : array {
 
     try {
       if (!is_alnum((string)$ID))
-        MetaNote_Fatal_Die( "ƒZƒLƒ…ƒŠƒeƒBƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B" );
+        MetaNote_Fatal_Die( "ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚" );
       $akm = "";
       $akz = "";
       $res = $dbh->query("select * from MetaNoteUsers where UserIntID = '" . $ID . "' limit 2;");
@@ -231,7 +231,7 @@
         $akz = $value["DisplayID"];
 	  }
       if (empty($akm))
-        $akm = "íœÏ‚İ‚Ìƒ†[ƒU[";
+        $akm = "å‰Šé™¤æ¸ˆã¿ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼";
       if (empty($akz))
         $akz = "DELETED";
       return array($akm, $akz, $ID);
@@ -242,10 +242,10 @@
   }
 
   /**
-   * MetaNote‚ÌƒfƒtƒHƒ‹ƒgƒwƒbƒ_[‚ğ•\¦‚µ‚Ü‚·B
+   * MetaNoteã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
    *
-   * @param string $IndexFromBot (”CˆÓ)ƒNƒ[ƒ‰[‚©‚ç‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ‹–‰Â–”‚Í‹‘”Û‚µ‚Ü‚·B[All] –”‚Í [noindex] ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B‹K’è’l‚Í [All] ‚Å‚·B
-   * @param string $Charset (”CˆÓ)•¶šƒR[ƒh‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B‹K’è’l‚Í [utf-8] ‚Å‚·B
+   * @param string $IndexFromBot (ä»»æ„)ã‚¯ãƒ­ãƒ¼ãƒ©ãƒ¼ã‹ã‚‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¨±å¯åˆã¯æ‹’å¦ã—ã¾ã™ã€‚[All] åˆã¯ [noindex] ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚è¦å®šå€¤ã¯ [All] ã§ã™ã€‚
+   * @param string $Charset (ä»»æ„)æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚è¦å®šå€¤ã¯ [utf-8] ã§ã™ã€‚
    */
   function MetaNote_Header_Default( string $IndexFromBot = "All", string $Charset = "utf-8" ) {
 
@@ -257,17 +257,17 @@
     <meta name="robots" content="<?=$IndexFromBot?>">
     <meta name="keywords" content="MetaNote">
     <meta name="favicon" content="/favicon.ico">
-    <meta name="description" content="MetaNote‚Å‚Í–³—¿‚Å‘¼‚Ìƒ†[ƒU[‚Æƒ`ƒƒƒbƒg‚ª‚Å‚«‚Ü‚·B">
+    <meta name="description" content="MetaNoteã§ã¯ç„¡æ–™ã§ä»–ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã¨ãƒãƒ£ãƒƒãƒˆãŒã§ãã¾ã™ã€‚">
     <meta name="copyright" content="<?=Copyright?>">
     <meta name="thumbnail" content="https://<?=Domain?>/icon/index.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:description" content="MetaNote‚Å‚Í–³—¿‚Å‘¼‚Ìƒ†[ƒU[‚Æƒ`ƒƒƒbƒg‚ª‚Å‚«‚Ü‚·B">
+    <meta name="twitter:description" content="MetaNoteã§ã¯ç„¡æ–™ã§ä»–ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã¨ãƒãƒ£ãƒƒãƒˆãŒã§ãã¾ã™ã€‚">
     <meta name="twitter:image:src" content="https://<?=Domain?>/icon/index.jpg">
     <meta name="twitter:image:alt" content="MetaNote.">
     <meta name="twitter:domain" content="<?=Domain?>">
 
-    <meta property="og:description" content="MetaNote‚Å‚Í–³—¿‚Å‘¼‚Ìƒ†[ƒU[‚Æƒ`ƒƒƒbƒg‚ª‚Å‚«‚Ü‚·B">
+    <meta property="og:description" content="MetaNoteã§ã¯ç„¡æ–™ã§ä»–ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã¨ãƒãƒ£ãƒƒãƒˆãŒã§ãã¾ã™ã€‚">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:image" content="https://<?=Domain?>/icon/index.jpg">
@@ -289,7 +289,7 @@
   }
 
   /**
-   * MetaNote‚Ìƒ{ƒfƒB[“à‚ÌƒfƒtƒHƒ‹ƒgƒwƒbƒ_[‚ğ•\¦‚µ‚Ü‚·B
+   * MetaNoteã®ãƒœãƒ‡ã‚£ãƒ¼å†…ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
    */
   function Get_Body_Header() {
 
@@ -306,19 +306,19 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <br>
             <li class="nav-item">
-              <a class="nav-link active p-selectcolor1 p-link2home" aria-current="page" href="/" style="color:#000000; !important;"><b>ƒz[ƒ€</b></a>
+              <a class="nav-link active p-selectcolor1 p-link2home" aria-current="page" href="/" style="color:#000000; !important;"><b>ãƒ›ãƒ¼ãƒ </b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active p-selectcolor2 p-link2about" href="/about" style="color:#0403f9 !important;"><b>ƒT[ƒrƒXŠT—v</b></a>
+              <a class="nav-link active p-selectcolor2 p-link2about" href="/about" style="color:#0403f9 !important;"><b>ã‚µãƒ¼ãƒ“ã‚¹æ¦‚è¦</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active p-selectcolor1" href="/license" style="color:#ffa500 !important;"><b>—˜—p‹K–ñ</b></a>
+              <a class="nav-link active p-selectcolor1" href="/license" style="color:#ffa500 !important;"><b>åˆ©ç”¨è¦ç´„</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active p-selectcolor2" href="/privacy" style="color:#ff00ff !important;"><b>ƒvƒ‰ƒCƒoƒV[</b></a>
+              <a class="nav-link active p-selectcolor2" href="/privacy" style="color:#ff00ff !important;"><b>ãƒ—ãƒ©ã‚¤ãƒã‚·ãƒ¼</b></a>
             </li>
             <li class="nav-item">
-              <span class="nav-link active p-selectcolor1" title="’˜ìŒ î•ñ"><?=Copyright?></a>
+              <span class="nav-link active p-selectcolor1" title="è‘—ä½œæ¨©æƒ…å ±"><?=Copyright?></a>
             </li>
           </ul>
         </div>
@@ -329,20 +329,20 @@
   }
 
   /**
-   * MetaNote‚Ìƒ{ƒfƒB[ÅŒã‚ÌƒAƒCƒRƒ“‚ğ•\¦‚µ‚Ü‚·B
+   * MetaNoteã®ãƒœãƒ‡ã‚£ãƒ¼æœ€å¾Œã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
    */
   function MetaNote_View_Icons() {
       try {
 ?>
       <div align="center">
         <a href="/home" rel="noopener noreferrer">
-          <img src="https://<?=Domain?>/icon/home.png" style="width:73px;height:73px;" title="ƒz[ƒ€">
+          <img src="https://<?=Domain?>/icon/home.png" style="width:73px;height:73px;" title="ãƒ›ãƒ¼ãƒ ">
         </a>
         <a href="/setting" rel="noopener noreferrer">
-          <img src="https://<?=Domain?>/icon/setting.png" style="width:73px;height:73px;" title="İ’è">
+          <img src="https://<?=Domain?>/icon/setting.png" style="width:73px;height:73px;" title="è¨­å®š">
         </a>
         <a href="/logout" rel="noopener noreferrer">
-          <img src="https://<?=Domain?>/icon/logout.png" style="width:73px;height:73px;" title="ƒƒOƒAƒEƒg">
+          <img src="https://<?=Domain?>/icon/logout.png" style="width:73px;height:73px;" title="ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ">
         </a>
       </div>
 <?php
@@ -353,7 +353,7 @@
   }
 
   /**
-   * MetaNote‚Ìl‹C‹L–‚ğ•\¦‚µ‚Ü‚·B
+   * MetaNoteã®äººæ°—è¨˜äº‹ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
    */
   function MetaNote_List_DESC($dbh) {
       ob_start();
@@ -362,7 +362,7 @@
       <div align="center" style="display:flex;-webkit-justify-content:center;justify-content:center;-webkit-align-items:center;align-items: center;">
 
         <div id="slide" class="carousel slide container marketing" data-bs-ride="carousel" style="width:500px;">
-          <h3>yl‹C‹}ã¸z</h3>
+          <h3>ã€äººæ°—æ€¥ä¸Šæ˜‡ã€‘</h3>
           <ol class="carousel-indicators">
             <li data-bs-target="#slide" data-bs-slide-to="0" class="active"></li>
             <li data-bs-target="#slide" data-bs-slide-to="1"></li>
@@ -378,8 +378,8 @@
               try {
                 $Notes = $dbh->query('select * from noteblog where not decinfo = "" order by pvcount desc limit 5;');
                 if ($Notes !== false) { }
-                else die("SQL‚ÌÀs’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B");
-              } catch (\Throwable $e) { die("SQLƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B"); }
+                else die("SQLã®å®Ÿè¡Œä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
+              } catch (\Throwable $e) { die("SQLã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚"); }
               foreach($Notes as $value)
               {
                 $i++;
@@ -389,23 +389,23 @@
               <p><?=$value["writer"]?></p>
               <b><?=$value["decinfo"]?></b>
               <br><br>
-              <p><a class="btn btn-secondary" href="https://note.activetk.jp/<?=$value["httppath"]?>" role="button">‘±‚«‚ğŒ©‚é</a></p>
+              <p><a class="btn btn-secondary" href="https://note.activetk.jp/<?=$value["httppath"]?>" role="button">ç¶šãã‚’è¦‹ã‚‹</a></p>
             </div><?php
               }
           ?>
           </div>
           <button type="button" class="carousel-control-prev" data-bs-target="#slide" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">‘O‚Ö</span>
+            <span class="visually-hidden">å‰ã¸</span>
           </button>
           <button type="button" class="carousel-control-next" data-bs-target="#slide" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Ÿ‚Ö</span>
+            <span class="visually-hidden">æ¬¡ã¸</span>
           </button>
         </div>
 
         <div id="slide2" class="carousel slide container marketing" data-bs-ride="carousel" style="width:500px;">
-          <h3>yÅV‚Ì‹L–z</h3>
+          <h3>ã€æœ€æ–°ã®è¨˜äº‹ã€‘</h3>
           <ol class="carousel-indicators">
             <li data-bs-target="#slide2" data-bs-slide-to="0" class="active"></li>
             <li data-bs-target="#slide2" data-bs-slide-to="1"></li>
@@ -420,8 +420,8 @@
               try {
                 $Notes = $dbh->query('select * from noteblog where not decinfo = "" order by lastwritetime desc limit 5;');
                 if ($Notes !== false) { }
-                else die("SQL‚ÌÀs’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B");
-              } catch (\Throwable $e) { die("SQLƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B"); }
+                else die("SQLã®å®Ÿè¡Œä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
+              } catch (\Throwable $e) { die("SQLã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚"); }
               foreach($Notes as $value)
               {
                 $i++;
@@ -431,18 +431,18 @@
               <p><?=$value["writer"]?></p>
               <b><?=$value["decinfo"]?></b>
               <br><br>
-              <p><a class="btn btn-secondary" href="https://note.activetk.jp/<?=$value["httppath"]?>" role="button">‘±‚«‚ğŒ©‚é</a></p>
+              <p><a class="btn btn-secondary" href="https://note.activetk.jp/<?=$value["httppath"]?>" role="button">ç¶šãã‚’è¦‹ã‚‹</a></p>
             </div><?php
               }
           ?>
           </div>
           <button type="button" class="carousel-control-prev" data-bs-target="#slide2" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">‘O‚Ö</span>
+            <span class="visually-hidden">å‰ã¸</span>
           </button>
           <button type="button" class="carousel-control-next" data-bs-target="#slide2" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Ÿ‚Ö</span>
+            <span class="visually-hidden">æ¬¡ã¸</span>
           </button>
         </div>
       </div>

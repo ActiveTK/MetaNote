@@ -3,11 +3,11 @@
   /*!
    * MetaNote.Server.ErrorPHP.php
    * (c) 2022 MetaNote.
-   * ƒGƒ‰[ƒƒbƒZ[ƒW‚ð•\Ž¦
-   * ƒGƒ‰[ƒƒbƒZ[ƒW‚Ì•¶Žš—ñ $ErrorInfo
+   * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
+   * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®æ–‡å­—åˆ— $ErrorInfo
    */
 
-  // ƒƒO‚ðì¬
+  // ãƒ­ã‚°ã‚’ä½œæˆ
   $LogFile = "/home/activetk/metanote.org/log/MetaNote_Fatal_Die.log";
 
   $debuginfo = array();
@@ -63,9 +63,9 @@
     <h1>HTTP 500 / Internal Server Error</h1>
     <hr color="#363636" size="2">
     <h2>
-      ‚²–À˜f‚ð‚¨Š|‚¯‚µ‚Ä½‚É\‚µ–ó‚²‚´‚¢‚Ü‚¹‚ñB<br>ƒT[ƒo[‚Å‚ÌƒŠƒNƒGƒXƒgˆ—’†‚É’v–½“I‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
+      ã”è¿·æƒ‘ã‚’ãŠæŽ›ã‘ã—ã¦èª ã«ç”³ã—è¨³ã”ã–ã„ã¾ã›ã‚“ã€‚<br>ã‚µãƒ¼ãƒãƒ¼ã§ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆå‡¦ç†ä¸­ã«è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚
     </h2>
-    <p><b>Ú×î•ñ</b>: <?=htmlspecialchars( $ErrorInfo )?></p>
+    <p><b>è©³ç´°æƒ…å ±</b>: <?=htmlspecialchars( $ErrorInfo )?></p>
     <hr color="#363636" size="2">
     <div style="position:fixed;bottom:4px;">
       <font style="background-color:#06f5f3;">(c) MetaNote.</font>

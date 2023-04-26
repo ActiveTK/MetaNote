@@ -283,7 +283,6 @@
 
   if ( _MetaNote_URI_LOW == "home" ) {
 
-    $msg = AdminAttention;
     include(MetaNote_Home . "objects/script/home.php");
     exit();
 

@@ -120,11 +120,10 @@
     <meta name="robots" content="All">
     <?=MetaNote_Header_Default()?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body style="background-color:#6495ed;color:#080808;">
-    <?=Get_Body_Header();?>
-    <div class="mainobj">
+    <div>
+      <br><br><br><br>
       <div align="center" style="background-color:#e6e6fa;text:#363636;width:60%;margin-left:auto;margin-right:auto;">
         <h1>アカウント作成完了</h1>
       </div>

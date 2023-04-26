@@ -234,7 +234,7 @@ body {
     }
 }
 a {
-    color: #00ff00 !important;
+    color: #00ff00;
     position: relative;
     display: inline-block;
     transition: .3s;

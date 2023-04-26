@@ -234,8 +234,8 @@ body {
 }
 .alignright {
     position: relative;
-    left: 60%;
-    width: 40%;
+    left: 40%;
+    width: 60%;
 }
 
 @media screen and (max-width:480px) {

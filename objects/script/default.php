@@ -109,15 +109,10 @@
       
           <hr class="featurette-divider">
 
-          <div class="row featurette" style="float:left;">
-            <div style="float:left;">
-              <h2 class="featurette-heading"><span class="text-center"><span class="text-muted">数少ない</span>日本向けの論文投稿サイト</span></h2>
-              <p class="lead">本サイトは、「ちょっとしたアイディアを気軽に共有できる」という理念の下に開発されている、数少ない日本語の論文投稿サイトです。
+          <div class="row featurette flex">
+            <p class="lead">本サイトは、「ちょっとしたアイディアを気軽に共有できる」という理念の下に開発されている、数少ない日本語の論文投稿サイトです。
               「査読不要・審査なし」を原則とし、誰でも簡単にアイディアを投稿できます。</p>
-            </div>
-            <div style="float:left;">
-              <img class="featurette-image img-fluid mx-auto" src="/icon/home.png">
-            </div>
+            <figure class="image"><img src="/icon/home.png"></figure>
           </div>
       
           <hr class="featurette-divider">

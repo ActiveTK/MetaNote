@@ -6,7 +6,7 @@
    */
 
   require_once( "/home/activetk/require/Config.php" );
-  require_once( "MainLib.php" );
+  require_once( "/home/activetk/metanote.org/objects/script/MainLib.php" );
 
   define( 'Domain', 'metanote.org' );
   define( 'MetaNote_Home', '/home/activetk/metanote.org/' );
@@ -48,56 +48,16 @@
   ini_set( 'display_startup_errors', 0 );
 
   if ( !empty( _MetaNote_URI ) ) {
-    if ( _MetaNote_URI_LOW == "js/activetk.min.js" ) {
-      header( 'Content-Type: text/javascript;charset=UTF-8' );
+
+    if ( _MetaNote_URI_LOW == "facicon.ico" )
+    {
       AllowCache();
-      readfile( '../object/js/ActiveTK.min.js' );
+      readfile( '../object/icon/MetaNote.ico' );
       exit();
     }
-    if ( _MetaNote_URI_LOW == "js/particles.min.js" ) {
-      header( 'Content-Type: text/javascript;charset=UTF-8' );
-      AllowCache();
-      readfile( '../object/js/particles.min.js' );
-      exit();
-    }
-    if ( _MetaNote_URI_LOW == "icon/login_background.jpg" ) {
-      header( 'Content-Type: image/jpeg' );
-      AllowCache();
-      readfile( '../object/' . _MetaNote_URI_LOW );
-      exit();
-    }
-    if ( _MetaNote_URI_LOW == "icon/bitcoin_logo.jpg" ) {
-      header( 'Content-Type: image/jpeg' );
-      AllowCache();
-      readfile( '../object/' . _MetaNote_URI_LOW );
-      exit();
-    }
-    if ( _MetaNote_URI_LOW == "icon/10percent.png" ) {
-      header( 'Content-Type: image/png' );
-      AllowCache();
-      readfile( '../object/' . _MetaNote_URI_LOW );
-      exit();
-    }
-    if ( _MetaNote_URI_LOW == "icon/index.jpg" ) {
-      header( 'Content-Type: image/vnd.microsoft.icon' );
-      AllowCache();
-      readfile( '../object/' . _MetaNote_URI_LOW );
-      exit();
-    }
-    if ( _MetaNote_URI_LOW == "favicon.ico" ) {
-      header( 'Content-Type: image/vnd.microsoft.icon' );
-      AllowCache();
-      readfile( '../object/icon/index_64_64.ico' );
-      exit();
-    }
-    if ( _MetaNote_URI_LOW == "sounds/alert.mp3" ) {
-      header( 'Content-Type: audio/mp3' );
-      AllowCache();
-      readfile( '../object/sounds/alert.mp3' );
-      exit();
-    }
+
     if ( substr( _MetaNote_URI_LOW, 0, 5 ) == "icon/" && file_exists( "../object/icon/" . basename( _MetaNote_URI_LOW ) ) ) {
-      $iconpath = pathinfo( '../object/icon/' . basename( _MetaNote_URI_LOW ) );
+      $iconpath = pathinfo( '../objects/icon/' . basename( _MetaNote_URI_LOW ) );
       if ( !isset( $iconpath['extension'] ) )
         MetaNote_Fatal_Die( "/iconオブジェクトに対し拡張子無しのファイルがリクエストされました。" );
       else if ( $iconpath['extension'] == "ico" )
@@ -112,6 +72,7 @@
       readfile( '../object/icon/' . basename( _MetaNote_URI_LOW ) );
       exit();
     }
+
   }
 
   ini_set( 'session.gc_divisor'    , 1            );
@@ -120,6 +81,7 @@
 
   $dbh = new PDO( DSN, DB_USER, DB_PASS );
 
+  // ログイン処理
   if (
     isset( $_POST["_username"] ) && isset( $_POST["_login_trykey"] ) &&
     isset( $_SESSION["login_token"] ) && !empty( $_SESSION["login_token"] )
@@ -157,34 +119,37 @@
 
   }
 
+  // ログアウト処理
   else if ( _MetaNote_URI_LOW == "logout" )
   {
     $_SESSION = array();
     session_destroy();
-    if ( isset( $_COOKIE["PHPSESSID"] ) )
+    if ( isset( $_COOKIE["SeedID"] ) )
       setcookie( "SeedID", '', time() - 1800, '/' );
     NCPRedirect( "/" );
     exit();
   }
 
+  // ログインページ
   else if (
     _MetaNote_URI_LOW == "login" &&
     ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
   )
   {
     $_SESSION["login_token"] = "_" . MetaNote_GetRand(64);
-    $title = "ログイン - MetaNote";
-    include( MetaNote_Home . "public_html/MetaNote.UserAccount.Login.php" );
+    $title = "ログイン - MetaNote.";
+    include( MetaNote_Home . "objects/script/UserAccount.Login.php" );
     exit();
   }
 
+  // アカウント作成ページ
   else if (
     _MetaNote_URI_LOW == "new" &&
     ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
   )
   {
     $title = "アカウント作成 - MetaNote.";
-    include( MetaNote_Home . "public_html/MetaNote.UserAccount.Create.php" );
+    include( MetaNote_Home . "objects/script/UserAccount.Create.php" );
     exit();
   }
 
@@ -220,7 +185,7 @@
       exit();
     }
 
-    $FilePath = "../data/uploads/" . basename( $_GET["user"] ) . "/" . basename( $_GET["hash"] ) . "_" . basename( $_GET["uniqcode"] );
+    $FilePath = MetaNote_Home . "objects/users-data/" . basename( $_GET["user"] ) . "/" . basename( $_GET["hash"] ) . "_" . basename( $_GET["uniqcode"] );
     if ( !file_exists( $FilePath ) ) {
       include(MetaNote_Home . "public_html/MetaNote.HttpStatus.404.php");
       exit();
@@ -310,13 +275,6 @@
 
   else if ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
   {
-
-    if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && strpos( $_SERVER['HTTP_USER_AGENT'], "curl" ) !== false )
-    {
-      include(MetaNote_Home . "public_html/MetaNote.Server.CommandLineMetaNote.html");
-      exit();
-    }
-
     $title = "MetaNote. - " . _MetaNote_SubTitle;
     include(MetaNote_Home . "public_html/MetaNote.Server.Default.php");
     exit();
@@ -339,26 +297,6 @@
   } else if ( _MetaNote_URI_LOW == "keijiban" ) {
 
     include(MetaNote_Home . "public_html/MetaNote.Service.Keijiban.php");
-    exit();
-
-  } else if ( _MetaNote_URI_LOW == "directchat" ) {
-
-    include(MetaNote_Home . "public_html/MetaNote.Service.DirectChat.php");
-    exit();
-
-  } else if ( _MetaNote_URI_LOW == "groupchat" ) {
-
-    include(MetaNote_Home . "public_html/MetaNote.Service.GroupChat.php");
-    exit();
-
-  } else if ( _MetaNote_URI_LOW == "setting" ) {
-
-    include(MetaNote_Home . "public_html/MetaNote.Service.Setting.php");
-    exit();
-
-  } else if ( _MetaNote_URI_LOW == "reportuser" ) {
-
-    echo "すみません、現在報告機能は実装中です。";
     exit();
 
   } else if ( empty( _MetaNote_URI_LOW ) ) {

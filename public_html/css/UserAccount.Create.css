@@ -1,0 +1,33 @@
+body {
+    background-color: #6495ed;
+    color: #080808;
+}
+.fortitle {
+    background-color: #e6e6fa;
+    color: #363636;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.errortext {
+    background-color: #404ff0;
+    color: #ff4500;
+}
+.formof {
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('/icon/login_background.jpg');
+    color: #6495ed;
+    width: 80%;
+}
+.Nodisplay {
+    display: none;
+}
+.LicenseAgree {
+    height: 20px;
+    width: 20px;
+}
+.CreateAcBtn {
+    height: 60px;
+    width: 180px;
+}

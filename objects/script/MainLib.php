@@ -257,24 +257,17 @@
     <meta name="robots" content="<?=$IndexFromBot?>">
     <meta name="keywords" content="MetaNote">
     <meta name="favicon" content="/favicon.ico">
-    <meta name="description" content="MetaNoteでは無料で他のユーザーとチャットができます。">
+    <meta name="description" content="査読不要・審査なしの日本向け論文投稿サイト。">
     <meta name="copyright" content="<?=Copyright?>">
     <meta name="thumbnail" content="https://<?=Domain?>/icon/index.jpg">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:description" content="MetaNoteでは無料で他のユーザーとチャットができます。">
-    <meta name="twitter:image:src" content="https://<?=Domain?>/icon/index.jpg">
-    <meta name="twitter:image:alt" content="MetaNote.">
+    <meta name="twitter:description" content="査読不要・審査なしの日本向け論文投稿サイト。">
     <meta name="twitter:domain" content="<?=Domain?>">
 
-    <meta property="og:description" content="MetaNoteでは無料で他のユーザーとチャットができます。">
+    <meta property="og:description" content="査読不要・審査なしの日本向け論文投稿サイト。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
-    <meta property="og:image" content="https://<?=Domain?>/icon/index.jpg">
-    <meta property="og:image:width" content="1280">
-    <meta property="og:image:height" content="720">
 
-    <link rel="canonical" href="https://<?=Domain?>/">
     <link rel="shortcut icon" href="https://<?=Domain?>/icon/index_16_16.ico" sizes="16x16">
     <link rel="shortcut icon" href="https://<?=Domain?>/icon/index_32_32.ico" sizes="32x32">
     <link rel="shortcut icon" href="https://<?=Domain?>/icon/index_64_64.ico" sizes="64x64">

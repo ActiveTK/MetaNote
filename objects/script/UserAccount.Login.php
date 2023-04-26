@@ -46,7 +46,7 @@
         <h1><?=$title?></h1>
       </div>
       <br>
-      <p>アカウントをお持ちではありませんか？<a href="/new<?php if (isset($_GET["return"])) echo "?return=" . urlencode($_GET["return"]); ?>">新規作成</a>してください。</p>
+      <p align="center">アカウントをお持ちではありませんか？<a href="/new<?php if (isset($_GET["return"])) echo "?return=" . urlencode($_GET["return"]); ?>">新規作成</a>してください。</p>
       <br>
       <?php if ( isset( $_GET["error"] ) ) { ?>
         <?php if ( $_GET["error"] == "ban" ) { ?>

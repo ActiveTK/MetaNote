@@ -124,7 +124,7 @@
       
           <div class="row featurette">
             <div class="col-md-7">
-              <h2 class="featurette-heading fw-normal lh-1">著作権の保護</h2>
+              <h2 class="featurette-heading">著作権の保護</h2>
               <p class="lead">希望する場合には、コイン一枚分の金額でデータのメタデータをブロックチェーンに記録できます。<br>
               ブロックチェーンに書き込まれたデータの改竄はほぼ不可能であり、半永久的に著作の記録が残ります。</p>
             </div>

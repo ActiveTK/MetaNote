@@ -49,14 +49,14 @@
 
   if ( !empty( _MetaNote_URI ) ) {
 
-    if ( _MetaNote_URI_LOW == "facicon.ico" )
+    if ( _MetaNote_URI_LOW == "favicon.ico" )
     {
       AllowCache();
-      readfile( '../object/icon/MetaNote.ico' );
+      readfile( '../objects/icon/MetaNote.ico' );
       exit();
     }
 
-    if ( substr( _MetaNote_URI_LOW, 0, 5 ) == "icon/" && file_exists( "../object/icon/" . basename( _MetaNote_URI_LOW ) ) ) {
+    if ( substr( _MetaNote_URI_LOW, 0, 5 ) == "icon/" && file_exists( "../objects/icon/" . basename( _MetaNote_URI_LOW ) ) ) {
       $iconpath = pathinfo( '../objects/icon/' . basename( _MetaNote_URI_LOW ) );
       if ( !isset( $iconpath['extension'] ) )
         MetaNote_Fatal_Die( "/iconオブジェクトに対し拡張子無しのファイルがリクエストされました。" );
@@ -69,7 +69,7 @@
       else
         MetaNote_Fatal_Die( "/iconオブジェクトに対し無効な拡張子のファイルがリクエストされました。" );
       AllowCache();
-      readfile( '../object/icon/' . basename( _MetaNote_URI_LOW ) );
+      readfile( '../objects/icon/' . basename( _MetaNote_URI_LOW ) );
       exit();
     }
 

@@ -127,6 +127,36 @@
           <hr class="featurette-divider">
         </div>
 
+        <div class="container marketing" style="background-color:#e6e6fa;width:100%;">
+  
+          <hr class="featurette-divider">
+    
+          <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" id="userscomment">
+            <h1 class="display-4"><b>お問い合わせ</b></h1>
+            <p class="lead">管理者へのお問い合わせは、以下のフォームからお願い致します。</p>
+          </div>
+    
+          <div class="row">
+    
+            <form action='' method='POST' id="contact" align="center">
+              お名前又はニックネーム: <input type='text' name='contact_name' style="height:20px;width:200px;" placeholder='お名前' required>(必須)<br>
+              ご連絡先のメールアドレス: <input type='email' name='contact_mail' style="height:20px;width:200px;" placeholder='メールアドレス' pattern=".+\.[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]" required>(必須)<br><br>
+              【お問い合わせ内容】<br>
+              <textarea name="contact_data" placeholder="内容をこちらへ入力してください"  style="height:200px;width:740px;"></textarea><br>
+              <pre>※本フォーム内に、個人情報を入力しないでください。</pre>
+              <br>
+              <label><input type="checkbox" name="license_readme" value="ok" style="height:20px;width:20px;" required> 私は、本サイトの<a href="/license" target="_blank">利用規約</a>を読み、理解しました。(必須)</label><br><br>
+              <br>
+              <input type="submit" style="height:60px;width:140px;" value="送信">
+              <br>
+              報告された情報は<a href="/privacy" target="_blank">プライバシーに関する声明</a>に従って処理されます。<br>
+              また、入力されたメールアドレスが本件お問い合わせ以外に使用される事は絶対にありません。
+            </form>
+    
+          </div>
+  
+        </div>
+
       </div>
 
       <?=MetaNote_View_Option()?>

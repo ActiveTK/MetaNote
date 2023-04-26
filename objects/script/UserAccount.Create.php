@@ -192,6 +192,7 @@
   <body style="">
     <?=Get_Body_Header();?>
     <div class="mainobj">
+      <br>
       <div align="center" class="fortitle">
         <h1><?=$title?></h1>
       </div>

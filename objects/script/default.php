@@ -111,7 +111,8 @@
           <div class="row featurette">
             <div class="col-md-7 order-md-2">
               <h2 class="featurette-heading">充実した機能</h2>
-              <p class="lead">論文の共同編集機能や寄付機能を実装しています。<br>また、論文の公開コメントを通じて気軽に執筆者とコンタクトできます。<br>
+              <p class="lead">論文の共同編集機能や寄付機能を実装しています。<br>
+              また、論文の公開コメントを通じて気軽に執筆者とコンタクトできます。<br>
               </p>
             </div>
             <div class="col-md-5 order-md-1">
@@ -123,8 +124,9 @@
       
           <div class="row featurette">
             <div class="col-md-7">
-              <h2 class="featurette-heading fw-normal lh-1"></h2>
-              <p class="lead">ご相談や占いを通して頂いた情報は、厳重に管理し、第三者に一切開示いたしません。また、本サイトへの通信は全てSSL/TLS技術で暗号化されています。</p>
+              <h2 class="featurette-heading fw-normal lh-1">著作権の保護</h2>
+              <p class="lead">希望する場合には、コイン一枚分の金額でデータのメタデータをブロックチェーンに記録できます。<br>
+              ブロックチェーンに書き込まれたデータの改竄はほぼ不可能であり、半永久的に著作の記録が残ります。</p>
             </div>
             <div class="col-md-5">
               <img class="featurette-image img-fluid mx-auto" src="/img/home.png" >

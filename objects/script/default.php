@@ -85,22 +85,55 @@
       <br>
 
       <div id="aboutinfo" class="textalignleft">
+
         <div class="container marketing">
-          <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 class="display-4"><b>本サービスについて</b></h1>
-          </div>
-          <div class="row featurette">
-            <h2 class="featurette-heading"><span class="text-center"><span class="text-muted">数少ない</span>日本向けの論文投稿サイト</span></h2>
-            <p class="lead">本サイトは、「ちょっとしたアイディアを気軽に共有できる」という理念の下に開発されている、数少ない日本語の論文投稿サイトです。<br>
-              「査読不要・審査なし」を原則とし、誰でも簡単にアイディアを投稿できます。</p>
-          </div>
+          <br>
+
           <hr class="featurette-divider">
-          <div class="row featurette">
-            <h2 class="featurette-heading"><span class="text-muted">充実した</span>機能</h2>
-            <p class="lead">論文の共同編集機能や寄付機能を実装しています。<br>また、論文の公開コメントを通じて気軽に執筆者とコンタクトできます。</p>
+
+          <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" id="about">
+            <h1 class="display-4">本サービスについて</h1>
           </div>
+
+          <div class="row featurette">
+            <div class="col-md-7">
+              <h2 class="featurette-heading"><span class="text-center"><span class="text-muted">数少ない</span>日本向けの論文投稿サイト</span></h2>
+              <p class="lead">本サイトは、「ちょっとしたアイディアを気軽に共有できる」という理念の下に開発されている、数少ない日本語の論文投稿サイトです。
+              「査読不要・審査なし」を原則とし、誰でも簡単にアイディアを投稿できます。</p>
+            </div>
+            <div class="col-md-5">
+              <img class="featurette-image img-fluid mx-auto" src="/img/home.png">
+            </div>
+          </div>
+      
+          <hr class="featurette-divider">
+      
+          <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+              <h2 class="featurette-heading">充実した機能</h2>
+              <p class="lead">論文の共同編集機能や寄付機能を実装しています。<br>また、論文の公開コメントを通じて気軽に執筆者とコンタクトできます。<br>
+              </p>
+            </div>
+            <div class="col-md-5 order-md-1">
+              <img class="featurette-image img-fluid mx-auto" src="/img/home.png">
+            </div>
+          </div>
+     
+          <hr class="featurette-divider">
+      
+          <div class="row featurette">
+            <div class="col-md-7">
+              <h2 class="featurette-heading fw-normal lh-1"></h2>
+              <p class="lead">ご相談や占いを通して頂いた情報は、厳重に管理し、第三者に一切開示いたしません。また、本サイトへの通信は全てSSL/TLS技術で暗号化されています。</p>
+            </div>
+            <div class="col-md-5">
+              <img class="featurette-image img-fluid mx-auto" src="/img/home.png" >
+            </div>
+          </div>
+      
           <hr class="featurette-divider">
         </div>
+
       </div>
 
       <?=MetaNote_View_Option()?>

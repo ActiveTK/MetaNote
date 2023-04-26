@@ -232,6 +232,11 @@ body {
 .container {
     max-width: 960px;
 }
+.alignright {
+    position: relative;
+    left: 60%;
+    width: 40%;
+}
 
 @media screen and (max-width:480px) {
     .next {

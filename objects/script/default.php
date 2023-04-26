@@ -57,6 +57,7 @@
       <div class="welcomemsg" align="center">
         <div class="p-title">
           <p class="c-subtitle u-margin_zero"><?=_MetaNote_SubTitle?></p>
+          <br>
           <p class="c-title u-margin_zero">MetaNote.<span id="per"></span></p>
         </div>
 
@@ -111,9 +112,8 @@
           <div class="row featurette">
             <div class="col-md-7 order-md-2">
               <h2 class="featurette-heading">充実した機能</h2>
-              <p class="lead">論文の共同編集機能や寄付機能を実装しています。<br>
-              また、論文の公開コメントを通じて気軽に執筆者とコンタクトできます。<br>
-              </p>
+              <p class="lead">論文の共同編集機能や寄付機能を実装しています。
+              また、論文の公開コメントを通じて気軽に執筆者とコンタクトできます。</p>
             </div>
             <div class="col-md-5 order-md-1">
               <img class="featurette-image img-fluid mx-auto" src="/icon/home.png">
@@ -125,7 +125,7 @@
           <div class="row featurette">
             <div class="col-md-7">
               <h2 class="featurette-heading">著作権の保護</h2>
-              <p class="lead">希望する場合には、コイン一枚分の金額でデータのメタデータをブロックチェーンに記録できます。<br>
+              <p class="lead">希望する場合には、コイン一枚分の金額でデータのメタデータをブロックチェーンに記録できます。
               ブロックチェーンに書き込まれたデータの改竄はほぼ不可能であり、半永久的に著作の記録が残ります。</p>
             </div>
             <div class="col-md-5">

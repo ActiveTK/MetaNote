@@ -238,6 +238,22 @@ body {
     width: 60%;
 }
 
+.inpblue {
+    background: linear-gradient(transparent 70%,#66CCFF 0%)
+}
+
+.inpgreen {
+    background: linear-gradient(transparent 70%,#00FF00 0%)
+}
+
+.inpred {
+    background: linear-gradient(transparent 70%,#FFC0CB 0%)
+}
+
+.inpyellow {
+    background: linear-gradient(transparent 70%,#FFFF00 0%)
+}
+
 @media screen and (max-width:480px) {
     .next {
         top: 140%;

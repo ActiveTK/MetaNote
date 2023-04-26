@@ -102,7 +102,7 @@
               「査読不要・審査なし」を原則とし、誰でも簡単にアイディアを投稿できます。</p>
             </div>
             <div class="col-md-5">
-              <img class="featurette-image img-fluid mx-auto" src="/img/home.png">
+              <img class="featurette-image img-fluid mx-auto" src="/icon/home.png">
             </div>
           </div>
       
@@ -116,7 +116,7 @@
               </p>
             </div>
             <div class="col-md-5 order-md-1">
-              <img class="featurette-image img-fluid mx-auto" src="/img/home.png">
+              <img class="featurette-image img-fluid mx-auto" src="/icon/home.png">
             </div>
           </div>
      
@@ -129,7 +129,7 @@
               ブロックチェーンに書き込まれたデータの改竄はほぼ不可能であり、半永久的に著作の記録が残ります。</p>
             </div>
             <div class="col-md-5">
-              <img class="featurette-image img-fluid mx-auto" src="/img/home.png" >
+              <img class="featurette-image img-fluid mx-auto" src="/icon/home.png" >
             </div>
           </div>
       

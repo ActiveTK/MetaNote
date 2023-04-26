@@ -106,7 +106,7 @@
       
           <hr class="featurette-divider">
 
-          <div class="row featurette" class="alignright">
+          <div class="row featurette alignright">
             <div class="col-md-7 order-md-2" align="right">
               <h2 class="featurette-heading">充実した機能</h2>
               <p class="lead">論文の共同編集機能や寄付機能を実装しています。

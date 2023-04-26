@@ -38,26 +38,25 @@
     }
     </script>
   </head>
-  <body style="background-color:#6495ed;color:#080808;">
+  <body>
     <?=Get_Body_Header();?>
     <div class="mainobj">
       <br>
-      <div align="center" style="background-color:#e6e6fa;text:#363636;width:60%;margin-left:auto;margin-right:auto;">
+      <div align="center" class="fortitle">
         <h1><?=$title?></h1>
       </div>
       <br>
       <?php if ( isset( $_GET["error"] ) ) { ?>
         <?php if ( $_GET["error"] == "ban" ) { ?>
-          <div style="background-color:#404ff0;color:#ff4500;" align="center"><h2>アカウントは凍結されています</h2></div>
+          <div class="errortext" align="center"><h2>アカウントは凍結されています</h2></div>
         <?php } else { ?>
-          <div style="background-color:#404ff0;color:#ff4500;" align="center"><h2>メールアドレス/ユーザーID又はパスワードが違います</h2></div>
+          <div class="errortext" align="center"><h2>メールアドレス/ユーザーID又はパスワードが違います</h2></div>
         <?php } ?>
       <?php } else { ?>
         <br>
       <?php } ?>
       <div align="center" id="javascripton" style="display:none;">
-        <form action='' method='POST' onsubmit='return CSubmit();' style="margin-left:auto;margin-right:auto;<?php
-          if (!Phone) { ?>background-image:url('/icon/login_background.jpg');color:#6495ed;width:80%;<?php } else { ?>width:30%;<?php } ?>">
+        <form action='' method='POST' onsubmit='return CSubmit();' class="formof">
           <br>
           <p id="gousername"><b>メールアドレス:</b> <input type="text" name="_username" id="username" value="" placeholder="メール又はユーザーID" required></p>
           <p id="gopassword"><b>パスワード:</b> <input type="password" id="password" name="password" value="" placeholder="パスワード" required></p>
@@ -84,6 +83,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <script src="./js/navbar.js"></script>
+    <script src="/js/navbar.js"></script>
   </body>
 </html>

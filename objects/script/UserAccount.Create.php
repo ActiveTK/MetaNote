@@ -189,7 +189,7 @@
       }
     </script>
   </head>
-  <body style="">
+  <body>
     <?=Get_Body_Header();?>
     <div class="mainobj">
       <br>

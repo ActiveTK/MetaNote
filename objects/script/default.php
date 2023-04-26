@@ -93,7 +93,7 @@
           <hr class="featurette-divider">
 
           <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" id="about">
-            <h1 class="display-4">本サービスの<span class="inpred">三つの特徴</span></h1>
+            <h1 class="display-4">本サービスの<span class="inpred">3つの特徴</span></h1>
           </div>
 
           <div class="row featurette">

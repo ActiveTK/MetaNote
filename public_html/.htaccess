@@ -1,0 +1,23 @@
+ErrorDocument 400 /MetaNote.HttpStatus.400.php
+ErrorDocument 403 /MetaNote.HttpStatus.403.php
+ErrorDocument 404 /MetaNote.HttpStatus.404.php
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) index.php/?%{QUERY_STRING}&_MetaNote_URI=$1 [L]
+
+RewriteCond %{THE_REQUEST} ^GET\ !-f
+RewriteRule ^(.*)index.php/?(.*)$ https://metanote.org/$1$2 [R=301,L,NE]
+
+# Access Control
+<Files ~ "^(\.)">
+deny from all
+</Files>
+<Files ~ "(\.old)$">
+deny from all
+</Files>
+
+# Charset
+AddDefaultCharset UTF-8
+

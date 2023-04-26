@@ -1,0 +1,473 @@
+<?php
+
+  /*!
+   * @namespace MetaNote / index.php
+   * (c) 2023 ActiveTK.
+   */
+
+  require_once( "/home/activetk/require/Config.php" );
+  require_once( "MainLib.php" );
+
+  define( 'Domain', 'metanote.org' );
+  define( 'MetaNote_Home', '/home/activetk/metanote.org/' );
+  define( 'Copyright', '(c) 2023 MetaNote.' );
+  define( '_MetaNote_SubTitle', '査読不要・審査なしの日本向け論文投稿サイト。' );
+
+  // ヘッダー処理
+  if ( empty( $_SERVER['HTTPS'] ) && !isset( $_GET["no-ssl"] ) ) {
+    header( "Location: https://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" );
+    die();
+  }
+  else if ( !isset( $_GET["no-ssl"] ) )
+    header( "Strict-Transport-Security: max-age=63072000; includeSubdomains; preload" );
+
+  header( "X-Frame-Options: deny" );
+  header( "X-XSS-Protection: 1; mode=block" );
+  header( "X-Content-Type-Options: nosniff" );
+  header( "X-Permitted-Cross-Domain-Policies: none" );
+  header( "Referrer-Policy: same-origin" );
+
+  // URI処理
+  if ( isset( $_GET["_MetaNote_URI"] ) ) {
+    if ( substr( $_GET["_MetaNote_URI"] , -1) == '/' )
+      define( '_MetaNote_URI', rtrim( $_GET["_MetaNote_URI"], '/' ) );
+    else
+      define( '_MetaNote_URI', $_GET["_MetaNote_URI"] );
+  }
+  else
+    define( '_MetaNote_URI', '' );
+
+  define( '_MetaNote_URI_LOW' , strtolower( _MetaNote_URI ) );
+
+  // 設定読み込み確認
+  if ( !defined( 'php.config.req' ) )
+    MetaNote_Fatal_Die( "php.config.req が定義されていません。" );
+
+  error_reporting( E_ALL );
+  date_default_timezone_set( 'Asia/Tokyo' );
+  ini_set( 'display_startup_errors', 0 );
+
+  if ( !empty( _MetaNote_URI ) ) {
+    if ( _MetaNote_URI_LOW == "js/activetk.min.js" ) {
+      header( 'Content-Type: text/javascript;charset=UTF-8' );
+      AllowCache();
+      readfile( '../object/js/ActiveTK.min.js' );
+      exit();
+    }
+    if ( _MetaNote_URI_LOW == "js/particles.min.js" ) {
+      header( 'Content-Type: text/javascript;charset=UTF-8' );
+      AllowCache();
+      readfile( '../object/js/particles.min.js' );
+      exit();
+    }
+    if ( _MetaNote_URI_LOW == "icon/login_background.jpg" ) {
+      header( 'Content-Type: image/jpeg' );
+      AllowCache();
+      readfile( '../object/' . _MetaNote_URI_LOW );
+      exit();
+    }
+    if ( _MetaNote_URI_LOW == "icon/bitcoin_logo.jpg" ) {
+      header( 'Content-Type: image/jpeg' );
+      AllowCache();
+      readfile( '../object/' . _MetaNote_URI_LOW );
+      exit();
+    }
+    if ( _MetaNote_URI_LOW == "icon/10percent.png" ) {
+      header( 'Content-Type: image/png' );
+      AllowCache();
+      readfile( '../object/' . _MetaNote_URI_LOW );
+      exit();
+    }
+    if ( _MetaNote_URI_LOW == "icon/index.jpg" ) {
+      header( 'Content-Type: image/vnd.microsoft.icon' );
+      AllowCache();
+      readfile( '../object/' . _MetaNote_URI_LOW );
+      exit();
+    }
+    if ( _MetaNote_URI_LOW == "favicon.ico" ) {
+      header( 'Content-Type: image/vnd.microsoft.icon' );
+      AllowCache();
+      readfile( '../object/icon/index_64_64.ico' );
+      exit();
+    }
+    if ( _MetaNote_URI_LOW == "sounds/alert.mp3" ) {
+      header( 'Content-Type: audio/mp3' );
+      AllowCache();
+      readfile( '../object/sounds/alert.mp3' );
+      exit();
+    }
+    if ( substr( _MetaNote_URI_LOW, 0, 5 ) == "icon/" && file_exists( "../object/icon/" . basename( _MetaNote_URI_LOW ) ) ) {
+      $iconpath = pathinfo( '../object/icon/' . basename( _MetaNote_URI_LOW ) );
+      if ( !isset( $iconpath['extension'] ) )
+        MetaNote_Fatal_Die( "/iconオブジェクトに対し拡張子無しのファイルがリクエストされました。" );
+      else if ( $iconpath['extension'] == "ico" )
+        header( 'Content-Type: image/vnd.microsoft.icon' );
+      else if ( $iconpath['extension'] == "jpg" || $iconpath['extension'] == "jpeg" )
+        header( 'Content-Type: image/jpeg' );
+      else if ( $iconpath['extension'] == "png" )
+        header( 'Content-Type: image/png' );
+      else
+        MetaNote_Fatal_Die( "/iconオブジェクトに対し無効な拡張子のファイルがリクエストされました。" );
+      AllowCache();
+      readfile( '../object/icon/' . basename( _MetaNote_URI_LOW ) );
+      exit();
+    }
+  }
+
+  ini_set( 'session.gc_divisor'    , 1            );
+  ini_set( 'session.gc_maxlifetime', 7776000      );
+  session_start();
+
+  $dbh = new PDO( DSN, DB_USER, DB_PASS );
+
+  if (
+    isset( $_POST["_username"] ) && isset( $_POST["_login_trykey"] ) &&
+    isset( $_SESSION["login_token"] ) && !empty( $_SESSION["login_token"] )
+  ) {
+    $Try_User = @base64_decode( $_POST["_username"] );
+    $Try_Key = $_POST["_login_trykey"];
+    $Try_Token = $_SESSION["login_token"];
+
+    try {
+      $stmt = $dbh->prepare('select * from MetaNoteUsers where Mailadd = ? or UserIntID = ? or DisplayID = ? limit 1;');
+      $stmt->execute( [$Try_User, $Try_User, $Try_User] );
+      $row = $stmt->fetch( PDO::FETCH_ASSOC );
+    } catch ( \Throwable $e ) {
+      MetaNote_Fatal_Die( $e->getMessage() );
+    }
+    $_SESSION["login_token"] = "";
+    unset( $_SESSION["login_token"] );
+
+    if ( isset( $row["password"] ) && md5( $row["password"] . $Try_Token ) == $Try_Key )
+    {
+      if ( !empty( $row["baninfo"] ) )
+      {
+        NCPRedirect( "/login?error=ban" );
+        exit();
+      }
+      $_SESSION["logindata"] = json_encode( $row );
+      NCPRedirect( "/" . $_POST["_return_back_address"] );
+      exit();
+    }
+    else
+    {
+      NCPRedirect( "/login?error&return=" . urlencode( $_POST["_return_back_address"] ) );
+      exit();
+    }
+
+  }
+
+  else if ( _MetaNote_URI_LOW == "logout" )
+  {
+    $_SESSION = array();
+    session_destroy();
+    if ( isset( $_COOKIE["PHPSESSID"] ) )
+      setcookie( "SeedID", '', time() - 1800, '/' );
+    NCPRedirect( "/" );
+    exit();
+  }
+
+  else if (
+    _MetaNote_URI_LOW == "login" &&
+    ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
+  )
+  {
+    $_SESSION["login_token"] = "_" . MetaNote_GetRand(64);
+    $title = "ログイン - MetaNote";
+    include( MetaNote_Home . "public_html/MetaNote.UserAccount.Login.php" );
+    exit();
+  }
+
+  else if (
+    _MetaNote_URI_LOW == "new" &&
+    ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
+  )
+  {
+    $title = "アカウント作成 - MetaNote.";
+    include( MetaNote_Home . "public_html/MetaNote.UserAccount.Create.php" );
+    exit();
+  }
+
+  else if ( _MetaNote_URI_LOW == "about" )
+  {
+    $title = "サービス概要 - MetaNote.";
+    include( MetaNote_Home . "public_html/MetaNote.Server.AboutPHP.php" );
+    exit();
+  }
+
+  else if ( _MetaNote_URI_LOW == "license" )
+  {
+    $title = "利用規約 - MetaNote.";
+    include( MetaNote_Home . "public_html/MetaNote.Server.License.php" );
+    exit();
+  }
+
+  else if ( _MetaNote_URI_LOW == "privacy" )
+  {
+    $title = "プライバシーポリシー - MetaNote.";
+    include( MetaNote_Home . "public_html/MetaNote.Server.Privacy.php" );
+    exit();
+  }
+
+  else if ( _MetaNote_URI_LOW == "data" ) {
+
+    if (
+        !isset( $_GET["hash"] ) || !isset( $_GET["user"] ) || !isset( $_GET["uniqcode"] ) || !isset( $_GET["type"] ) ||
+        !is_alnum( $_GET["hash"] ) || !is_alnum( $_GET["user"] ) || !is_alnum( $_GET["uniqcode"] )
+      )
+    {
+      include(MetaNote_Home . "public_html/MetaNote.HttpStatus.404.php");
+      exit();
+    }
+
+    $FilePath = "../data/uploads/" . basename( $_GET["user"] ) . "/" . basename( $_GET["hash"] ) . "_" . basename( $_GET["uniqcode"] );
+    if ( !file_exists( $FilePath ) ) {
+      include(MetaNote_Home . "public_html/MetaNote.HttpStatus.404.php");
+      exit();
+    }
+    $pathinfo = @pathinfo( basename( $_GET["type"] ) );
+    if (!isset($pathinfo['extension']) || empty($pathinfo['extension']) || $pathinfo['extension'] == "bat" || $pathinfo['extension'] == "url" || $pathinfo['extension'] == "txt")
+      header("Content-Type: text/plain");
+    else if ($pathinfo['extension'] == "html")
+      header("Content-Type: text/plain");
+    else if ($pathinfo['extension'] == "csv")
+      header("Content-Type: text/csv");
+    else if ($pathinfo['extension'] == "js")
+      header("Content-Type: text/javascript");
+    else if ($pathinfo['extension'] == "css")
+      header("Content-Type: text/css");
+    else if ($pathinfo['extension'] == "json")
+      header("Content-Type: application/json");
+    else if ($pathinfo['extension'] == "pdf")
+      header("Content-Type: application/pdf");
+    else if ($pathinfo['extension'] == "exe" || $pathinfo['extension'] == "out" || $pathinfo['extension'] == "bin")
+      header("Content-Type: application/octet-stream;");
+    else if ($pathinfo['extension'] == "zip" || $pathinfo['extension'] == "7z")
+      header("Content-Type: application/zip");
+    else if ($pathinfo['extension'] == "jpg" || $pathinfo['extension'] == "jpeg")
+      header("Content-Type: image/jpeg");
+    else if ($pathinfo['extension'] == "png")
+      header("Content-Type: image/png");
+    else if ($pathinfo['extension'] == "ico")
+      header("Content-Type: image/vnd.microsoft.icon;");
+    else if ($pathinfo['extension'] == "gif")
+      header("Content-Type: image/gif");
+    else if ($pathinfo['extension'] == "bmp")
+      header("Content-Type: image/bmp");
+    else if ($pathinfo['extension'] == "gif")
+      header("Content-Type: image/gif");
+    else if ($pathinfo['extension'] == "gzip" || $pathinfo['extension'] == "tar")
+      header("Content-Type: application/x-tar;");
+    else if ($pathinfo['extension'] == "lzh")
+      header("Content-Type: application/x-lzh;");
+    else if ($pathinfo['extension'] == "mp3")
+      header("Content-Type: audio/mp3");
+    else if ($pathinfo['extension'] == "3gp")
+      header("Content-Type: video/3gpp");
+    else if ($pathinfo['extension'] == "mp4")
+      header("Content-Type: video/mp4");
+    else if ($pathinfo['extension'] == "avi")
+      header("Content-Type: video/x-msvideo");
+    else if ($pathinfo['extension'] == "mov")
+      header("Content-Type: video/quicktime");
+    else if ($pathinfo['extension'] == "wmv")
+      header("Content-Type: video/x-ms-wmv");
+    else if ($pathinfo['extension'] == "mpg" || $pathinfo['extension'] == "mpeg")
+      header("Content-Type: video/mpeg");
+    else if ($pathinfo['extension'] == "iso" || $pathinfo['extension'] == "img" || pathinfo['extension'] == "ico")
+      header("Content-Type: application/octet-stream;");
+    else
+      header("Content-Type: text/plain;");
+    header('Content-Length: ' . filesize( $FilePath ));
+    header('Content-Disposition: inline; filename="' . basename( $_GET["type"] ) . '"');
+    header('Connection: close');
+    while (ob_get_level()) { ob_end_clean(); }
+    readfile( $FilePath );
+    exit();
+
+  }
+
+  else if ( _MetaNote_URI_LOW == "400" )
+  {
+    require_once( "./MetaNote.HttpStatus.400.php" );
+    die();
+  }
+  else if ( _MetaNote_URI_LOW == "403" )
+  {
+    require_once( "./MetaNote.HttpStatus.403.php" );
+    die();
+  }
+  else if ( _MetaNote_URI_LOW == "404" )
+  {
+    require_once( "./MetaNote.HttpStatus.404.php" );
+    die();
+  }
+  else if ( _MetaNote_URI_LOW == "500" )
+  {
+    MetaNote_Fatal_Die( "[DEBUG]_MetaNote_Fatal_Die が実行されました。" );
+    die();
+  }
+
+  else if ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
+  {
+
+    if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && strpos( $_SERVER['HTTP_USER_AGENT'], "curl" ) !== false )
+    {
+      include(MetaNote_Home . "public_html/MetaNote.Server.CommandLineMetaNote.html");
+      exit();
+    }
+
+    $title = "MetaNote. - " . _MetaNote_SubTitle;
+    include(MetaNote_Home . "public_html/MetaNote.Server.Default.php");
+    exit();
+  }
+
+  $LocalUser = json_decode( $_SESSION["logindata"], true );
+  
+  /*!
+   *
+   * ここでログイン処理完了
+   *
+   */
+
+  if ( _MetaNote_URI_LOW == "home" ) {
+
+    $msg = AdminAttention;
+    include(MetaNote_Home . "public_html/MetaNote.Server.Home.php");
+    exit();
+
+  } else if ( _MetaNote_URI_LOW == "keijiban" ) {
+
+    include(MetaNote_Home . "public_html/MetaNote.Service.Keijiban.php");
+    exit();
+
+  } else if ( _MetaNote_URI_LOW == "directchat" ) {
+
+    include(MetaNote_Home . "public_html/MetaNote.Service.DirectChat.php");
+    exit();
+
+  } else if ( _MetaNote_URI_LOW == "groupchat" ) {
+
+    include(MetaNote_Home . "public_html/MetaNote.Service.GroupChat.php");
+    exit();
+
+  } else if ( _MetaNote_URI_LOW == "setting" ) {
+
+    include(MetaNote_Home . "public_html/MetaNote.Service.Setting.php");
+    exit();
+
+  } else if ( _MetaNote_URI_LOW == "reportuser" ) {
+
+    echo "すみません、現在報告機能は実装中です。";
+    exit();
+
+  } else if ( empty( _MetaNote_URI_LOW ) ) {
+      
+    NCPRedirect( "/home" );
+    exit();
+
+  } else if ( _MetaNote_URI_LOW ) {
+
+    try {
+      if (!is_alnum((string)_MetaNote_URI_LOW))
+        include(MetaNote_Home . "public_html/MetaNote.HttpStatus.404.php");
+      else
+      {
+        try {
+          $Try_User = _MetaNote_URI_LOW;
+          $stmt = $dbh->prepare('select * from MetaNote_X_Users where Mailadd = ? or UserIntID = ? or DisplayID = ? limit 1;');
+          $stmt->execute( [$Try_User, $Try_User, $Try_User] );
+          $row = $stmt->fetch( PDO::FETCH_ASSOC );
+        } catch ( \Throwable $e ) {
+          MetaNote_Fatal_Die( $e->getMessage() );
+        }
+        if (!isset($row["UserIntID"]) || empty($row["UserIntID"]))
+          include(MetaNote_Home . "public_html/MetaNote.HttpStatus.404.php");
+        else
+        {
+          $UnLocalUser = $row;
+          $title = $UnLocalUser["UserName"] . " - MetaNote.";
+          ?>
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+
+    <title><?=$title?></title>
+
+    <?=MetaNote_Header_Default()?>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+
+  </head>
+  <body>
+    <?=Get_Body_Header();?>
+
+    <div align="center" class="mainobj">
+
+      <noscript>
+        <div title="NO SCRIPT ERROR" class="p-noscript">
+          <h1>JavaScriptが無効です</h1>
+          <p>MetaNoteを利用するには、お使いのブラウザのJavaScriptを有効化する必要があります。</p>
+        </div>
+      </noscript>
+      
+      <br>
+      
+      <div style="width:80%;margin-left:auto;margin-right:auto;">
+        <h1><span style="background-color:#404ff0;border-radius:10px;"><span style="color:#00ff00;"><?=$UnLocalUser["UserName"]?></span><span style="color:#a9a9a9;"><?=$UnLocalUser["DisplayID"]?></span></span></h1>
+
+        <?php
+          if ( $UnLocalUser["baninfo"] != "" ) {
+        ?>
+        <div title="凍結済みのアカウント" class="p-noscript">
+          <h1>このアカウントは凍結されています。</h1>
+          <p>このアカウントは、<a href="/license" target="_blank">[利用規約]</a>への重大な違反を行ったため、凍結されています。</p>
+        </div>
+        <?php } ?>
+
+        <?php if ( $UnLocalUser["UserIntID"] != $LocalUser["UserIntID"] ) { ?>
+          <a href="/DirectChat?to=<?=$UnLocalUser["UserIntID"]?>"><input type="button" value="ダイレクトチャットを開く"></a>
+          <a href="/ReportUser?to=<?=$UnLocalUser["UserIntID"]?>"><input type="button" value="ユーザーを報告"></a>
+          <br><br>
+        <?php } ?>
+
+        <p><?=date("Y/m/d", $UnLocalUser["CreateTime"])?> からMetaNote.を利用しています。</p>
+
+        <hr size="10" color="#7fffd4">
+
+        <?php if (trim($UnLocalUser["Profile"]) != "") { ?>
+
+        <div style="overflow-x:hidden;overflow-y:visible;">
+          <h2>【プロフィール】</h2>
+          <b><?=nl2br($UnLocalUser["Profile"])?></b>
+        </div>
+
+        <hr size="10" color="#7fffd4">
+
+        <?php } ?>
+
+        <br><br>
+        <?=MetaNote_View_Option()?>
+      
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="./js/navbar.js"></script>
+  </body>
+</html>
+          <?php
+        }
+      }
+    } catch ( \Throwable $e ) {
+      MetaNote_Fatal_Die( $e->getMessage() );
+    }
+    exit();
+
+  } else {
+      
+    include(MetaNote_Home . "public_html/MetaNote.HttpStatus.404.php");
+    exit();
+
+  }
+

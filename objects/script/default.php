@@ -154,6 +154,10 @@
             </form>
     
           </div>
+
+          <br>
+
+          <hr class="featurette-divider">
   
         </div>
 

@@ -161,31 +161,31 @@
   
         </div>
 
-      </div>
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+          <div class="row">
+            <div class="col-12 col-md">
+              <small class="d-block mb-3 text-muted"><?=Copyright?></small>
+            </div>
+            <div class="col-6 col-md">
+              <h5>サイトマップ</h5>
+              <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="#about">サイト概要</a></li>
+                <li><a class="text-muted" href="https://github.com/ActiveTK/MetaNote">Githubリポジトリ</a></li>
+                <li><a class="text-muted" href="#contact">お問い合わせ</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md">
+              <h5>その他</h5>
+              <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="/license">利用規約</a></li>
+                <li><a class="text-muted" href="/privacy">プライバシーポリシー</a></li>
+                <li><a class="text-muted" href="https://profile.activetk.jp/">開発者</a></li>
+              </ul>
+            </div>
+          </div>
+        </footer>
 
-      <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-          <div class="col-12 col-md">
-            <small class="d-block mb-3 text-muted"><?=Copyright?></small>
-          </div>
-          <div class="col-6 col-md">
-            <h5>サイトマップ</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#about">サイト概要</a></li>
-              <li><a class="text-muted" href="https://github.com/ActiveTK/MetaNote">Githubリポジトリ</a></li>
-              <li><a class="text-muted" href="#contact">お問い合わせ</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md">
-            <h5>その他</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="/license">利用規約</a></li>
-              <li><a class="text-muted" href="/privacy">プライバシーポリシー</a></li>
-              <li><a class="text-muted" href="https://profile.activetk.jp/">開発者</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      </div>
 
       <br><br>
 

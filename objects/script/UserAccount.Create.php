@@ -125,7 +125,6 @@
   <body style="background-color:#6495ed;color:#080808;">
     <?=Get_Body_Header();?>
     <div class="mainobj">
-      <?php if (!Phone) { ?><br><?php } ?>
       <div align="center" style="background-color:#e6e6fa;text:#363636;width:60%;margin-left:auto;margin-right:auto;">
         <h1>アカウント作成完了</h1>
       </div>

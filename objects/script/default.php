@@ -79,7 +79,7 @@
       </div>
     </div>
 
-    <div align="center" class="next">
+    <div align="center" class="next" id="next">
 
       <hr class="featurette-divider container marketing">
       <br>

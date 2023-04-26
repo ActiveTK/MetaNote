@@ -10,6 +10,23 @@ body {
     height: 88%;
     background-color: #e6e6fa;
 }
+.c-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+.c-subtitle {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.p-title {
+    text-align: center;
+    background-color: #e6e6fa;
+    font: #363636;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .p-metanotecolor {
     color: #080808;
     background: #6495ed;
@@ -108,14 +125,9 @@ body {
 }
 
 
-.p-title {
-    text-align: center;
-    background-color: #e6e6fa;
-    font: #363636;
-    margin-left: auto;
-    margin-right: auto;
+.u-margin_zero {
+    margin: 0;
 }
-
 
 .arrows {
     position: fixed;

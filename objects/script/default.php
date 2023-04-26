@@ -85,7 +85,7 @@
       <hr class="featurette-divider container marketing">
       <br>
 
-      <div id="aboutinfo" class="textalignleft">
+      <div id="about" class="textalignleft">
 
         <div class="container marketing">
           <br>

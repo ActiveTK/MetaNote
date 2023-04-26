@@ -139,7 +139,7 @@
     <div class="p-lastinfo" align="center">
       <p>
         <a href="/" style="color:#00ff00 !important;">ホーム</a>・
-        <a href="/about" style="color:#0403f9 !important;">サービス概要</a>・
+        <a href="/#about" style="color:#0403f9 !important;">サービス概要</a>・
         <a href="/license" style="color:#ffa500 !important;">利用規約</a>・
         <a href="/privacy" style="color:#ff00ff !important;">プライバシー</a> 
         <?=Copyright?>
@@ -309,7 +309,7 @@
               <a class="nav-link active p-selectcolor1 p-link2home" aria-current="page" href="/" style="color:#000000; !important;"><b>ホーム</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active p-selectcolor2 p-link2about" href="/about" style="color:#0403f9 !important;"><b>サービス概要</b></a>
+              <a class="nav-link active p-selectcolor2 p-link2about" href="/#about" style="color:#0403f9 !important;"><b>サービス概要</b></a>
             </li>
             <li class="nav-item">
               <a class="nav-link active p-selectcolor1" href="/license" style="color:#ffa500 !important;"><b>利用規約</b></a>

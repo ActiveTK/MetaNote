@@ -153,13 +153,6 @@
     exit();
   }
 
-  else if ( _MetaNote_URI_LOW == "about" )
-  {
-    $title = "サービス概要 - MetaNote.";
-    include( MetaNote_Home . "public_html/MetaNote.Server.AboutPHP.php" );
-    exit();
-  }
-
   else if ( _MetaNote_URI_LOW == "license" )
   {
     $title = "利用規約 - MetaNote.";

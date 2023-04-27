@@ -20,6 +20,9 @@ body {
 .userName {
     color: #ff0000;
 }
+.gray {
+    background-color: #cfcfef;
+}
 
 .p-title {
     text-align: center;

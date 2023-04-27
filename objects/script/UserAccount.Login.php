@@ -60,7 +60,7 @@
       <div align="center" id="javascripton" style="display:none;">
         <form action='' method='POST' onsubmit='return CSubmit();' class="formof">
           <br>
-          <p id="gousername"><b>メールアドレス:</b> <input type="text" name="_username" id="username" value="" placeholder="メール又はユーザーID" required></p>
+          <p id="gousername"><b>メールアドレス:</b> <input type="text" name="_username" id="username" value="" placeholder="メール又はユーザーID(半角英数)" required></p>
           <p id="gopassword"><b>パスワード:</b> <input type="password" id="password" name="password" value="" placeholder="パスワード" required></p>
           <input type="submit" style="height:60px;width:140px;" id="login" value="ログイン" title="ログイン">
           <input type="hidden" name="_login_trykey" id="_trykey" value="" style="display:none;">

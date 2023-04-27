@@ -73,7 +73,7 @@
           <div class="row">
             <div class="col p-buttons_container d-flex justify-content-center">
               <?php if (defined("USER_LOGGEDIN")) { ?>
-              <a href="/home" class="btn btn--blue btn--border-double">
+              <a href="/home" class="btn2">
                 <h3 style="color:#212529;">ホームへ移動</h3>
               </a>
               <?php } else { ?>

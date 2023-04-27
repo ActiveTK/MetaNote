@@ -332,3 +332,26 @@ a {
 .textalignleft {
     text-align: left;
 }
+
+.btn2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: .1em;
+    color: #212529;
+    border-radius: .5rem;
+    border: 8px double #0ff5ff;
+}

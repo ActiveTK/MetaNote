@@ -76,7 +76,7 @@
               <a href="/home" class="btn btn--blue btn--border-double">
                 <h3 style="color:#212529;">ホームへ移動</h3>
               </a>
-              <?php } else {}?>
+              <?php } else { ?>
               <a href="/login<?php if (isset($_GET["return"])) echo "?return=" . htmlspecialchars($_GET["return"]); ?>" class="btn btn-lg p-loginbutton">ログイン</a>
               <a href="/new" class="btn btn-lg p-newbutton">新規登録</a>
               <?php } ?>

@@ -69,7 +69,9 @@
         </noscript>
 
         <div class="container p-main_container">
-          <div class="row p-img_wrapper"><img class="card p-img_card" src="/icon/home.png" class="p-main_image"></div>
+          <div class="row p-img_wrapper">
+            <img class="card p-img_card border-0 p-main_image" src="/icon/home.png">
+          </div>
           <div class="row">
             <div class="col p-buttons_container d-flex justify-content-center">
               <?php if (defined("USER_LOGGEDIN")) { ?>

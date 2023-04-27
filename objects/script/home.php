@@ -33,10 +33,11 @@
 
   </head>
   <body>
-    <?=Get_Body_Header()?>
+    <?=Get_Body_Header($LocalUser["UserName"])?>
 
     <div class="mainobj">
 
+      <br><br>
       <h1 align="center"><?=$title?></h1>
       <br>
       <hr>

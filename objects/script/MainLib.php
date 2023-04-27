@@ -284,7 +284,7 @@
   /**
    * MetaNoteのボディー内のデフォルトヘッダーを表示します。
    */
-  function Get_Body_Header() {
+  function Get_Body_Header(string $UserName = "") {
 
     ?>
     <nav class="navbar navbar-expand-lg p-metanotecolor" style="z-index:5;position:fixed;top:0px;left:0px;width:100%;height:12% !important;">
@@ -311,7 +311,12 @@
               <a class="nav-link active p-selectcolor2" href="/privacy" style="color:#ff00ff !important;"><b>プライバシー</b></a>
             </li>
             <li class="nav-item">
-              <span class="nav-link active p-selectcolor1" title="著作権情報"><?=Copyright?></a>
+            <?php if (empty($UserName)) { ?>
+              <!-- <span class="nav-link active p-selectcolor1" title="著作権情報"><?=Copyright?></a> -->
+              <a class="btn btn-outline-primary" href="/login">ログイン</a>
+            <?php } else { ?>
+              <a class="btn btn-outline-primary" href="/setting"><?=htmlspecialchars($UserName)?></a>
+            <?php } ?>
             </li>
           </ul>
         </div>

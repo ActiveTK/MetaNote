@@ -108,7 +108,10 @@
         exit();
       }
       $_SESSION["logindata"] = json_encode( $row );
-      NCPRedirect( "/" . $_POST["_return_back_address"] );
+      if ( isset( $_POST["_return_back_address"] ) && !empty( $_POST["_return_back_address"] ) )
+        NCPRedirect( "/" . $_POST["_return_back_address"] );
+      else
+        NCPRedirect( "/home" );
       exit();
     }
     else
@@ -302,7 +305,9 @@
 
   } else if ( empty( _MetaNote_URI_LOW ) ) {
       
-    NCPRedirect( "/home" );
+    define( 'USER_LOGGEDIN', true );
+    $title = "MetaNote. - " . _MetaNote_SubTitle;
+    include(MetaNote_Home . "objects/script/default.php");
     exit();
 
   } else if ( _MetaNote_URI_LOW ) {

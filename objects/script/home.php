@@ -35,12 +35,13 @@
   <body>
     <?=Get_Body_Header($LocalUser["UserName"])?>
 
-    <div class="mainobj">
+    <div class="mainobj" align="center">
 
       <br><br>
-      <h1 align="center"><?=$title?></h1>
+      <h1><?=$title?></h1>
       <p>
         <span class="userName"><?=htmlspecialchars($LocalUser["UserName"])?></span>としてログイン中
+        <a class="btn btn-outline-primary" href="/setting">ユーザー設定</a>
         <a class="btn btn-outline-primary" href="/logout">ログアウト</a>
       </p>
       <br>
@@ -55,9 +56,9 @@
             <div class="col-6 col-md">
               <h5>サイトマップ</h5>
               <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#about">サイト概要</a></li>
+                <li><a class="text-muted" href="/#about">サイト概要</a></li>
                 <li><a class="text-muted" href="https://github.com/ActiveTK/MetaNote">Githubリポジトリ</a></li>
-                <li><a class="text-muted" href="#contact">お問い合わせ</a></li>
+                <li><a class="text-muted" href="/#contact">お問い合わせ</a></li>
               </ul>
             </div>
             <div class="col-6 col-md">

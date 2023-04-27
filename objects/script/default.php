@@ -82,17 +82,17 @@
 
     <div align="center" class="next" id="next">
 
-      <hr class="featurette-divider container marketing">
+      <hr class="featurette-divider container marketing" id="about">
       <br>
 
-      <div id="about" class="textalignleft">
+      <div class="textalignleft">
 
         <div class="container marketing">
           <br>
 
           <hr class="featurette-divider">
 
-          <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" id="about">
+          <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
             <h1 class="display-4">本サービスの<span style="color:#f06770;">3つの特徴</span></h1>
           </div>
 
@@ -167,7 +167,7 @@
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
           <div class="row">
             <div class="col-12 col-md">
-              <small class="d-block mb-3 text-muted"><?=Copyright?></small>
+              <small class="d-block mb-3 text-muted"><?=Copyright?><br>Developed by ActiveTK.</small>
             </div>
             <div class="col-6 col-md">
               <h5>サイトマップ</h5>

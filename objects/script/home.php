@@ -41,6 +41,8 @@
       <h1><?=$title?></h1>
       <p>
         <span class="userName"><?=htmlspecialchars($LocalUser["UserName"])?></span>としてログイン中
+      </p>
+      <p>
         <a class="btn btn-outline-primary" href="/setting">ユーザー設定</a>
         <a class="btn btn-outline-primary" href="/logout">ログアウト</a>
       </p>

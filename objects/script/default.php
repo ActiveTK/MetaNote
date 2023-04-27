@@ -72,8 +72,14 @@
           <div class="row p-img_wrapper"><img class="card p-img_card" src="/icon/home.png" class="p-main_image"></div>
           <div class="row">
             <div class="col p-buttons_container d-flex justify-content-center">
+              <?php if (defined("USER_LOGGEDIN")) { ?>
+              <a href="/home" class="btn btn--blue btn--border-double">
+                <h3 style="color:#212529;">ホームへ移動</h3>
+              </a>
+              <?php } else {}?>
               <a href="/login<?php if (isset($_GET["return"])) echo "?return=" . htmlspecialchars($_GET["return"]); ?>" class="btn btn-lg p-loginbutton">ログイン</a>
               <a href="/new" class="btn btn-lg p-newbutton">新規登録</a>
+              <?php } ?>
             </div>
           </div>
         </div>

@@ -122,6 +122,12 @@
   // ログアウト処理
   else if ( _MetaNote_URI_LOW == "logout" )
   {
+    if ( !isset( $_SERVER['HTTP_REFERER'] ) )
+      MetaNote_Fatal_Die( "Referrer不一致" );
+    $ref = @parse_url( $_SERVER['HTTP_REFERER'] );
+    if ( !isset( $ref["host"] ) || $ref["host"] != "metanote.org" )
+      MetaNote_Fatal_Die( "Referrer不一致" );
+
     $_SESSION = array();
     session_destroy();
     if ( isset( $_COOKIE["SeedID"] ) )

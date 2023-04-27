@@ -39,6 +39,10 @@
 
       <br><br>
       <h1 align="center"><?=$title?></h1>
+      <p>
+        <span class="userName"><?=htmlspecialchars($LocalUser["UserName"])?></span>としてログイン中
+        <a class="btn btn-outline-primary" href="/logout">ログアウト</a>
+      </p>
       <br>
       <hr>
 

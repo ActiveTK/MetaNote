@@ -311,12 +311,12 @@
               <a class="nav-link active p-selectcolor2" href="/privacy" style="color:#ff00ff !important;"><b>プライバシー</b></a>
             </li>
             <li class="nav-item">
-            <?php if (empty($UserName)) { ?>
-              <!-- <span class="nav-link active p-selectcolor1" title="著作権情報"><?=Copyright?></a> -->
+              <span class="nav-link active p-selectcolor1" title="著作権情報"><?=Copyright?></span>
+            <?php /* if (empty($UserName)) { ?>
               <a class="btn btn-outline-primary" href="/login">ログイン</a>
             <?php } else { ?>
               <a class="btn btn-outline-primary" href="/setting"><?=htmlspecialchars($UserName)?></a>
-            <?php } ?>
+            <?php } */ ?>
             </li>
           </ul>
         </div>

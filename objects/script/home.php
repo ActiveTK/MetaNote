@@ -49,6 +49,27 @@
       <br>
       <hr>
 
+      <a href="/search" class="btn btn--blue btn--border-double">
+        <h3 style="color:#212529;">論文を探す</h3>
+      </a>
+      <br>
+      <p>公開されている論文を検索できます。</p>
+      <br>
+      <a href="/write" class="btn btn--blue btn--border-double">
+        <h3 style="color:#212529;">論文を新規作成</h3>
+      </a>
+      <br>
+      <p>論文を新しく執筆できます。</p>
+      <br>
+      <a href="/ctrl" class="btn btn--blue btn--border-double">
+        <h3 style="color:#212529;">管理画面に移動</h3>
+      </a>
+      <br>
+      <p>公開済みの論文を管理できます。</p>
+      <br>
+
+      <hr>
+
       <div class="container marketing">
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
           <div class="row">

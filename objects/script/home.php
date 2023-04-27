@@ -40,7 +40,7 @@
       <br><br>
       <h1><?=$title?></h1>
       <p>
-        <span class="userName"><?=htmlspecialchars($LocalUser["UserName"])?></span>としてログイン中
+        <span class="userName"><?=htmlspecialchars($LocalUser["UserName"])?></span>としてログインしています。
       </p>
       <p>
         <a class="btn btn-outline-primary" href="/setting">ユーザー設定</a>

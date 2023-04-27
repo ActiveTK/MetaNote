@@ -156,14 +156,21 @@
   else if ( _MetaNote_URI_LOW == "license" )
   {
     $title = "利用規約 - MetaNote.";
-    include( MetaNote_Home . "public_html/MetaNote.Server.License.php" );
+    include( MetaNote_Home . "objects/script/Document.License.php" );
+    exit();
+  }
+
+  else if ( _MetaNote_URI_LOW == "tos" )
+  {
+    header("HTTP/1.1 301 Redirect");
+    header("Location: /license");
     exit();
   }
 
   else if ( _MetaNote_URI_LOW == "privacy" )
   {
     $title = "プライバシーポリシー - MetaNote.";
-    include( MetaNote_Home . "public_html/MetaNote.Server.Privacy.php" );
+    include( MetaNote_Home . "objects/script/Document.Privacy.php" );
     exit();
   }
 

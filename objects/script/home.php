@@ -35,7 +35,7 @@
   <body>
     <?=Get_Body_Header()?>
 
-    <div id="mainobj">
+    <div class="mainobj">
 
       <h1 align="center"><?=$title?></h1>
       <br>

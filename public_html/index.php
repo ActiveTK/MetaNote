@@ -290,6 +290,7 @@
 
   if ( _MetaNote_URI_LOW == "home" ) {
 
+    $title = "ホーム - MetaNote.";
     include(MetaNote_Home . "objects/script/home.php");
     exit();
 

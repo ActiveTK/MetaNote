@@ -112,7 +112,10 @@
         <span id="info"></span>
       </div>
     </form>
-    <script>$(function(){$(".lined").linedtextarea();});</script>
+    <script>
+      $(function(){$(".lined").linedtextarea();});
+      document.getElementById("naka").addEventListener("input",marknew);
+    </script>
   </body>
 </html>
 

@@ -24,11 +24,11 @@
 
       try {
 
-        mkdir( "/objects/articles/markdown/{$ArticleID}" );
-        chmod( "/objects/articles/markdown/{$ArticleID}", 0777 );
+        mkdir( MetaNote_Home . "objects/articles/markdown/{$ArticleID}" );
+        chmod( MetaNote_Home . "objects/articles/markdown/{$ArticleID}", 0777 );
 
-        touch( "/objects/articles/markdown/{$ArticleID}/Data" );
-        touch( "/objects/articles/markdown/{$ArticleID}/Comments" );
+        touch( MetaNote_Home. "objects/articles/markdown/{$ArticleID}/Data" );
+        touch( MetaNote_Home. "objects/articles/markdown/{$ArticleID}/Comments" );
 
         $stmt = $dbh->prepare(
           "insert into MetaNoteArticles(

@@ -95,8 +95,6 @@
       <hr>
 
       <div align="center">
-        <p>論文一覧</p>
-       <br>
        <table border="1" class="table table-striped" style='width:60%;' align='center'>
          <tr>
            <th></th>

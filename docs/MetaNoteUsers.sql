@@ -1,0 +1,17 @@
+CREATE TABLE `MetaNoteUsers` (
+ `UserIntID` varchar(11) DEFAULT NULL,
+ `UserName` varchar(255) DEFAULT NULL,
+ `password` varchar(512) DEFAULT NULL,
+ `baninfo` varchar(512) DEFAULT NULL,
+ `CreateIPAdd` varchar(42) DEFAULT NULL,
+ `CreateTime` varchar(42) DEFAULT NULL,
+ `LastLoginIPadd` varchar(42) DEFAULT NULL,
+ `LastLoginUA` varchar(512) DEFAULT NULL,
+ `LastLoginTime` varchar(42) DEFAULT NULL,
+ `AccessCount` varchar(42) DEFAULT NULL,
+ `ChatCount` varchar(42) DEFAULT NULL,
+ `MailAdd` varchar(300) DEFAULT NULL,
+ `DisplayID` varchar(20) DEFAULT NULL,
+ `Profile` varchar(1080) NOT NULL,
+ `ImageIconSrc` varchar(1080) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

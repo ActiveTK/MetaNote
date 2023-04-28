@@ -289,7 +289,7 @@
   }
   else
   {
-    NCPRedirect( "/login?return=" . urlencode( $_POST["_return_back_address"] ) );
+    NCPRedirect( "/login?return=" . urlencode( _MetaNote_URI ) );
     exit();
   }
 

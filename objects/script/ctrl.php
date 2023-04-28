@@ -78,7 +78,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/ctrl.css">
 
-    <script>function delete(id){if(window.confirm("記事 ["+id+"] を削除します。\nよろしいでしょうか？"))location.href="?delete="+id;}</script>
+    <script>function deleteA(id){if(window.confirm("記事 ["+id+"] を削除します。\nよろしいでしょうか？"))location.href="?delete="+id;}</script>
 
   </head>
   <body>
@@ -144,7 +144,7 @@
                   "  <th>" . $value["LikedCount"] . "</th>" .
                   "  <th>" . date("Y/m/d H:i:s", $value["CreateTime"] * 1) . "</th>" .
                   "  <th>" . date("Y/m/d H:i:s", $value["LastUpdateTime"] * 1) . "</th>" .
-                  "  <th><a href='javascript:delete(\"" . $value["ArticleID"] . "\");'>削除</a></th>" .
+                  "  <th><a href='javascript:deleteA(\"" . $value["ArticleID"] . "\");'>削除</a></th>" .
                   "</tr>";
           }
         

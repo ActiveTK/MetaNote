@@ -77,8 +77,8 @@
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
     <form action="" method="POST" onsubmit="save();return false;">
       <h2>MarkDown Editor - MetaNote.</h2>
-      タイトル: <input type="text" id="title" size="40" placeholder="Title" value="タイトルを入力" required><br>
-      記事の概要: <input type="text" id="stitle" size="80" placeholder="SubTitle" value="概要を入力">
+      タイトル: <input type="text" id="title" size="40" placeholder="タイトルを入力" required><br>
+      記事の概要: <input type="text" id="stitle" size="80" placeholder="概要を入力">
       <textarea class="lined" id="naka" style="text-align:left;position:fixed;overflow-wrap:break-word;overflow-x:scroll;overflow-y:visible;width:52%;height:75%;background-color:#000000;color:#ffffff;margin:5px 5px;"><?
       if (!file_exists(MetaNote_Home . $row["DataSrc"]))
         touch(MetaNote_Home . $row["DataSrc"]);
@@ -88,7 +88,7 @@
 
         while ($line = @fgets($file))
           $alltext .= $line;
-        if (empty($alltext)) echo "# Hello MarkDown!\nここに論文の内容をMarkDown形式で書き込んで下さい。\n右側にはプレビューが表示されます。";
+        if (empty($alltext)) echo "# Hello MarkDown!\n\nここに論文の内容をMarkDown形式で書き込んで下さい。\n\n右側にはプレビューが表示されます。";
 
         if (@is_utf8($alltext))
           echo @htmlspecialchars($alltext);

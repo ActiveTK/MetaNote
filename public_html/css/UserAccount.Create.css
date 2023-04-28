@@ -39,6 +39,7 @@ body {
     width: 100%;
     height: 88%;
     background-color: #e6e6fa;
+    overflow: auto;
 }
 
 a {

@@ -37,12 +37,12 @@
       <br><br>
       <h1><?=$title?></h1>
       <p>
-        論文作成の形式を選択して下さい。
+        作成したい論文の形式を選択して下さい。
       </p>
       <br>
       <hr>
 
-      <div style="display:flex;" align="center">
+      <div align="center">
         <div>
           <a href="/write?new=markdown" class="btn2">
             <h3 style="color:#212529;">MarkDown</h3>

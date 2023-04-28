@@ -2,14 +2,6 @@ body {
     background-color: #6495ed;
     color: #080808;
 }
-.fortitle {
-    background-color: #e6e6fa;
-    color: #363636;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 30px;
-}
 .mainobj {
     position: fixed;
     top: 12%;
@@ -18,16 +10,55 @@ body {
     height: 88%;
     background-color: #e6e6fa;
 }
-.ldata {
-    width: 70%;
-    overflow-x: hidden;
-    overflow-y: visible;
+.userName {
+    color: #ff0000;
 }
-h3 {
-    background-color: #90ee90;
-    border-radius: 30px;
+
+.p-title {
     text-align: center;
+    background-color: #e6e6fa;
+    font: #363636;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+.p-metanotecolor {
+    color: #080808;
+    background: #6495ed;
+}
+
+.p-selectcolor1 {
+    background: #daddfc;
+    font-weight: bold;
+}
+
+.p-selectcolor2 {
+    background: #e6e6fa;
+    font-weight: bold;
+}
+
+.p-index__header_icon {
+    background: #FFF;
+}
+
+.p-link2home {
+    color: #406882;
+}
+
+.p-link2about {
+    color: #6998AB;
+}
+
+.p-noscript {
+    text-align: center;
+    background-color: #404ff0;
+    color: #ff4500;
+}
+
+.u-margin_zero {
+    margin: 0;
+}
+
 a {
     color: #00ff00;
     position: relative;
@@ -97,20 +128,27 @@ a {
 .navbar-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,0,0,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
-.p-selectcolor1 {
-    background: #daddfc;
-    font-weight: bold;
+
+.btn2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: .1em;
+    color: #212529;
+    border-radius: .5rem;
+    border: 8px double #0ff5ff;
 }
 
-.p-selectcolor2 {
-    background: #e6e6fa;
-    font-weight: bold;
-}
-
-.p-link2home {
-    color: #406882;
-}
-
-.p-link2about {
-    color: #6998AB;
-}

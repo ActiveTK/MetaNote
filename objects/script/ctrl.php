@@ -15,6 +15,56 @@
     die();
   }
 
+  if ( isset( $_GET["delete"] ) && is_string( $_GET["delete"] ) )
+  {
+    if ( !isset( $_SERVER['HTTP_REFERER'] ) )
+      MetaNote_Fatal_Die( "Referrer不一致" );
+    $ref = @parse_url( $_SERVER['HTTP_REFERER'] );
+    if ( !isset( $ref["host"] ) || $ref["host"] != "metanote.org" )
+      MetaNote_Fatal_Die( "Referrer不一致" );
+
+    $ArticleID = $_GET["delete"];
+
+    if (1 === 1){
+
+      try {
+        $stmt = $dbh->prepare('select * from MetaNoteArticles where ArticleID = ?');
+        $stmt->execute( [$ArticleID] );
+        $row = $stmt->fetch( PDO::FETCH_ASSOC );
+      } catch ( \Throwable $e ) {
+        MetaNote_Fatal_Die( $e->getMessage() );
+      }
+
+      if ( !isset( $row["Writers"] ) )
+        MetaNote_Fatal_Die( "存在しない論文ファイルを開きました。" );
+
+      $Writers = json_decode( $row["Writers"] );
+      $InWriter = false;
+      foreach( $Writers as $Writer )
+        if ($Writer === $LocalUser["UserIntID"])
+        {
+          $InWriter = true;
+          break;
+      }
+      if ( !$InWriter )
+        MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました。" );
+
+      try {
+        $stmt = $dbh->prepare(
+          "delete from MetaNoteArticles where ArticleID = ? limit 1;"
+        );
+        $stmt->execute( [
+          $ArticleID
+        ] );
+      } catch (\Throwable $e) {
+        MetaNote_Fatal_Die( $e->getMessage() );
+      }
+    }
+
+    NCPRedirect( "/ctrl" );
+    exit();
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +77,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/ctrl.css">
+
+    <script>function delete(id){if(window.confirm("記事 ["+id+"] を削除します。\nよろしいでしょうか？"))location.href="?delete="+id;}</script>
 
   </head>
   <body>
@@ -55,6 +107,7 @@
            <th>いいね数</th>
            <th>作成日</th>
            <th>最終更新日</th>
+           <th>削除</th>
           </tr>
           <?php
         
@@ -80,15 +133,20 @@
              foreach($Writers as $Writer)
                $WritersLookup .= htmlspecialchars(MetaNote_GetNameByID_bySQL($dbh, $Writer)[0]) . ";";
 
+             $TitleOfArticle = "NoTitle";
+             if (!empty($value["ArticleTitle"]))
+               $TitleOfArticle = htmlspecialchars($value["ArticleTitle"]);
+
              echo "<tr>" .
                   "  <th>#" . $i . "</th>" .
-                  "  <th><a href='/edit/" . $value["ArticleID"] . "' target='_blank'>" . htmlspecialchars($value["ArticleTitle"]) . "</a></th>" .
+                  "  <th><a href='/edit/" . $value["ArticleID"] . "' target='_blank'>" . $TitleOfArticle . "</a></th>" .
                   "  <th>" . $IsPublic . "</th>" .
                   "  <th>" . $WritersLookup . "</th>" .
                   "  <th>" . $value["PVCount"] . "</th>" .
                   "  <th>" . $value["LikedCount"] . "</th>" .
-                  "  <th>" . date("Y/m/d - M (D) H:i:s", $value["CreateTime"] * 1) . "</th>" .
-                  "  <th>" . date("Y/m/d - M (D) H:i:s", $value["LastUpdateTime"] * 1) . "</th>" .
+                  "  <th>" . date("Y/m/d H:i:s", $value["CreateTime"] * 1) . "</th>" .
+                  "  <th>" . date("Y/m/d H:i:s", $value["LastUpdateTime"] * 1) . "</th>" .
+                  "  <th><a href='javascript:delete(\"" . $value["ArticleID"] . "\");'>削除</a></th>" .
                   "</tr>";
           }
         

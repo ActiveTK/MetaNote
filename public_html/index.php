@@ -281,11 +281,15 @@
     MetaNote_Fatal_Die( "[DEBUG]_MetaNote_Fatal_Die が実行されました。" );
     die();
   }
-
   else if ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
   {
     $title = "MetaNote. - " . _MetaNote_SubTitle;
     include(MetaNote_Home . "objects/script/default.php");
+    exit();
+  }
+  else
+  {
+    NCPRedirect( "/login?return=" . urlencode( $_POST["_return_back_address"] ) );
     exit();
   }
 

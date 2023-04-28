@@ -31,6 +31,19 @@
 
   if ( isset( $_POST["save"] ) ) {
     file_put_contents( MetaNote_Home . $row["DataSrc"], $_POST["save"] );
+
+    try {
+      $stmt = $dbh->prepare(
+        "update MetaNoteArticles set LastUpdateTime = ? where ArticleID = ?;"
+      );
+      $stmt->execute( [
+          time(),
+          ArticleID
+      ] );
+    } catch (\Throwable $e) {
+      MetaNote_Fatal_Die( $e->getMessage() );
+    }
+
     exit();
   }
 

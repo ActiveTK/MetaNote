@@ -303,6 +303,12 @@
     include(MetaNote_Home . "objects/script/home.php");
     exit();
 
+  } else if ( _MetaNote_URI_LOW == "write" ) {
+
+    $title = "論文を新規作成 - MetaNote.";
+    include(MetaNote_Home . "objects/script/write.php");
+    exit();
+
   } else if ( empty( _MetaNote_URI_LOW ) ) {
       
     define( 'USER_LOGGEDIN', true );

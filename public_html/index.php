@@ -281,16 +281,19 @@
     MetaNote_Fatal_Die( "[DEBUG]_MetaNote_Fatal_Die が実行されました。" );
     die();
   }
-  else if ( ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) ) && empty( _MetaNote_URI_LOW ) )
+  else if ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
   {
-    $title = "MetaNote. - " . _MetaNote_SubTitle;
-    include(MetaNote_Home . "objects/script/default.php");
-    exit();
-  }
-  else
-  {
-    NCPRedirect( "/login?return=" . urlencode( _MetaNote_URI ) );
-    exit();
+    if ( empty( _MetaNote_URI_LOW ) )
+    {
+      $title = "MetaNote. - " . _MetaNote_SubTitle;
+      include(MetaNote_Home . "objects/script/default.php");
+      exit();
+    }
+    else
+    {
+      NCPRedirect( "/login?return=" . urlencode( _MetaNote_URI ) );
+      exit();
+    }
   }
 
   $LocalUser = json_decode( $_SESSION["logindata"], true );

@@ -50,9 +50,9 @@
           time(),
           time(),
           "Text/MarkDown",
-          "/objects/articles/markdown/{$ArticleID}/Data",
+          "objects/articles/markdown/{$ArticleID}/Data",
           "0",
-          "/objects/articles/markdown/{$ArticleID}/Comments"
+          "objects/articles/markdown/{$ArticleID}/Comments"
         ] );
       } catch (\Throwable $e) {
         MetaNote_Fatal_Die( $e->getMessage() );

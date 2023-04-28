@@ -326,6 +326,11 @@
   } else if ( explode('/', _MetaNote_URI_LOW)[0] == "edit" ) {
 
     $title = "論文を編集 - MetaNote.";
+
+    if ( !isset( explode('/', _MetaNote_URI_LOW)[1] ) )
+      MetaNote_Fatal_Die( "論文ファイルを指定せずに編集を行おうとしました。" );
+
+    define( 'ArticleID', explode('/', _MetaNote_URI_LOW)[1] );
     include(MetaNote_Home . "objects/script/edit.php");
     exit();
 

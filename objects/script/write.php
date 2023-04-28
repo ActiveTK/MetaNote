@@ -42,7 +42,7 @@
       <br>
       <hr>
 
-      <div style="display:flex;">
+      <div style="display:flex;" align="center">
         <div>
           <a href="/write?new=markdown" class="btn2">
             <h3 style="color:#212529;">MarkDown</h3>

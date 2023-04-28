@@ -49,7 +49,7 @@
       <h2>MarkDown Editor - MetaNote.</h2>
       <textarea class="lined" id="naka" style="text-align:left;position:fixed;overflow-wrap:break-word;overflow-x:scroll;overflow-y:visible;width:52%;height:75%;background-color:#000000;color:#ffffff;margin:5px 5px;"><?
       if (!file_exists(MetaNote_Home . $row["DataSrc"]))
-        
+        touch(MetaNote_Home . $row["DataSrc"]);
       $file = fopen(MetaNote_Home . $row["DataSrc"], "r");
       $alltext = "";
       if ($file) {

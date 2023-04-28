@@ -9,11 +9,6 @@
 
   if ( !defined( 'php.config.req' ) )
   {
-    if ( session_status() == PHP_SESSION_NONE )
-      @session_write_close();
-    http_response_code( 500 );
-    header( "HTTP/1.1 500 Internal Server Error" );
-    header( "Content-Type: text/html;charset=UTF-8" );
     include( "/home/activetk/metanote.org/public_html/MetaNote.HttpStatus.500.php" );
     die();
   }

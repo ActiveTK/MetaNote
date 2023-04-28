@@ -15,6 +15,56 @@
     die();
   }
 
+  if ( isset( $_GET["new"] ) && is_string( $_GET["new"] ) )
+  {
+    $Typeof = $_GET["new"];
+    if ( $Typeof == "markdown" )
+    {
+      $ArticleID = "MetaNote-" . dechex( time() ) . MetaNote_GetRand( 8 );
+
+      try {
+
+        mkdir( "/objects/articles/markdown/{$ArticleID}" );
+        chmod( "/objects/articles/markdown/{$ArticleID}", 0777 );
+
+        touch( "/objects/articles/markdown/{$ArticleID}/Data" );
+        touch( "/objects/articles/markdown/{$ArticleID}/Comments" );
+
+        $stmt = $dbh->prepare(
+          "insert into MetaNoteArticles(
+              ArticleID, ArticleTitle, ArticleSubtitle, InPublic, Writers, LikedCount, DonateWayOrBTC, CreateIPAddress, CreateTime, LastUpdateTime, DateType, DataSrc, PVCount, CommentsJsonfp
+           )
+           value(
+             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+           )"
+        );
+        $stmt->execute( [
+          $ArticleID,
+          "",
+          "",
+          "false",
+          json_encode( array( $LocalUser["UserIntID"] ) ),
+          "0",
+          "",
+          $_SERVER["REMOTE_ADDR"],
+          time(),
+          time(),
+          "Text/MarkDown",
+          "/objects/articles/markdown/{$ArticleID}/Data",
+          "0",
+          "/objects/articles/markdown/{$ArticleID}/Comments"
+        ] );
+      } catch (\Throwable $e) {
+        MetaNote_Fatal_Die( $e->getMessage() );
+      }
+
+      NCPRedirect( "/edit/" . $ArticleID );
+      exit();
+    }
+    else
+      MetaNote_Fatal_Die( "不正な種類の論文を新規作成しようとしました。" );
+  }
+
 ?>
 
 <!DOCTYPE html>

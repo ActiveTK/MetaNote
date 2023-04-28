@@ -322,6 +322,12 @@
     $title = "MetaNote. - " . _MetaNote_SubTitle;
     include(MetaNote_Home . "objects/script/default.php");
     exit();
+    
+  } else if ( explode('/', _MetaNote_URI_LOW)[0] == "edit" ) {
+
+    $title = "論文を編集 - MetaNote.";
+    include(MetaNote_Home . "objects/script/edit.php");
+    exit();
 
   } else if ( _MetaNote_URI_LOW ) {
 

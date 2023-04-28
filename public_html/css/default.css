@@ -232,10 +232,18 @@ body {
 .container {
     max-width: 960px;
 }
-.alignright {
-    position: relative;
-    left: 40%;
-    width: 60%;
+.divalignright {
+    text-align: right;
+}
+@media screen and (max-width:480px) {
+    .alignright {
+        position: relative;
+        left: 40%;
+        width: 60%;
+    }
+    .divalignright {
+        text-align: left !important;
+    }
 }
 
 .inpblue {

@@ -115,7 +115,7 @@
           <hr class="featurette-divider">
 
           <div class="row featurette alignright">
-            <div class="order-md-2" align="right">
+            <div class="order-md-2 divalignright">
               <h2 class="featurette-heading"><span class="text-muted">特徴2.</span> <span class="inpblue">充実した機能</span></h2>
               <p class="lead">論文の共同編集機能や寄付機能を実装しています。
               また、論文の公開コメントを通じて気軽に執筆者とコンタクトしたり、討論やアイディアの提案を行えます。</p>

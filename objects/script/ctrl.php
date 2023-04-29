@@ -181,6 +181,7 @@
            <th>いいね数</th>
            <th>作成日</th>
            <th>最終更新日</th>
+           <th>編集</th>
            <th>削除</th>
           </tr>
           <?php
@@ -198,7 +199,7 @@
           {
              $i++;
              if ($value["InPublic"] == "true")
-               $IsPublic = "公開済み (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", false)'>非公開に変更</a>)<br><a href='/article/" . $value["ArticleID"] . "'>公開記事へ移動</a>";
+               $IsPublic = "公開済み (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", false)'>非公開に変更</a>)";
              else
                $IsPublic = "非公開 (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", true)'>公開する</a>)";
 
@@ -213,13 +214,14 @@
 
              echo "<tr>" .
                   "  <th>#" . $i . "</th>" .
-                  "  <th><a href='/edit/" . $value["ArticleID"] . "' target='_blank'>" . $TitleOfArticle . "</a></th>" .
+                  "  <th><a href='/article/" . $value["ArticleID"] . "' target='_blank'>" . $TitleOfArticle . "</a></th>" .
                   "  <th>" . $IsPublic . "</th>" .
                   "  <th>" . $WritersLookup . "</th>" .
                   "  <th>" . $value["PVCount"] . "</th>" .
                   "  <th>" . $value["LikedCount"] . "</th>" .
                   "  <th>" . date("Y/m/d H:i:s", $value["CreateTime"] * 1) . "</th>" .
                   "  <th>" . date("Y/m/d H:i:s", $value["LastUpdateTime"] * 1) . "</th>" .
+                  "  <th><a href='/edit/" . $value["ArticleID"] . "' target='_blank'>編集</a></th>" .
                   "  <th><a href='javascript:deleteA(\"" . $value["ArticleID"] . "\");'>削除</a></th>" .
                   "</tr>\n";
           }

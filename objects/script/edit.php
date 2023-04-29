@@ -303,7 +303,7 @@
           url: "",
           type: "post",
           data: {
-            save: _("naka").value,
+            save: editor.getSession().getValue(),
             title: _("title").value
           },
           success: function(t) {
@@ -324,13 +324,7 @@
         $(document).ready(function() {
           starttitle = getTitle() + " - " + starttitle,
           $("title").html(starttitle),
-          marknew(""),
-          $("#naka").on("change", function() {
-            olddata = maenodata,
-            maenodata = _("naka").value,
-            _("back").disabled =! olddata,
-            $("title").html("*"+starttitle)
-          });
+          marknew("");
 
           _("closecreatenew").onclick = function() {
             _("conf").style = "z-index:0;display:none;";
@@ -455,8 +449,13 @@
         minLines: 2
       });
       editor.getSession().on('change', function(){
+        olddata = maenodata,
+        maenodata = editor.getSession().getValue(),
+        _("back").disabled =! olddata,
+        $("title").html("*"+starttitle);
         marknew(editor.getSession().getValue());
       });
+
     </script>
   </body>
 </html>

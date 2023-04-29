@@ -287,6 +287,11 @@
       MetaNote_Fatal_Die( "論文ファイルを指定せずに閲覧しようとしました。" );
 
     define( 'ArticleID', explode('/', _MetaNote_URI_LOW)[1] );
+    if ( !isset( $_SESSION["logindata"] ) || empty( $_SESSION["logindata"] ) )
+      $LocalUser = array();
+    else
+      $LocalUser = json_decode( $_SESSION["logindata"], true );
+
     include(MetaNote_Home . "objects/script/view.php");
     exit();
 

@@ -313,8 +313,8 @@
           _("info").innerHTML="エラー:変更を保存できませんでした。詳細: "+e,alert("変更を保存できませんでした。")
         })}
         
-        function marknew() {
-          _("latexdata").innerHTML = _("naka").value);
+        function marknew(data) {
+          _("latexdata").innerHTML = data;
         }
 
         function getTitle() {
@@ -324,7 +324,7 @@
         $(document).ready(function() {
           starttitle = getTitle() + " - " + starttitle,
           $("title").html(starttitle),
-          marknew(),
+          marknew(""),
           $("#naka").on("change", function() {
             olddata = maenodata,
             maenodata = _("naka").value,
@@ -454,17 +454,9 @@
         mode: "ace/mode/latex",
         minLines: 2
       });
-    </script>
-    <script>
-      let beforeMarkdownData = "";
-      function updateMarkdownViewer(){
-        const nakaValue = document.getElementById("naka").value;
-        if(nakaValue !== beforeMarkdownData){
-          beforeMarkdownData = nakaValue;
-          marknew();
-        }
-      }
-      setInterval(updateMarkdownViewer, 100);
+      editor.getSession().on('change', function(){
+        marknew(editor.getSession().getValue());
+      });
     </script>
   </body>
 </html>

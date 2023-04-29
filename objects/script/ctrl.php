@@ -194,9 +194,9 @@
           {
              $i++;
              if ($value["InPublic"] == "true")
-               $IsPublic = "公開済み (<a href='javascript:SetPublic(\"" + $value["ArticleID"] + "\", false)'>論文を非公開に変更</a>)";
+               $IsPublic = "公開済み (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", false)'>論文を非公開に変更</a>)";
              else
-               $IsPublic = "非公開 (<a href='javascript:SetPublic(\"" + $value["ArticleID"] + "\", true)'>論文を公開する</a>)";
+               $IsPublic = "非公開 (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", true)'>論文を公開する</a>)";
 
              $WritersLookup = "";
              $Writers = json_decode( $value["Writers"], true );
@@ -217,7 +217,7 @@
                   "  <th>" . date("Y/m/d H:i:s", $value["CreateTime"] * 1) . "</th>" .
                   "  <th>" . date("Y/m/d H:i:s", $value["LastUpdateTime"] * 1) . "</th>" .
                   "  <th><a href='javascript:deleteA(\"" . $value["ArticleID"] . "\");'>削除</a></th>" .
-                  "</tr>";
+                  "</tr>\n";
           }
         
           ?>

@@ -433,7 +433,8 @@
         <br>
         <hr>
 
-        <iframe align="left" src="?pdf" style="width:100%;height:auto;" sandbox=""></iframe>
+        <embed src="PDFのURL" type="application/pdf" width="100%" height="100%">
+        <iframe align="left" src="?pdf" style="width:100%;height:auto;" sandbox></iframe>
       </div>
 
       <br><br>

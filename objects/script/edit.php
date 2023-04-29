@@ -143,8 +143,7 @@
             olddata = maenodata,
             maenodata = _("naka").value,
             _("back").disabled =! olddata,
-            $("title").html("*"+starttitle),
-            marknew()
+            $("title").html("*"+starttitle)
           });
 
           _("closecreatenew").onclick = function() {

@@ -240,6 +240,9 @@ body {
     height: 200px;
     width: 90%;
 }
+.width90 {
+    width: 90%;
+}
 @media screen and (min-width:480px) {
     .alignright {
         position: relative;
@@ -255,6 +258,9 @@ body {
     .contactdata {
         height: 200px;
         width: 40%;
+    }
+    .width90 {
+        width: 100%;
     }
 }
 

@@ -95,7 +95,7 @@
 
       <div class="textalignleft">
 
-        <div class="container marketing">
+        <div class="container marketing width90">
           <br>
 
           <hr class="featurette-divider">
@@ -135,7 +135,7 @@
           <hr class="featurette-divider">
         </div>
 
-        <div class="container marketing" style="background-color:#e6e6fa;width:100%;">
+        <div class="container marketing width90" style="background-color:#e6e6fa;">
   
           <hr class="featurette-divider">
     
@@ -158,7 +158,7 @@
               <input type="submit" style="height:60px;width:140px;" value="送信">
               <br>
               報告された情報は<a href="/privacy" target="_blank">プライバシーに関する声明</a>に従って処理されます。<br>
-              また、入力されたメールアドレスが本件お問い合わせ以外に使用される事は絶対にありません。
+              また、入力されたメールアドレスが本件以外に使用される事はございません。
             </form>
     
           </div>

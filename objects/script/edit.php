@@ -404,7 +404,7 @@
 
         while ($line = @fgets($file))
           $alltext .= $line;
-        if (empty($alltext)) echo '\fontsize{50pt}{100pt}\selectfont' . "Hello LaTeX!\\nnここに論文の内容をLaTeX形式で書き込んで下さい。\n\n右側にはプレビューが表示されます。";
+        if (empty($alltext)) echo "Hello LaTeX!\\nnここに論文の内容をLaTeX形式で書き込んで下さい。\n\n右側にはプレビューが表示されます。";
 
         if (@is_utf8($alltext))
           echo @htmlspecialchars($alltext);

@@ -517,7 +517,7 @@
     <link rel="apple-touch-icon-precomposed" href="https://<?=Domain?>/icon/index_150_150.ico">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/view.css">
+    <link rel="stylesheet" href="/css/ctrl.css">
 
     <script type="text/javascript" src="/js/ActiveTK.min.js" charset="UTF-8"></script>
     <script type="text/javascript">

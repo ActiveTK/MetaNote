@@ -367,6 +367,7 @@
       header( "Conetnt-Type: application/pdf;" );
       header( "Content-Disposition: inline" );
       header( "Content-Length: " . strlen( $data ) );
+      header( "X-Frame-Options: \"sameorigin\"" );
 
       exit($data);
     }
@@ -415,7 +416,7 @@
   <body>
     <?=Get_Body_Header()?>
 
-    <div class="mainobj" align="center" style="font-size:1.4rem;">
+    <div class="mainobj" align="center">
 
       <div class="container marketing">
         <br><br>
@@ -432,7 +433,7 @@
         <br>
         <hr>
 
-        <iframe align="left" src="?pdf"></iframe>
+        <iframe align="left" src="?pdf" style="width:100%;height:auto;" sandbox=""></iframe>
       </div>
 
       <div class="container marketing">

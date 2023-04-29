@@ -90,7 +90,7 @@
 
     <div align="center" class="next" id="next">
 
-      <hr class="featurette-divider container marketing" id="about">
+      <hr class="featurette-divider container marketing width90" id="about">
       <br>
 
       <div class="textalignleft">

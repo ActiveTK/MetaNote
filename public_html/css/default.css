@@ -229,6 +229,7 @@ body {
 .next {
     top: 120%;
     background-color: #ffffff;
+    overflow-x: hidden;
 }
 .container {
     max-width: 960px;

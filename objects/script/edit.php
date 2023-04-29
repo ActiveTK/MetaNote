@@ -482,6 +482,54 @@
     exit();
   }
   else if ( $row["DateType"] === "application/pdf" )
-    MetaNote_Fatal_Die( "pdfファイルを編集することはできません。" );
+  {
+    ?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PDF Config - MetaNote.</title>
+    <script type="text/javascript" src="/js/ActiveTK.min.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+
+        function saveconf() {
+          _("title").value = _("title2").value;
+          $.ajax({
+            url: "",
+            type: "post",
+            data: {
+              confTitle: _("title2").value,
+              subTitle: _("stitle").value
+            },
+            success: function(t) {
+              window.reload();
+            }
+          })
+          .fail(function(t,a,e){
+            alert("変更を保存できませんでした。")
+          })
+        }
+
+    </script>
+    <link rel="stylesheet" href="/css/edit.css">
+  </head>
+  <body>
+    <div>
+      <h1>PDF論文の設定</h1>
+      <hr size="1" color="#7fffd4">
+      <div>
+        タイトル: <input type="text" id="title2" class="inputtitle" maxlength="120" placeholder="ここにタイトルを入力してください。。(120文字まで)" required>
+        <br><br>
+        論文の概要: <textarea id="stitle" class="stitle" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
+        <br>
+        <input type="button" value="保存" class="saveconf" onclick="saveconf()">
+        <br>
+      </div>
+      <hr size="1" color="#7fffd4">
+    </div>
+  </body>
+</html>
+    <?php
+    exit();
+  }
   else
     MetaNote_Fatal_Die( "対応していない種類の論文ファイルを開きました。" );

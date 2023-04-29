@@ -613,8 +613,9 @@
           論文の概要: <br><textarea id="stitle" style="overflow-wrap:break-word;width:43%;height:120px;" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
           <br>
           <input type="button" value="保存" class="saveconf" onclick="saveconf()">
-          <br>
+          <br><br>
         </div>
+        <hr>
         <h2>新しいPDFファイルで上書き</h2>
         <form align="center" action="" enctype="multipart/form-data" method="POST" id="select">
           <input type="hidden" name="MAX_FILE_SIZE" value="214748364">

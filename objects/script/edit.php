@@ -555,7 +555,7 @@
         <div>
           タイトル: <input type="text" id="title2" class="inputtitle" maxlength="120" placeholder="ここにタイトルを入力してください。。(120文字まで)" value="<?=htmlspecialchars($row["ArticleTitle"])?>" required>
           <br><br>
-          論文の概要: <br><textarea id="stitle" class="stitle" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
+          論文の概要: <br><textarea id="stitle" style="overflow-wrap:break-word;width:43%;height:120px;" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
           <br>
           <input type="button" value="保存" class="saveconf" onclick="saveconf()">
           <br>

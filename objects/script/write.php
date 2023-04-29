@@ -131,7 +131,7 @@
 
         try {
 
-          mkdir( MetaNote_Home . "objects/articles/pdf/$ArticleID}" );
+          mkdir( MetaNote_Home . "objects/articles/pdf/{$ArticleID}" );
           chmod( MetaNote_Home . "objects/articles/pdf/{$ArticleID}", 0777 );
 
           touch( MetaNote_Home. "objects/articles/pdf/{$ArticleID}/Data" );

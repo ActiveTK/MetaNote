@@ -110,7 +110,7 @@
     <script type="text/javascript" src="/js/ActiveTK.min.js" charset="UTF-8"></script>
     <script src="https://cdn.jsdelivr.net/gh/markedjs/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.2/dist/purify.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/nakasyou/LineTextarea.js@0.1.0/linetextarea.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/nakasyou/LineTextarea.js@0.1.1/linetextarea.js"></script>
     <script type="text/javascript">
     
       var olddata="", maenodata="", starttitle="MarkDown Editor - MetaNote.";
@@ -199,33 +199,39 @@
         }
 
     </script>
-    <script type="text/javascript">!function(e){e.fn.linedtextarea=function(t){var i=e.extend({},e.fn.linedtextarea.defaults,t),n=function(e,t,n){for(;e.height()-t<=0;)n==i.selectedLine?e.append("<div class='lineno lineselect'>"+n+"</div>"):e.append("<div class='lineno'>"+n+"</div>"),n++;return n};return this.each(function(){var t,s=e(this);s.attr("wrap","off"),s.css({resize:"none"});var a=s.outerWidth();s.wrap("<div class='linedtextarea'></div>");var r=s.parent().wrap("<div class='linedwrap' style='width:"+a+"px'></div>").parent();r.prepend("<div class='lines' style='width:50px'></div>");var d=r.find(".lines");d.height(s.height()+6),d.append("<div class='codelines'></div>");var l=d.find(".codelines");if(t=n(l,d.height(),1),-1!=i.selectedLine&&!isNaN(i.selectedLine)){var c=parseInt(s.height()/(t-2)),h=parseInt(c*i.selectedLine)-s.height()/2;s[0].scrollTop=h}var p=d.outerWidth(),o=parseInt(r.css("border-left-width"))+parseInt(r.css("border-right-width"))+parseInt(r.css("padding-left"))+parseInt(r.css("padding-right")),v=a-o,f=a-p-o-20;s.width(f),r.width(v);var u=null;s.scroll(function(t){if(null===u){var i=this;u=setTimeout(function(){l.empty();var t=e(i)[0].scrollTop,s=Math.floor(t/15+1),a=t/15%1;n(l,d.height(),s),l.css({"margin-top":15*a*-1+"px"}),u=null},150)}}),s.resize(function(t){var i=e(this)[0];d.height(i.clientHeight+6)})})},e.fn.linedtextarea.defaults={selectedLine:-1,selectedClass:"lineselect"}}(jQuery);</script>
+    <script type="text/javascript">//!function(e){e.fn.linedtextarea=function(t){var i=e.extend({},e.fn.linedtextarea.defaults,t),n=function(e,t,n){for(;e.height()-t<=0;)n==i.selectedLine?e.append("<div class='lineno lineselect'>"+n+"</div>"):e.append("<div class='lineno'>"+n+"</div>"),n++;return n};return this.each(function(){var t,s=e(this);s.attr("wrap","off"),s.css({resize:"none"});var a=s.outerWidth();s.wrap("<div class='linedtextarea'></div>");var r=s.parent().wrap("<div class='linedwrap' style='width:"+a+"px'></div>").parent();r.prepend("<div class='lines' style='width:50px'></div>");var d=r.find(".lines");d.height(s.height()+6),d.append("<div class='codelines'></div>");var l=d.find(".codelines");if(t=n(l,d.height(),1),-1!=i.selectedLine&&!isNaN(i.selectedLine)){var c=parseInt(s.height()/(t-2)),h=parseInt(c*i.selectedLine)-s.height()/2;s[0].scrollTop=h}var p=d.outerWidth(),o=parseInt(r.css("border-left-width"))+parseInt(r.css("border-right-width"))+parseInt(r.css("padding-left"))+parseInt(r.css("padding-right")),v=a-o,f=a-p-o-20;s.width(f),r.width(v);var u=null;s.scroll(function(t){if(null===u){var i=this;u=setTimeout(function(){l.empty();var t=e(i)[0].scrollTop,s=Math.floor(t/15+1),a=t/15%1;n(l,d.height(),s),l.css({"margin-top":15*a*-1+"px"}),u=null},150)}}),s.resize(function(t){var i=e(this)[0];d.height(i.clientHeight+6)})})},e.fn.linedtextarea.defaults={selectedLine:-1,selectedClass:"lineselect"}}(jQuery);</script>
     <link rel="stylesheet" href="/css/edit.css">
   </head>
   <body>
     <form action="" method="POST" onsubmit="save();return false;">
       <h2>MarkDown Editor - MetaNote.</h2>
       タイトル: <input type="text" id="title" size="40" placeholder="タイトルを入力" value="<?=htmlspecialchars($row["ArticleTitle"])?>" required>
-      <textarea class="lined naka" id="naka"><?
-      if (!file_exists(MetaNote_Home . $row["DataSrc"]))
-        touch(MetaNote_Home . $row["DataSrc"]);
-      $file = fopen(MetaNote_Home . $row["DataSrc"], "r");
-      $alltext = "";
-      if ($file) {
+      <div class="linetextarea-parent" style="height:100%">
+        <div class="linetextarea-core">
+          <textarea class="lined naka" id="naka">
+            <?
+            if (!file_exists(MetaNote_Home . $row["DataSrc"]))
+              touch(MetaNote_Home . $row["DataSrc"]);
+            $file = fopen(MetaNote_Home . $row["DataSrc"], "r");
+            $alltext = "";
+            if ($file) {
 
-        while ($line = @fgets($file))
-          $alltext .= $line;
-        if (empty($alltext)) echo "# Hello MarkDown!\n\nここに論文の内容をMarkDown形式で書き込んで下さい。\n\n右側にはプレビューが表示されます。";
+              while ($line = @fgets($file))
+                $alltext .= $line;
+              if (empty($alltext)) echo "# Hello MarkDown!\n\nここに論文の内容をMarkDown形式で書き込んで下さい。\n\n右側にはプレビューが表示されます。";
 
-        if (@is_utf8($alltext))
-          echo @htmlspecialchars($alltext);
-        else
-          echo @htmlspecialchars(@mb_convert_encoding($alltext, 'UTF-8', 'SJIS'));
-      }
-      else
-        echo "// ファイルが見つかりませんでした。";
-      fclose($file);
-      ?></textarea>
+              if (@is_utf8($alltext))
+                echo @htmlspecialchars($alltext);
+              else
+                echo @htmlspecialchars(@mb_convert_encoding($alltext, 'UTF-8', 'SJIS'));
+            }
+            else
+              echo "// ファイルが見つかりませんでした。";
+            fclose($file);
+            ?>
+          </textarea>
+        </div>
+      </div>
       <br>
       <div class="viewer">
         <p><b>MarkDown Viewer</b></p>
@@ -275,6 +281,7 @@
         }
       }
       setInterval(updateMarkdownViewer, 100);
+      linetextarea();
     </script>
   </body>
 </html>

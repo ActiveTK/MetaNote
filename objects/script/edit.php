@@ -487,6 +487,53 @@
     $subTitle = htmlspecialchars( $row["ArticleSubtitle"] );
     $IndexFromBot = "noindex, follow";
 
+      if ( isset( $_FILES["file"] ) )
+      {
+        if ( !isset( $_FILES['file']['error'] ) || !is_int( $_FILES['file']['error'] ) )
+          MetaNote_Fatal_Die( "パラメータが不正です。" );
+
+        switch ( $_FILES['file']['error'] ) {
+          case UPLOAD_ERR_OK:
+            break;
+          case UPLOAD_ERR_NO_FILE:
+            MetaNote_Fatal_Die( "ファイルが選択されていません。" );
+          case UPLOAD_ERR_INI_SIZE:
+          case UPLOAD_ERR_FORM_SIZE:
+            MetaNote_Fatal_Die( "ファイルサイズが大きすぎます。" );
+          default:
+            MetaNote_Fatal_Die( "パラメータが不正です。" );
+        }
+
+        if ( $_FILES['file']['size'] > 1024 * 1024 * 200 )
+          MetaNote_Fatal_Die( "ファイルサイズが大きすぎます。" );
+
+        $ArticleID = ArticleID;
+
+        try {
+          $stmt = $dbh->prepare(
+            "update MetaNoteArticles set LastUpdateTime = ? where ArticleID = ?;"
+          );
+          $stmt->execute( [
+            time(),
+            ArticleID
+          ] );
+        } catch (\Throwable $e) {
+          MetaNote_Fatal_Die( $e->getMessage() );
+        }
+
+        if ( !move_uploaded_file(
+          $_FILES['file']['tmp_name'], MetaNote_Home . "objects/articles/pdf/{$ArticleID}/DataFull"
+        ) )
+          MetaNote_Fatal_Die( "ファイル保存時にエラーが発生しました" );
+
+        unlink( MetaNote_Home . "objects/articles/pdf/{$ArticleID}/Data" );
+        file_put_contents( MetaNote_Home . "objects/articles/pdf/{$ArticleID}/Data", gzdeflate( file_get_contents( MetaNote_Home . "objects/articles/pdf/{$ArticleID}/DataFull" ) ) );
+        unlink( MetaNote_Home . "objects/articles/pdf/{$ArticleID}/DataFull" );
+
+        NCPRedirect( "/article/" . $ArticleID );
+        exit();
+      }
+
     ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
@@ -540,6 +587,14 @@
           })
         }
 
+      function sendForm() {
+        if (document.getElementById("file").value === "")
+          alert("ファイルを選択して下さい。");
+        else
+          document.getElementById("select").submit();
+        return false;
+      }
+
     </script>
 
   </head>
@@ -560,6 +615,17 @@
           <input type="button" value="保存" class="saveconf" onclick="saveconf()">
           <br>
         </div>
+        <h2>新しいPDFファイルで上書き</h2>
+        <form align="center" action="" enctype="multipart/form-data" method="POST" id="select">
+          <input type="hidden" name="MAX_FILE_SIZE" value="214748364">
+          <input name="file" type="file" title="最大ファイルサイズは200MBです。" accept="application/pdf" id="file" required>
+          <br><br>
+          <p>200MB以下でJavaScriptが含まれていないPDFファイルが選択できます。</p>
+          <br>
+          <a href="javascript:sendForm();" class="btn2">
+            <h3 style="color:#212529;">アップロード</h3>
+          </a>
+        </form>
         <hr size="1" color="#7fffd4">
       </div>
 

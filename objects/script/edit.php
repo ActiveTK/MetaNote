@@ -132,7 +132,7 @@
         }
 
         function getTitle() {
-          return _("naka").value.slice(0,_("naka").value.indexOf("\n")) || "Untitled"
+          return _("title").value || "Untitled"
         }
 
         $(document).ready(function() {

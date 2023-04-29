@@ -518,6 +518,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/ctrl.css">
+    <link rel="stylesheet" href="/css/view.css">
 
     <script type="text/javascript" src="/js/ActiveTK.min.js" charset="UTF-8"></script>
     <script type="text/javascript">
@@ -548,6 +549,7 @@
     <div class="mainobj" align="center">
 
       <div class="container marketing">
+        <br><br>
         <h1>PDF論文の設定</h1>
         <hr size="1" color="#7fffd4">
         <div>

@@ -417,7 +417,7 @@
       fclose($file);
       ?></div>
       <br>
-      <div class="viewer">
+      <div class="viewer" style="font-size:1.4rem;">
         <p><b>LaTeX Viewer</b></p>
         <hr>
         <div id="output"></div>

@@ -163,7 +163,7 @@
           _("smallcreatenew").onclick = function() {
             _("conf").style = "z-index:2;display:block;text-align:center;position:fixed;bottom:10%;left:10%;height:15%;width:28%;background-color:#00ff7f;color:#080808;overflow-x:hidden;overflow-y:visible;";
           }
-        }),
+        });
 
         document.onkeydown = function(t) {
           if (event.ctrlKey && 83 == event.keyCode)
@@ -192,19 +192,18 @@
           .fail(function(t,a,e){
             _("info").innerHTML = "エラー:変更を保存できませんでした。詳細: "+e,
             alert("変更を保存できませんでした。")
-          })}
+          })
         }
 
-
-        </script>
+    </script>
     <script type="text/javascript">!function(e){e.fn.linedtextarea=function(t){var i=e.extend({},e.fn.linedtextarea.defaults,t),n=function(e,t,n){for(;e.height()-t<=0;)n==i.selectedLine?e.append("<div class='lineno lineselect'>"+n+"</div>"):e.append("<div class='lineno'>"+n+"</div>"),n++;return n};return this.each(function(){var t,s=e(this);s.attr("wrap","off"),s.css({resize:"none"});var a=s.outerWidth();s.wrap("<div class='linedtextarea'></div>");var r=s.parent().wrap("<div class='linedwrap' style='width:"+a+"px'></div>").parent();r.prepend("<div class='lines' style='width:50px'></div>");var d=r.find(".lines");d.height(s.height()+6),d.append("<div class='codelines'></div>");var l=d.find(".codelines");if(t=n(l,d.height(),1),-1!=i.selectedLine&&!isNaN(i.selectedLine)){var c=parseInt(s.height()/(t-2)),h=parseInt(c*i.selectedLine)-s.height()/2;s[0].scrollTop=h}var p=d.outerWidth(),o=parseInt(r.css("border-left-width"))+parseInt(r.css("border-right-width"))+parseInt(r.css("padding-left"))+parseInt(r.css("padding-right")),v=a-o,f=a-p-o-20;s.width(f),r.width(v);var u=null;s.scroll(function(t){if(null===u){var i=this;u=setTimeout(function(){l.empty();var t=e(i)[0].scrollTop,s=Math.floor(t/15+1),a=t/15%1;n(l,d.height(),s),l.css({"margin-top":15*a*-1+"px"}),u=null},150)}}),s.resize(function(t){var i=e(this)[0];d.height(i.clientHeight+6)})})},e.fn.linedtextarea.defaults={selectedLine:-1,selectedClass:"lineselect"}}(jQuery);</script>
-    <style>.linedwrap{border:1px solid silver;padding:3px}.linedtextarea{padding:0;margin:0}.linedtextarea textarea,.linedwrap .codelines .lineno{font-size:10pt;font-family:monospace;line-height:15px!important}.linedtextarea textarea{padding-right:.3em;padding-top:.3em;border:0}.linedwrap .lines{margin-top:0;width:50px;float:left;overflow:hidden;border-right:1px solid silver;margin-right:10px}.linedwrap .codelines{padding-top:5px}.linedwrap .codelines .lineno{color:#aaa;padding-right:.5em;padding-top:0;text-align:right;white-space:nowrap}.linedwrap .codelines .lineselect{color:red}</style>
+    <link rel="stylesheet" href="/css/edit.css">
   </head>
-  <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
+  <body>
     <form action="" method="POST" onsubmit="save();return false;">
       <h2>MarkDown Editor - MetaNote.</h2>
       タイトル: <input type="text" id="title" size="40" placeholder="タイトルを入力" value="<?=htmlspecialchars($row["ArticleTitle"])?>" required>
-      <textarea class="lined" id="naka" style="text-align:left;position:fixed;overflow-wrap:break-word;overflow-x:scroll;overflow-y:visible;width:52%;height:75%;background-color:#000000;color:#ffffff;margin:5px 5px;"><?
+      <textarea class="lined" id="naka" class="naka"><?
       if (!file_exists(MetaNote_Home . $row["DataSrc"]))
         touch(MetaNote_Home . $row["DataSrc"]);
       $file = fopen(MetaNote_Home . $row["DataSrc"], "r");
@@ -225,15 +224,15 @@
       fclose($file);
       ?></textarea>
       <br>
-      <div style="text-align:left;position:fixed;bottom:2%;left:55%;height:92%;width:40%;background-color:#e6e6fa;text:#363636;overflow-x:hidden;overflow-y:visible;">
+      <div class="viewer">
         <p><b>MarkDown Viewer</b></p>
         <hr>
         <div id="markdowndata">
         </div>
       </div>
-      <div style="position:fixed;bottom:3%;left:40px;">
-        <input type="submit" value="保存" style="width:120px;height:40px;">
-        <input type="button" value="記事の設定を開く" style="width:120px;height:40px;" id="OpenConf()">
+      <div class="btns">
+        <input type="submit" value="保存" class="savebtn">
+        <input type="button" value="記事の設定を開く" class="Openconf" id="OpenConf()">
         <input type="button" value="一つ戻す" id="back" onclick='_("naka").value=olddata;this.disabled=true;' disabled>
         <input type="button" value="置き換え" onclick='let e=_("naka").value,n=window.prompt("置き換えるテキストを入力してください"),o=window.prompt("置き換え後のテキストを入力してください");if(n != null && n != undefined){for(p=e.replace(n,o);p!==e;)e=e.replace(n,o),p=p.replace(n,o);_("naka").value=p}'>
         <input type="button" value="文字数取得" onclick="_('info').innerHTML='現在、'+_('naka').value.length+'文字です。';">
@@ -242,25 +241,24 @@
     </form>
 
     <div id="conf" style="display:none;">
-      <div align="right" style="text-align:right;">
-        <span id="closecreatenew" style="font-size:0.81em;float:right;width:30px;padding:11px;text-align:center;">&#10006;</span>
-        <span id="bigcreatenew" style="font-size:0.81em;float:right;width:30px;padding:11px;text-align:center;">&#9633;</span>
-        <span id="toosmallcreatenew" style="font-size:0.81em;float:right;width:30px;padding:11px;text-align:center;display:none;">&#9633;</span>
-        <span id="smallcreatenew" style="font-size:0.81em;float:right;width:30px;padding:11px;text-align:center;">—</span>
+      <div align="right" class="texttoright">
+        <span id="closecreatenew" class="btnclose">&#10006;</span>
+        <span id="bigcreatenew" class="tobigger">&#9633;</span>
+        <span id="toosmallcreatenew" class="toosmall">&#9633;</span>
+        <span id="smallcreatenew" class="scr">—</span>
       </div>
       <br>
       <h1>記事の設定</h1>
       <hr size="1" color="#7fffd4">
       <div>
-        <input type="text" id="title2" style="width:43%;background-color:#000000;color:#ffffff;" maxlength="120" placeholder="ここにタイトルを入力してください。。(120文字まで)" required>
+        <input type="text" id="title2" class="inputtitle" maxlength="120" placeholder="ここにタイトルを入力してください。。(120文字まで)" required>
         <br><br>
-        <textarea id="stitle" style="text-align:left;overflow-wrap:break-word;width:43%;height:120px;background-color:#000000;color:#ffffff;" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
+        <textarea id="stitle" class="stitle" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
         <br>
-        <input type="button" value="保存" style="width:73px;height:33px;background-color:#90ee90;" onclick="saveconf()">
+        <input type="button" value="保存" class="saveconf" onclick="saveconf()">
         <br>
       </div>
       <hr size="1" color="#7fffd4">
-      <span id="stat"></span>
     </div>
 
     <script>$(function(){$(".lined").linedtextarea();});</script>

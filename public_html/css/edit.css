@@ -1,0 +1,142 @@
+
+body {
+    background-color: #6495ed;
+    color: #080808;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+.naka {
+    text-align: left;
+    position: fixed;
+    overflow-wrap: break-word;
+    overflow-x: scroll;
+    overflow-y: visible;
+    width: 52%;
+    height: 75%;
+    background-color: #000000;
+    color: #ffffff;
+    margin: 5px 5px;
+}
+.inputtitle {
+    width: 43%;
+    background-color: #000000;
+    color: #ffffff;
+}
+.stitle {
+    text-align: left;
+    overflow-wrap: break-word;
+    width: 43%;
+    height: 120px;
+    background-color: #000000;
+    color: #ffffff;
+}
+.saveconf {
+    width: 73px;
+    height: 33px;
+    background-color: #90ee90;
+}
+.texttoright {
+    text-align: right;
+}
+.Openconf {
+    width: 120px;
+    height: 40px;
+}
+.savebtn {
+    width: 120px;
+    height: 40px;
+}
+.btns {
+    position: fixed;
+    bottom: 3%;
+    left: 40px;
+}
+.tobigger {
+    font-size: 0.81em;
+    float: right;
+    width: 30px;
+    padding: 11px;
+    text-align: center;
+}
+.scr {
+    font-size: 0.81em;
+    float: right;
+    width: 30px;
+    padding: 11px;
+    text-align: center;
+}
+.toosmall {
+    font-size: 0.81em;
+    float: right;
+    width: 30px;
+    padding: 11px;
+    text-align: center;
+    display: none;
+}
+
+.viewer {
+    text-align: left;
+    position: fixed;
+    bottom: 2%;
+    left: 55%;
+    height: 92%;
+    width: 40%;
+    background-color: #e6e6fa;
+    text: #363636;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+.btnclose {
+    font-size: 0.81em;
+    float: right;
+    width: 30px;
+    padding: 11px;
+    text-align: center;
+}
+
+.linedwrap {
+    border: 1px solid silver;
+    padding: 3px
+}
+
+.linedtextarea {
+    padding: 0;
+    margin: 0
+}
+
+    .linedtextarea textarea, .linedwrap .codelines .lineno {
+        font-size: 10pt;
+        font-family: monospace;
+        line-height: 15px !important
+    }
+
+    .linedtextarea textarea {
+        padding-right: .3em;
+        padding-top: .3em;
+        border: 0
+    }
+
+.linedwrap .lines {
+    margin-top: 0;
+    width: 50px;
+    float: left;
+    overflow: hidden;
+    border-right: 1px solid silver;
+    margin-right: 10px
+}
+
+.linedwrap .codelines {
+    padding-top: 5px
+}
+
+    .linedwrap .codelines .lineno {
+        color: #aaa;
+        padding-right: .5em;
+        padding-top: 0;
+        text-align: right;
+        white-space: nowrap
+    }
+
+    .linedwrap .codelines .lineselect {
+        color: red
+    }

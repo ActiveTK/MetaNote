@@ -21,15 +21,15 @@
   if ( $row["InPublic"] !== "true" )
   {
     if ( !isset( $LocalUser["UserIntID"] ) )
-      MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました。" );
-    $Writers = json_decode( $row["Writers"] );
+      MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました" );
+    $Writers = json_decode( $row["Writers"], true );
     $InWriter = false;
     foreach( $Writers as $Writer )
-    if ($Writer === $LocalUser["UserIntID"])
-    {
-      $InWriter = true;
-      break;
-    }
+      if ($Writer === $LocalUser["UserIntID"])
+      {
+        $InWriter = true;
+        break;
+      }
     if ( !$InWriter )
       MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました。" );
   }

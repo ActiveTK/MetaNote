@@ -284,7 +284,191 @@
   else if ( $row["DateType"] === "Text/LaTeX" )
   {
     ?>
-    LaTeX Editor
+<html>
+  <head>
+    <title>LaTeX Editor - MetaNote.</title>
+    <script type="text/javascript" src="/js/ActiveTK.min.js" charset="UTF-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.2/dist/purify.min.js"></script>
+    <script type="module">
+      import { LaTeXJSComponent } from "https://cdn.jsdelivr.net/npm/latex.js/dist/latex.mjs"
+      customElements.define("latex-js", LaTeXJSComponent)
+    </script>
+    <script type="text/javascript">
+    
+      var olddata="", maenodata="", starttitle="LaTeX Editor - MetaNote.";
+
+      function save() {
+        _("info").innerHTML="保存しています。。",
+        $.ajax({
+          url: "",
+          type: "post",
+          data: {
+            save: _("naka").value,
+            title: _("title").value
+          },
+          success: function(t) {
+            "" == t ? (_("info").innerHTML="変更を保存しました。",$("title").html(starttitle)):_("info").innerHTML="変更を保存できませんでした。"}
+        })
+        .fail(function(t,a,e){
+          _("info").innerHTML="エラー:変更を保存できませんでした。詳細: "+e,alert("変更を保存できませんでした。")
+        })}
+        
+        function marknew() {
+          _("latexdata").innerHTML = _("naka").value);
+        }
+
+        function getTitle() {
+          return _("title").value || "Untitled"
+        }
+
+        $(document).ready(function() {
+          starttitle = getTitle() + " - " + starttitle,
+          $("title").html(starttitle),
+          marknew(),
+          $("#naka").on("change", function() {
+            olddata = maenodata,
+            maenodata = _("naka").value,
+            _("back").disabled =! olddata,
+            $("title").html("*"+starttitle)
+          });
+
+          _("closecreatenew").onclick = function() {
+            _("conf").style = "z-index:0;display:none;";
+          }
+          _("bigcreatenew").onclick = function() {
+            _("conf").style = "z-index:2;display:block;text-align:center;position:fixed;left:0px;top:12%;height:88%;width:100%;background-color:#00ff7f;color:#080808;overflow-x:hidden;overflow-y:visible;";
+            _("toosmallcreatenew").style.display = "block";
+            _("bigcreatenew").style.display = "none";
+          }
+          _("toosmallcreatenew").onclick = function() {
+            _("conf").style = "z-index:2;display:block;text-align:center;position:fixed;bottom:10%;left:10%;height:75%;width:80%;background-color:#00ff7f;color:#080808;overflow-x:hidden;overflow-y:visible;";
+            _("toosmallcreatenew").style.display = "none";
+            _("bigcreatenew").style.display = "block";
+          }
+          _("smallcreatenew").onclick = function() {
+            _("conf").style = "z-index:2;display:block;text-align:center;position:fixed;bottom:10%;left:10%;height:15%;width:28%;background-color:#00ff7f;color:#080808;overflow-x:hidden;overflow-y:visible;";
+          }
+        });
+
+        document.onkeydown = function(t) {
+          if (event.ctrlKey && 83 == event.keyCode)
+            return save(),
+            event.keyCode=0,!1
+        };
+
+        function OpenConf() {
+          _("title2").value = _("title").value;
+          _("conf").style = "z-index:2;display:block;text-align:center;position:fixed;bottom:10%;left:10%;height:75%;width:80%;background-color:#00ff7f;color:#080808;overflow-x:hidden;overflow-y:visible;";
+        }
+
+        function saveconf() {
+          _("info").innerHTML="保存しています。。",
+          _("title").value = _("title2").value;
+          $.ajax({
+            url: "",
+            type: "post",
+            data: {
+              confTitle: _("title2").value,
+              subTitle: _("stitle").value
+            },
+            success: function(t) {
+              "" == t ? (_("info").innerHTML="設定の変更を保存しました。",_("conf").style = "z-index:0;display:none;"):_("info").innerHTML="変更を保存できませんでした。"}
+          })
+          .fail(function(t,a,e){
+            _("info").innerHTML = "エラー:変更を保存できませんでした。詳細: "+e,
+            alert("変更を保存できませんでした。")
+          })
+        }
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <link rel="stylesheet" href="/css/edit.css">
+  </head>
+  <body>
+    <form action="" method="POST" onsubmit="save();return false;">
+      <h2>LaTeX Editor - MetaNote.</h2>
+      タイトル: <input type="text" id="title" size="40" placeholder="タイトルを入力" value="<?=htmlspecialchars($row["ArticleTitle"])?>" required>
+
+      <div class="lined naka" id="naka">
+      <?
+      if (!file_exists(MetaNote_Home . $row["DataSrc"]))
+        touch(MetaNote_Home . $row["DataSrc"]);
+      $file = fopen(MetaNote_Home . $row["DataSrc"], "r");
+      $alltext = "";
+      if ($file) {
+
+        while ($line = @fgets($file))
+          $alltext .= $line;
+        if (empty($alltext)) echo '\fontsize{50pt}{100pt}\selectfont' . "\nHello LaTeX!\nここに論文の内容をLaTeX形式で書き込んで下さい。\n右側にはプレビューが表示されます。";
+
+        if (@is_utf8($alltext))
+          echo @htmlspecialchars($alltext);
+        else
+          echo @htmlspecialchars(@mb_convert_encoding($alltext, 'UTF-8', 'SJIS'));
+      }
+      else
+        echo "// ファイルが見つかりませんでした。";
+      fclose($file);
+      ?></div>
+      <br>
+      <div class="viewer">
+        <p><b>LaTeX Viewer</b></p>
+        <hr>
+        <latex-js hyphenate="false" id="latexdata"></latex-js>
+      </div>
+      <div class="btns">
+        <input type="submit" value="保存" class="savebtn">
+        <input type="button" value="記事の設定を開く" class="Openconf" onclick="OpenConf()">
+        <input type="button" value="一つ戻す" id="back" onclick='_("naka").value=olddata;this.disabled=true;' disabled>
+        <input type="button" value="置き換え" onclick='let e=_("naka").value,n=window.prompt("置き換えるテキストを入力してください"),o=window.prompt("置き換え後のテキストを入力してください");if(n != null && n != undefined){for(p=e.replace(n,o);p!==e;)e=e.replace(n,o),p=p.replace(n,o);_("naka").value=p}'>
+        <input type="button" value="文字数取得" onclick="_('info').innerHTML='現在、'+_('naka').value.length+'文字です。';">
+        <span id="info"></span>
+      </div>
+    </form>
+
+    <div id="conf" style="display:none;">
+      <div align="right" class="texttoright">
+        <span id="closecreatenew" class="btnclose">&#10006;</span>
+        <span id="bigcreatenew" class="tobigger">&#9633;</span>
+        <span id="toosmallcreatenew" class="toosmall">&#9633;</span>
+        <span id="smallcreatenew" class="scr">—</span>
+      </div>
+      <br>
+      <h1>論文の設定</h1>
+      <hr size="1" color="#7fffd4">
+      <div>
+        タイトル: <input type="text" id="title2" class="inputtitle" maxlength="120" placeholder="ここにタイトルを入力してください。。(120文字まで)" required>
+        <br><br>
+        論文の概要: <textarea id="stitle" class="stitle" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
+        <br>
+        <input type="button" value="保存" class="saveconf" onclick="saveconf()">
+        <br>
+      </div>
+      <hr size="1" color="#7fffd4">
+    </div>
+
+    <script>
+    
+      const editor = ace.edit("editor",{
+        theme: "ace/theme/monokai",
+        mode: "ace/mode/latex",
+        minLines: 2
+      });
+    </script>
+    <script>
+      let beforeMarkdownData = "";
+      function updateMarkdownViewer(){
+        const nakaValue = document.getElementById("naka").value;
+        if(nakaValue !== beforeMarkdownData){
+          beforeMarkdownData = nakaValue;
+          marknew();
+        }
+      }
+      setInterval(updateMarkdownViewer, 100);
+    </script>
+  </body>
+</html>
+
     <?php
     exit();
   }

@@ -110,6 +110,7 @@
     <script type="text/javascript" src="/js/ActiveTK.min.js" charset="UTF-8"></script>
     <script src="https://cdn.jsdelivr.net/gh/markedjs/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.2/dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/nakasyou/LineTextarea.js@0.1.0/linetextarea.js"></script>
     <script type="text/javascript">
     
       var olddata="", maenodata="", starttitle="MarkDown Editor - MetaNote.";

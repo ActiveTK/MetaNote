@@ -507,7 +507,7 @@
         if ( $_FILES['file']['size'] > 1024 * 1024 * 200 )
           MetaNote_Fatal_Die( "ファイルサイズが大きすぎます。" );
 
-        $ArticleID = ArticleID;
+        $ArticleID = str_replace( "metanote-", "MetaNote-", ArticleID );
 
         try {
           $stmt = $dbh->prepare(

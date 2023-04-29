@@ -129,6 +129,16 @@
       </div>
     </form>
     <script>$(function(){$(".lined").linedtextarea();});</script>
+    <script>
+      let beforeMarkdownData = "";
+      function updateMarkdownViewer(){
+        if(_('naka').value !== beforeMarkdownData){
+          beforeMarkdownData = _('naka').value;
+          marknew();
+        }
+        setTimeout(updateMarkdownViewer);
+      }
+    </script>
   </body>
 </html>
 

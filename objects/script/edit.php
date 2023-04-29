@@ -289,11 +289,7 @@
   <head>
     <title>LaTeX Editor - MetaNote.</title>
     <script type="text/javascript" src="/js/ActiveTK.min.js" charset="UTF-8"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.2/dist/purify.min.js"></script>
-    <script type="module">
-      import { LaTeXJSComponent } from "https://cdn.jsdelivr.net/npm/latex.js/dist/latex.mjs"
-      customElements.define("latex-js", LaTeXJSComponent)
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/latex.js/dist/latex.js"></script>
     <script type="text/javascript">
     
       var olddata="", maenodata="", starttitle="LaTeX Editor - MetaNote.";
@@ -314,8 +310,24 @@
           _("info").innerHTML="エラー:変更を保存できませんでした。詳細: "+e,alert("変更を保存できませんでした。")
         })}
         
-        function marknew(data) {
-          _("latexdata").innerHTML = data;
+        function marknew() {
+          var generator = new latexjs.HtmlGenerator({
+            hyphenate: false
+          });
+          try {
+            generator = latexjs.parse(editor.getValue(), {
+                generator: generator
+            });
+            $("#output").empty();
+            _("output").appendChild(generator.stylesAndScripts("https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/"));
+            _("output").appendChild(generator.domFragment());
+          } catch (e) {
+            if (e.name == "SyntaxError") {
+                $("#output").replaceWith('<div id="output"> <p>' + e.name + '</p><p>line ' + e.location["start"]["line"] + ' (column ' + e.location["start"]["column"] + '): ' + e.message +'</p></div>');
+            } else {
+                $("#output").replaceWith('<div id="output"> <p>unexpected error: ' + e.message + '</p></div>');
+            }
+          }
         }
 
         function getTitle() {
@@ -325,7 +337,7 @@
         $(document).ready(function() {
           starttitle = getTitle() + " - " + starttitle,
           $("title").html(starttitle),
-          marknew("");
+          marknew();
 
           _("closecreatenew").onclick = function() {
             _("conf").style = "z-index:0;display:none;";
@@ -393,7 +405,7 @@
 
         while ($line = @fgets($file))
           $alltext .= $line;
-        if (empty($alltext)) echo '\fontsize{50pt}{100pt}\selectfont' . "\nHello LaTeX!\nここに論文の内容をLaTeX形式で書き込んで下さい。\n右側にはプレビューが表示されます。";
+        if (empty($alltext)) echo "Hello LaTeX!\n\nここに論文の内容をLaTeX形式で書き込んで下さい。\n\n右側にはプレビューが表示されます。";
 
         if (@is_utf8($alltext))
           echo @htmlspecialchars($alltext);
@@ -408,14 +420,12 @@
       <div class="viewer">
         <p><b>LaTeX Viewer</b></p>
         <hr>
-        <latex-js hyphenate="false" id="latexdata"></latex-js>
+        <div id="output"></div>
       </div>
       <div class="btns">
         <input type="submit" value="保存" class="savebtn">
         <input type="button" value="記事の設定を開く" class="Openconf" onclick="OpenConf()">
-        <input type="button" value="一つ戻す" id="back" onclick='_("naka").value=olddata;this.disabled=true;' disabled>
-        <input type="button" value="置き換え" onclick='let e=_("naka").value,n=window.prompt("置き換えるテキストを入力してください"),o=window.prompt("置き換え後のテキストを入力してください");if(n != null && n != undefined){for(p=e.replace(n,o);p!==e;)e=e.replace(n,o),p=p.replace(n,o);_("naka").value=p}'>
-        <input type="button" value="文字数取得" onclick="_('info').innerHTML='現在、'+_('naka').value.length+'文字です。';">
+        <input type="button" value="文字数取得" onclick="_('info').innerHTML='現在、'+editor.getSession().getValue().length+'文字です。';">
         <span id="info"></span>
       </div>
     </form>
@@ -444,16 +454,23 @@
     <script>
     
       const editor = ace.edit("naka",{
-        theme: "ace/theme/monokai",
-        mode: "ace/mode/latex",
         minLines: 2
+      });
+      editor.setFontSize(14);
+      editor.getSession().setUseWrapMode(true);
+      editor.getSession().setTabSize(4);
+      editor.setTheme('ace/theme/monokai');
+      editor.getSession().setMode('ace/mode/latex');
+      editor.$blockScrolling = Infinity;
+      editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
       });
       editor.getSession().on('change', function(){
         olddata = maenodata,
         maenodata = editor.getSession().getValue(),
-        _("back").disabled =! olddata,
         $("title").html("*"+starttitle);
-        marknew(editor.getSession().getValue());
+        marknew();
       });
 
     </script>

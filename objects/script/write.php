@@ -119,6 +119,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/write.css">
 
+    <script>
+      function sendForm() {
+        document.getElementById("select").submit();
+        return false;
+      }
+    </script>
+
   </head>
   <body>
     <?=Get_Body_Header($LocalUser["UserName"])?>
@@ -133,15 +140,16 @@
       <br>
       <hr>
 
-      <form align="center">
+      <form align="center" action="" enctype="multipart/form-data" method="POST" id="select" onsubmit="return sendForm();">
         <div>
           <input type="hidden" name="MAX_FILE_SIZE" value="214748364">
-          <input name="file" type="file" title="最大ファイルサイズは200MBです。" accept="application/pdf">
+          <input name="file" type="file" title="最大ファイルサイズは200MBです。" accept="application/pdf" required>
+          <br>
+          <p>200MB以下でJavaScriptが含まれていないpdfファイルが選択できます。</p>
+          <br><br>
           <a href="javascript:sendForm();" class="btn2">
             <h3 style="color:#212529;">アップロード</h3>
           </a>
-          <br>
-          <p>200MB以下でJavaScriptが含まれていないpdfファイルが選択できます。</p>
         </div>
       </form>
 

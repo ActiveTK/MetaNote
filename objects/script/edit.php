@@ -288,11 +288,7 @@
   <head>
     <title>LaTeX Editor - MetaNote.</title>
     <script type="text/javascript" src="/js/ActiveTK.min.js" charset="UTF-8"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.2/dist/purify.min.js"></script>
-    <script type="module">
-      import { LaTeXJSComponent } from "https://cdn.jsdelivr.net/npm/latex.js/dist/latex.mjs"
-      customElements.define("latex-js", LaTeXJSComponent)
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/latex.js/dist/latex.js"></script>
     <script type="text/javascript">
     
       var olddata="", maenodata="", starttitle="LaTeX Editor - MetaNote.";

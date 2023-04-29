@@ -34,6 +34,16 @@
       MetaNote_Fatal_Die( "閲覧権限のない論文ファイルを開きました。" );
   }
 
+  try {
+    $stmt = $dbh->prepare('update MetaNoteArticles set PVCount = ? where ArticleID = ?');
+    $NextPV = $row["PVCount"] + 1;
+    $stmt->execute( [$NextPV, ArticleID] );
+    $row = $stmt->fetch( PDO::FETCH_ASSOC );
+  } catch ( \Throwable $e ) {
+    MetaNote_Fatal_Die( $e->getMessage() );
+  }
+
+
   function is_utf8($str)
   {
     $len = strlen($str);

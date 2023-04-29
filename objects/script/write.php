@@ -173,7 +173,7 @@
         file_put_contents( MetaNote_Home . "objects/articles/latex/{$ArticleID}/Data", gzdeflate( file_get_contents( MetaNote_Home . "objects/articles/latex/{$ArticleID}/DataFull" ) ) );
         unlink( MetaNote_Home . "objects/articles/latex/{$ArticleID}/DataFull" );
 
-        NCPRedirect( "/edit/" . $ArticleID );
+        NCPRedirect( "/article/" . $ArticleID );
         exit();
       }
 

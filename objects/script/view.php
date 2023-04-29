@@ -364,7 +364,7 @@
       MetaNote_Session_Close();
       $data = gzinflate( file_get_contents( MetaNote_Home . $row["DataSrc"] ) );
       
-      header( "Conetnt-Type: application/pdf;" );
+      header( "Content-Type: application/pdf;" );
       header( "Content-Disposition: inline" );
       header( "Content-Length: " . strlen( $data ) );
       header( "X-Frame-Options: \"sameorigin\"" );

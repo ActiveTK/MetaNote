@@ -269,8 +269,9 @@
           beforeMarkdownData = nakaValue;
           marknew();
         }
-        setInterval(updateMarkdownViewer, 100);
+        setTimeout(updateMarkdownViewer,100);
       }
+      updateMarkdownViewer()
     </script>
   </body>
 </html>

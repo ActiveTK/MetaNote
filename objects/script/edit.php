@@ -100,6 +100,9 @@
     return true;
   }
 
+  if ( $row["DateType"] === "Text/MarkDown" )
+  {
+
 ?>
 <html>
   <head>
@@ -275,3 +278,15 @@
   </body>
 </html>
 
+<?php
+    exit();
+  }
+  else if ( $row["DateType"] === "Text/LaTeX" )
+  {
+    ?>
+    LaTeX Editor
+    <?php
+    exit();
+  }
+  else
+    MetaNote_Fatal_Die( "対応していない種類の論文ファイルを開きました。" );

@@ -61,6 +61,49 @@
       NCPRedirect( "/edit/" . $ArticleID );
       exit();
     }
+    else if ( $Typeof == "latex" )
+    {
+      $ArticleID = "MetaNote-" . dechex( time() ) . MetaNote_GetRand( 8 );
+
+      try {
+
+        mkdir( MetaNote_Home . "objects/articles/latex/{$ArticleID}" );
+        chmod( MetaNote_Home . "objects/articles/latex/{$ArticleID}", 0777 );
+
+        touch( MetaNote_Home. "objects/articles/latex/{$ArticleID}/Data" );
+        touch( MetaNote_Home. "objects/articles/latex/{$ArticleID}/Comments" );
+
+        $stmt = $dbh->prepare(
+          "insert into MetaNoteArticles(
+              ArticleID, ArticleTitle, ArticleSubtitle, InPublic, Writers, LikedCount, DonateWayOrBTC, CreateIPAddress, CreateTime, LastUpdateTime, DateType, DataSrc, PVCount, CommentsJsonfp
+           )
+           value(
+             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+           )"
+        );
+        $stmt->execute( [
+          $ArticleID,
+          "",
+          "",
+          "false",
+          json_encode( array( $LocalUser["UserIntID"] ) ),
+          "0",
+          "",
+          $_SERVER["REMOTE_ADDR"],
+          time(),
+          time(),
+          "Text/LaTeX",
+          "objects/articles/latex/{$ArticleID}/Data",
+          "0",
+          "objects/articles/latex/{$ArticleID}/Comments"
+        ] );
+      } catch (\Throwable $e) {
+        MetaNote_Fatal_Die( $e->getMessage() );
+      }
+
+      NCPRedirect( "/edit/" . $ArticleID );
+      exit();
+    }
     else
       MetaNote_Fatal_Die( "不正な種類の論文を新規作成しようとしました。" );
   }

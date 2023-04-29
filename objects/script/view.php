@@ -142,7 +142,10 @@
         $alltext = "";
         if ($file) {
           while ($line = @fgets($file))
-            $alltext .= $line;
+            if (substr($line, 0, 2) === "# ")
+              $alltext .= $line . "<hr>";
+            else
+              $alltext .= $line;
           if (@is_utf8($alltext))
             echo @htmlspecialchars($alltext);
           else

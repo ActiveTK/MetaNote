@@ -56,7 +56,7 @@
 
       <div class="welcomemsg" align="center">
         <div class="p-title">
-          <p class="c-subtitle u-margin_zero"><?=_MetaNote_SubTitle?></p>
+          <p class="c-subtitle u-margin_zero">査読不要・審査なしの<span class="onlyPC">日本向け</span>論文投稿サイト。</p>
           <br>
           <p class="c-title u-margin_zero">MetaNote.<span id="per"></span></p>
         </div>

@@ -29,7 +29,7 @@
   if ( !$InWriter )
     MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました。" );
 
-  if ( isset( $_POST["save"] ) ) {
+  if ( isset( $_POST["save"] ) &&  isset( $_POST["title"] ) ) {
 
     refCheck();
 
@@ -37,10 +37,11 @@
 
     try {
       $stmt = $dbh->prepare(
-        "update MetaNoteArticles set LastUpdateTime = ? where ArticleID = ?;"
+        "update MetaNoteArticles set LastUpdateTime = ?, ArticleTitle = ? where ArticleID = ?;"
       );
       $stmt->execute( [
           time(),
+          $_POST["title"],
           ArticleID
       ] );
     } catch (\Throwable $e) {
@@ -116,7 +117,8 @@
           url: "",
           type: "post",
           data: {
-            save: _("naka").value
+            save: _("naka").value,
+            title: _("title").value
           },
           success: function(t) {
             "" == t ? (_("info").innerHTML="変更を保存しました。",$("title").html(starttitle)):_("info").innerHTML="変更を保存できませんでした。"}
@@ -201,7 +203,7 @@
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
     <form action="" method="POST" onsubmit="save();return false;">
       <h2>MarkDown Editor - MetaNote.</h2>
-      タイトル: <input type="text" id="title" size="40" placeholder="タイトルを入力" required>
+      タイトル: <input type="text" id="title" size="40" placeholder="タイトルを入力" value="<?=htmlspecialchars($row["ArticleTitle"])?>" required>
       <textarea class="lined" id="naka" style="text-align:left;position:fixed;overflow-wrap:break-word;overflow-x:scroll;overflow-y:visible;width:52%;height:75%;background-color:#000000;color:#ffffff;margin:5px 5px;"><?
       if (!file_exists(MetaNote_Home . $row["DataSrc"]))
         touch(MetaNote_Home . $row["DataSrc"]);
@@ -252,9 +254,9 @@
       <div>
         <input type="text" id="title2" style="width:43%;background-color:#000000;color:#ffffff;" maxlength="120" placeholder="ここにタイトルを入力してください。。(120文字まで)" required>
         <br><br>
-        <textarea id="stitle" style="text-align:left;overflow-wrap:break-word;width:43%;height:120px;background-color:#000000;color:#ffffff;" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required></textarea>
+        <textarea id="stitle" style="text-align:left;overflow-wrap:break-word;width:43%;height:120px;background-color:#000000;color:#ffffff;" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
         <br>
-        <input type="button" value="保存" style="width:73px;height:33px;background-color:#90ee90;" id="saveconf">
+        <input type="button" value="保存" style="width:73px;height:33px;background-color:#90ee90;" onclick="saveconf()">
         <br>
       </div>
       <hr size="1" color="#7fffd4">

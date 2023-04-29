@@ -106,7 +106,7 @@
     }
     else if ( $Typeof == "upload-pdf" )
     {
-      $title = "pdfファイルをアップロード - MetaNote.";
+      $title = "PDFファイルをアップロード - MetaNote.";
       ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
@@ -138,7 +138,7 @@
       <br><br>
       <h1><?=$title?></h1>
       <p>
-        公開したいpdfファイルを選択して下さい。
+        公開したいPDFファイルを選択して下さい。
       </p>
       <br>
       <hr>
@@ -148,7 +148,7 @@
           <input type="hidden" name="MAX_FILE_SIZE" value="214748364">
           <input name="file" type="file" title="最大ファイルサイズは200MBです。" accept="application/pdf" required>
           <br><br>
-          <p>200MB以下でJavaScriptが含まれていないpdfファイルが選択できます。</p>
+          <p>200MB以下でJavaScriptが含まれていないPDFファイルが選択できます。</p>
           <br>
           <a href="javascript:sendForm();" class="btn2">
             <h3 style="color:#212529;">アップロード</h3>
@@ -247,10 +247,10 @@
 
         <div>
           <a href="/write?new=upload-pdf" class="btn2">
-            <h3 style="color:#212529;">作成済みのpdfを公開</h3>
+            <h3 style="color:#212529;">作成済みのPDFを公開</h3>
           </a>
           <br>
-          <p>pdf形式の論文ドキュメントを公開できます。</p>
+          <p>PDF形式の論文ドキュメントを公開できます。</p>
         </div>
       </div>
 

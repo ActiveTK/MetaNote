@@ -11,17 +11,7 @@ body {
     background-color: #e6e6fa;
     overflow: auto;
 }
-.c-title {
-    font-size: 34px;
-    font-weight: bold;
-}
-.c-subtitle {
-    font-size: 24px;
-}
-.userName {
-    color: #ff0000;
-}
-.gray {
+.titlecomes {
     background-color: #cfcfef;
 }
 .p-title {

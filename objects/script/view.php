@@ -121,7 +121,7 @@
 
       <div class="container marketing">
         <br><br>
-        <h1 align="left"><?=$title?></h1>
+        <h1 align="left" class="titlecomes"><?=$title?></h1>
         <p align="left"><?=$subTitle?></p>
         <p align="right">
           著者: <?php
@@ -153,8 +153,6 @@
         fclose($file);
         ?></div>
       </div>
-
-      <hr>
 
       <div class="container marketing">
         <footer class="pt-4 my-md-5 pt-md-5 border-top">

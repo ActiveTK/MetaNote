@@ -263,6 +263,17 @@
     </div>
 
     <script>$(function(){$(".lined").linedtextarea();});</script>
+    <script>
+      let beforeMarkdownData = "";
+      function updateMarkdownViewer(){
+        const nakaValue = document.getElementById("naka").value;
+        if(nakaValue !== beforeMarkdownData){
+          beforeMarkdownData = nakaValue;
+          marknew();
+        }
+        setTimeout(updateMarkdownViewer,100);
+      }
+    </script>
   </body>
 </html>
 

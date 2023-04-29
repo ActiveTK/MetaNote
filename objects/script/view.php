@@ -367,7 +367,7 @@
       header( "Content-Type: application/pdf;" );
       header( "Content-Disposition: inline" );
       header( "Content-Length: " . strlen( $data ) );
-      header( "X-Frame-Options: \"sameorigin\"" );
+      header( "X-Frame-Options: sameorigin" );
 
       exit($data);
     }

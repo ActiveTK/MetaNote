@@ -181,8 +181,8 @@
            <th>いいね数</th>
            <th>作成日</th>
            <th>最終更新日</th>
-           <th>編集</th>
-           <th>削除</th>
+           <th><nobr>編集</nobr></th>
+           <th><nobr>削除</nobr></th>
           </tr>
           <?php
         

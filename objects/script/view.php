@@ -18,8 +18,10 @@
   if ( !isset( $row["Writers"] ) )
     MetaNote_Fatal_Die( "存在しない論文ファイルを開きました。" );
 
-  if ( $row["InPublic"] !== "true" && isset( $LocalUser ) )
+  if ( $row["InPublic"] !== "true" )
   {
+    if ( !isset( $LocalUser ) )
+      MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました。" );
     $Writers = json_decode( $row["Writers"] );
     $InWriter = false;
     foreach( $Writers as $Writer )

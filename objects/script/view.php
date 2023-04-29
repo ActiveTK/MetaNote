@@ -109,7 +109,7 @@
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.2/dist/purify.min.js"></script>
     <script>
       window.onload = function () {
-        document.getElementById("DATA").innerHTML = DOMPurify.sanitize(marked.parse(document.getElementById("MarkDownSource").value));
+        document.getElementById("DATA").innerHTML = DOMPurify.sanitize(marked.parse(document.getElementById("MarkDownSource").innerText));
       }
     </script>
 

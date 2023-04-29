@@ -267,7 +267,7 @@ body {
         width: 100%;
     }
     .onlyPC {
-        display: block;
+        display: inline;
     }
 }
 

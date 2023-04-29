@@ -340,6 +340,15 @@
     include(MetaNote_Home . "objects/script/edit.php");
     exit();
 
+  } else if ( explode('/', _MetaNote_URI_LOW)[0] == "article" ) {
+
+    if ( !isset( explode('/', _MetaNote_URI_LOW)[1] ) )
+      MetaNote_Fatal_Die( "論文ファイルを指定せずに閲覧しようとしました。" );
+
+    define( 'ArticleID', explode('/', _MetaNote_URI_LOW)[1] );
+    include(MetaNote_Home . "objects/script/view.php");
+    exit();
+
   } else if ( _MetaNote_URI_LOW ) {
 
     try {

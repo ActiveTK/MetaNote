@@ -468,7 +468,6 @@
       editor.getSession().on('change', function(){
         olddata = maenodata,
         maenodata = editor.getSession().getValue(),
-        _("back").disabled =! olddata,
         $("title").html("*"+starttitle);
         marknew();
       });

@@ -248,12 +248,12 @@
         <span id="smallcreatenew" class="scr">—</span>
       </div>
       <br>
-      <h1>記事の設定</h1>
+      <h1>論文の設定</h1>
       <hr size="1" color="#7fffd4">
       <div>
-        <input type="text" id="title2" class="inputtitle" maxlength="120" placeholder="ここにタイトルを入力してください。。(120文字まで)" required>
+        タイトル: <input type="text" id="title2" class="inputtitle" maxlength="120" placeholder="ここにタイトルを入力してください。。(120文字まで)" required>
         <br><br>
-        <textarea id="stitle" class="stitle" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
+        論文の概要: <textarea id="stitle" class="stitle" placeholder="ここに論文の概要入力してください。。(1080文字まで)" required><?=htmlspecialchars($row["ArticleSubtitle"])?></textarea>
         <br>
         <input type="button" value="保存" class="saveconf" onclick="saveconf()">
         <br>

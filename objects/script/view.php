@@ -261,8 +261,8 @@
               generator: generator
           });
           document.getElementById("DATA").innerHTML = "";
-          output.appendChild(generator.stylesAndScripts("https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/"));
-          output.appendChild(generator.domFragment());
+          document.getElementById("DATA").appendChild(generator.stylesAndScripts("https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/"));
+          document.getElementById("DATA").appendChild(generator.domFragment());
         } catch (e) {
           if (e.name == "SyntaxError")
             document.getElementById("DATA").replaceWith('<div id="DATA"> <p>' + e.name + '</p><p>line ' + e.location["start"]["line"] + ' (column ' + e.location["start"]["column"] + '): ' + e.message +'</p></div>');

@@ -318,8 +318,8 @@
                 generator: generator
             });
             $("#output").empty();
-            output.appendChild(generator.stylesAndScripts("https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/"));
-            output.appendChild(generator.domFragment());
+            _("output").appendChild(generator.stylesAndScripts("https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/"));
+            _("output").appendChild(generator.domFragment());
           } catch (e) {
             if (e.name == "SyntaxError") {
                 $("#output").replaceWith('<div id="output"> <p>' + e.name + '</p><p>line ' + e.location["start"]["line"] + ' (column ' + e.location["start"]["column"] + '): ' + e.message +'</p></div>');

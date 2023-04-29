@@ -237,6 +237,7 @@
         <input type="button" value="記事の設定を開く" class="Openconf" onclick="OpenConf()">
         <input type="button" value="一つ戻す" id="back" onclick='_("naka").value=olddata;this.disabled=true;' disabled>
         <input type="button" value="置き換え" onclick='let e=_("naka").value,n=window.prompt("置き換えるテキストを入力してください"),o=window.prompt("置き換え後のテキストを入力してください");if(n != null && n != undefined){for(p=e.replace(n,o);p!==e;)e=e.replace(n,o),p=p.replace(n,o);_("naka").value=p}'>
+        <input type="button" value="論文を閲覧する" onclick="window.open(location.href.replace('edit','article'))">
         <input type="button" value="文字数取得" onclick="_('info').innerHTML='現在、'+_('naka').value.length+'文字です。';">
         <span id="info"></span>
       </div>

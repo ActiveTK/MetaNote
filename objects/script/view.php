@@ -21,7 +21,7 @@
   if ( $row["InPublic"] !== "true" )
   {
     if ( !isset( $LocalUser["UserIntID"] ) )
-      MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました" );
+      MetaNote_Fatal_Die( "閲覧権限のない論文ファイルを開きました" );
     $Writers = json_decode( $row["Writers"], true );
     $InWriter = false;
     foreach( $Writers as $Writer )
@@ -31,7 +31,7 @@
         break;
       }
     if ( !$InWriter )
-      MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました。" );
+      MetaNote_Fatal_Die( "閲覧権限のない論文ファイルを開きました。" );
   }
 
   function is_utf8($str)

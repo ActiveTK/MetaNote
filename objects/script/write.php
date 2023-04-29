@@ -121,7 +121,10 @@
 
     <script>
       function sendForm() {
-        document.getElementById("select").submit();
+        if (document.getElementById("select").value === "")
+          alert("ファイルを選択して下さい。");
+        else
+          document.getElementById("select").submit();
         return false;
       }
     </script>
@@ -144,9 +147,9 @@
         <div>
           <input type="hidden" name="MAX_FILE_SIZE" value="214748364">
           <input name="file" type="file" title="最大ファイルサイズは200MBです。" accept="application/pdf" required>
-          <br>
-          <p>200MB以下でJavaScriptが含まれていないpdfファイルが選択できます。</p>
           <br><br>
+          <p>200MB以下でJavaScriptが含まれていないpdfファイルが選択できます。</p>
+          <br>
           <a href="javascript:sendForm();" class="btn2">
             <h3 style="color:#212529;">アップロード</h3>
           </a>

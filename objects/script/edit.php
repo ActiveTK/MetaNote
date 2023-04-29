@@ -383,8 +383,7 @@
       <h2>LaTeX Editor - MetaNote.</h2>
       タイトル: <input type="text" id="title" size="40" placeholder="タイトルを入力" value="<?=htmlspecialchars($row["ArticleTitle"])?>" required>
 
-      <div class="lined naka" id="naka">
-      <?
+      <div class="lined naka" id="naka"><?
       if (!file_exists(MetaNote_Home . $row["DataSrc"]))
         touch(MetaNote_Home . $row["DataSrc"]);
       $file = fopen(MetaNote_Home . $row["DataSrc"], "r");

@@ -406,7 +406,7 @@
 
         while ($line = @fgets($file))
           $alltext .= $line;
-        if (empty($alltext)) echo "Hello LaTeX!\n\nここに論文の内容をLaTeX形式で書き込んで下さい。\n\n右側にはプレビューが表示されます。";
+        if (empty($alltext)) readfile(MetaNote_Home . "objects/samples/LaTeX");
 
         if (@is_utf8($alltext))
           echo @htmlspecialchars($alltext);

@@ -203,7 +203,7 @@
     <form action="" method="POST" onsubmit="save();return false;">
       <h2>MarkDown Editor - MetaNote.</h2>
       タイトル: <input type="text" id="title" size="40" placeholder="タイトルを入力" value="<?=htmlspecialchars($row["ArticleTitle"])?>" required>
-      <textarea class="lined" id="naka" class="naka"><?
+      <textarea class="lined naka" id="naka"><?
       if (!file_exists(MetaNote_Home . $row["DataSrc"]))
         touch(MetaNote_Home . $row["DataSrc"]);
       $file = fopen(MetaNote_Home . $row["DataSrc"], "r");

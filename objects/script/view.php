@@ -38,7 +38,7 @@
     $stmt = $dbh->prepare('update MetaNoteArticles set PVCount = ? where ArticleID = ?');
     $NextPV = $row["PVCount"] + 1;
     $stmt->execute( [$NextPV, ArticleID] );
-    $row = $stmt->fetch( PDO::FETCH_ASSOC );
+    $stmt->fetch( PDO::FETCH_ASSOC );
   } catch ( \Throwable $e ) {
     MetaNote_Fatal_Die( $e->getMessage() );
   }

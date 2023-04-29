@@ -142,12 +142,16 @@
     
       function deleteA(id){if(window.confirm("記事 ["+id+"] を削除します。\nよろしいでしょうか？"))location.href="?delete="+id;}
       function SetPublic(id, status) {
-        if (status)
+        if (status === true)
+        {
           if(window.confirm("記事 ["+id+"] を公開します。\nよろしいでしょうか？"))
             location.href = "?public=true&id="+id;
+        }
         else
+        {
           if(window.confirm("記事 ["+id+"] を非公開にします。\nよろしいでしょうか？"))
             location.href = "?public=false&id="+id;
+        }
       }
 
     </script>
@@ -194,9 +198,9 @@
           {
              $i++;
              if ($value["InPublic"] == "true")
-               $IsPublic = "公開済み (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", false)'>論文を非公開に変更</a>)";
+               $IsPublic = "公開済み (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", false)'>非公開に変更</a>)";
              else
-               $IsPublic = "非公開 (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", true)'>論文を公開する</a>)";
+               $IsPublic = "非公開 (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", true)'>公開する</a>)";
 
              $WritersLookup = "";
              $Writers = json_decode( $value["Writers"], true );

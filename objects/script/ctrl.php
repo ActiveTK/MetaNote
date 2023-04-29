@@ -56,6 +56,9 @@
         MetaNote_Fatal_Die( $e->getMessage() );
       }
     }
+    NCPRedirect( "/ctrl" );
+    exit();
+  }
 
   if ( isset( $_GET["public"] ) && isset( $_GET["id"] ) )
   {

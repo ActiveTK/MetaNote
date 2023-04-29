@@ -313,8 +313,24 @@
           _("info").innerHTML="エラー:変更を保存できませんでした。詳細: "+e,alert("変更を保存できませんでした。")
         })}
         
-        function marknew(data) {
-          _("latexdata").innerHTML = data;
+        function marknew() {
+          var generator = new latexjs.HtmlGenerator({
+            hyphenate: false
+          });
+          try {
+            generator = latexjs.parse(editor.getValue(), {
+                generator: generator
+            });
+            $("#output").empty();
+            output.appendChild(generator.stylesAndScripts("https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/"));
+            output.appendChild(generator.domFragment());
+          } catch (e) {
+            if (e.name == "SyntaxError") {
+                $("#output").replaceWith('<div id="output"> <p>' + e.name + '</p><p>line ' + e.location["start"]["line"] + ' (column ' + e.location["start"]["column"] + '): ' + e.message +'</p></div>');
+            } else {
+                $("#output").replaceWith('<div id="output"> <p>unexpected error' + '</p></div>');
+            }
+          }
         }
 
         function getTitle() {
@@ -324,7 +340,7 @@
         $(document).ready(function() {
           starttitle = getTitle() + " - " + starttitle,
           $("title").html(starttitle),
-          marknew("");
+          marknew();
 
           _("closecreatenew").onclick = function() {
             _("conf").style = "z-index:0;display:none;";
@@ -407,7 +423,7 @@
       <div class="viewer">
         <p><b>LaTeX Viewer</b></p>
         <hr>
-        <latex-js hyphenate="false" id="latexdata"></latex-js>
+        <div id="output"></div>
       </div>
       <div class="btns">
         <input type="submit" value="保存" class="savebtn">
@@ -452,7 +468,7 @@
         maenodata = editor.getSession().getValue(),
         _("back").disabled =! olddata,
         $("title").html("*"+starttitle);
-        marknew(editor.getSession().getValue());
+        marknew();
       });
 
     </script>

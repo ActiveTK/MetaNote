@@ -49,6 +49,17 @@
   }
 
   /**
+   * リファラの確認関数
+   */
+  function refCheck() {
+    if ( !isset( $_SERVER['HTTP_REFERER'] ) )
+      MetaNote_Fatal_Die( "Referrer不一致" );
+    $ref = @parse_url( $_SERVER['HTTP_REFERER'] );
+    if ( !isset( $ref["host"] ) || $ref["host"] != "metanote.org" )
+      MetaNote_Fatal_Die( "Referrer不一致" );
+  }
+
+  /**
    * 簡易的なFatalエラー表示関数
    */
   function MetaNote_Fatal_Die( string $ErrorInfo = "" ) {

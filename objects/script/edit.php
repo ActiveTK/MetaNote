@@ -481,5 +481,7 @@
     <?php
     exit();
   }
+  else if ( $row["DateType"] === "application/pdf" )
+    MetaNote_Fatal_Die( "pdfファイルを編集することはできません。" );
   else
     MetaNote_Fatal_Die( "対応していない種類の論文ファイルを開きました。" );

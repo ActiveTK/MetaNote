@@ -106,6 +106,77 @@
     }
     else if ( $Typeof == "upload-pdf" )
     {
+
+      if ( isset( $_FILES["file"] ) )
+      {
+        if ( !isset( $_FILES['file']['error'] ) || !is_int( $_FILES['file']['error'] ) )
+          MetaNote_Fatal_Die( "パラメータが不正です。" );
+
+        switch ( $_FILES['file']['error'] ) {
+          case UPLOAD_ERR_OK:
+            break;
+          case UPLOAD_ERR_NO_FILE:
+            MetaNote_Fatal_Die( "ファイルが選択されていません。" );
+          case UPLOAD_ERR_INI_SIZE:
+          case UPLOAD_ERR_FORM_SIZE:
+            MetaNote_Fatal_Die( "ファイルサイズが大きすぎます。" );
+          default:
+            MetaNote_Fatal_Die( "パラメータが不正です。" );
+        }
+
+        if ( $_FILES['file']['size'] > 1024 * 1024 * 200 )
+          MetaNote_Fatal_Die( "ファイルサイズが大きすぎます。" );
+
+        $ArticleID = "MetaNote-" . dechex( time() ) . MetaNote_GetRand( 8 );
+
+        try {
+
+          mkdir( MetaNote_Home . "objects/articles/latex/{$ArticleID}" );
+          chmod( MetaNote_Home . "objects/articles/latex/{$ArticleID}", 0777 );
+
+          touch( MetaNote_Home. "objects/articles/latex/{$ArticleID}/Data" );
+          touch( MetaNote_Home. "objects/articles/latex/{$ArticleID}/Comments" );
+
+          $stmt = $dbh->prepare(
+            "insert into MetaNoteArticles(
+                ArticleID, ArticleTitle, ArticleSubtitle, InPublic, Writers, LikedCount, DonateWayOrBTC, CreateIPAddress, CreateTime, LastUpdateTime, DateType, DataSrc, PVCount, CommentsJsonfp
+             )
+             value(
+               ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+             )"
+          );
+          $stmt->execute( [
+            $ArticleID,
+            basename( $_FILES['file']['name'] ),
+            "",
+            "false",
+            json_encode( array( $LocalUser["UserIntID"] ) ),
+            "0",
+            "",
+            $_SERVER["REMOTE_ADDR"],
+            time(),
+            time(),
+            "application/pdf",
+            "objects/articles/latex/{$ArticleID}/Data",
+            "0",
+            "objects/articles/latex/{$ArticleID}/Comments"
+          ] );
+        } catch (\Throwable $e) {
+          MetaNote_Fatal_Die( $e->getMessage() );
+        }
+
+        if ( !move_uploaded_file(
+          $_FILES['file']['tmp_name'], MetaNote_Home . "objects/articles/latex/{$ArticleID}/DataFull"
+        ) )
+          MetaNote_Fatal_Die( "ファイル保存時にエラーが発生しました" );
+
+        file_put_contents( MetaNote_Home . "objects/articles/latex/{$ArticleID}/Data", gzdeflate( file_get_contents( MetaNote_Home . "objects/articles/latex/{$ArticleID}/DataFull" ) ) );
+        unlink( MetaNote_Home . "objects/articles/latex/{$ArticleID}/DataFull" );
+
+        NCPRedirect( "/edit/" . $ArticleID );
+        exit();
+      }
+
       $title = "PDFファイルをアップロード - MetaNote.";
       ?>
 <!DOCTYPE html>
@@ -138,7 +209,8 @@
       <br><br>
       <h1><?=$title?></h1>
       <p>
-        公開したいPDFファイルを選択して下さい。
+        アップロードしたいPDFファイルを選択して下さい。<br>
+        ファイルは自動的に非公開設定となります(管理画面から公開できます)。
       </p>
       <br>
       <hr>

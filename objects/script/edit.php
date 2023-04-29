@@ -285,6 +285,7 @@
   else if ( $row["DateType"] === "Text/LaTeX" )
   {
     ?>
+<!DOCTYPE html>
 <html>
   <head>
     <title>LaTeX Editor - MetaNote.</title>

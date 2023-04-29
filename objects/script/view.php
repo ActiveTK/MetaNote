@@ -120,7 +120,8 @@
     <div class="mainobj" align="center">
 
       <br><br>
-      <h1><?=$title?></h1>
+      <h1 align="left"><?=$title?></h1>
+      <p align="left"><?=$subTitle?></p>
       <p align="right">
         著者: <?php
           foreach( json_decode( $row["Writers"], true ) as $Writer )

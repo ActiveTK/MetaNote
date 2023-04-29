@@ -131,11 +131,11 @@
 
         try {
 
-          mkdir( MetaNote_Home . "objects/articles/latex/{$ArticleID}" );
-          chmod( MetaNote_Home . "objects/articles/latex/{$ArticleID}", 0777 );
+          mkdir( MetaNote_Home . "objects/articles/pdf/$ArticleID}" );
+          chmod( MetaNote_Home . "objects/articles/pdf/{$ArticleID}", 0777 );
 
-          touch( MetaNote_Home. "objects/articles/latex/{$ArticleID}/Data" );
-          touch( MetaNote_Home. "objects/articles/latex/{$ArticleID}/Comments" );
+          touch( MetaNote_Home. "objects/articles/pdf/{$ArticleID}/Data" );
+          touch( MetaNote_Home. "objects/articles/pdf/{$ArticleID}/Comments" );
 
           $stmt = $dbh->prepare(
             "insert into MetaNoteArticles(

@@ -150,7 +150,7 @@
               お名前又はニックネーム: <input type='text' name='contact_name' style="height:20px;width:200px;" placeholder='お名前' required>(必須)<br>
               ご連絡先のメールアドレス: <input type='email' name='contact_mail' style="height:20px;width:200px;" placeholder='メールアドレス' pattern=".+\.[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]" required>(必須)<br><br>
               【お問い合わせ内容】<br>
-              <textarea name="contact_data" placeholder="内容をこちらへ入力してください"  style="height:200px;width:740px;"></textarea><br>
+              <textarea name="contact_data" placeholder="内容をこちらへ入力してください" class="contactdata"></textarea><br>
               <pre>※本フォーム内に、個人情報を入力しないでください。</pre>
               <br>
               <label><input type="checkbox" name="license_readme" value="ok" style="height:20px;width:20px;" required> 私は、本サイトの<a href="/license" target="_blank">利用規約</a>を読み、理解しました。(必須)</label><br><br>

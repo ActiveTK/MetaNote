@@ -236,6 +236,10 @@ body {
 .divalignright {
     text-align: left;
 }
+.contactdata {
+    height: 200px;
+    width: 90%;
+}
 @media screen and (min-width:480px) {
     .alignright {
         position: relative;
@@ -244,6 +248,13 @@ body {
     }
     .divalignright {
         text-align: right !important;
+    }
+    .next {
+        width: 100%;
+    }
+    .contactdata {
+        height: 200px;
+        width: 40%;
     }
 }
 

@@ -311,21 +311,6 @@
         
         function marknew() {
           var generator = new latexjs.HtmlGenerator({
-            CustomMacros: (function() {
-              var args      = CustomMacros.args = {},
-                  prototype = CustomMacros.prototype;
-
-              function CustomMacros(generator) {
-                this.g = generator;
-              }
-
-              args['bf'] = ['HV']
-              prototype['bf'] = function() {
-                this.g.setFontWeight('bf')
-              };
-
-              return CustomMacros;
-            }()),
             hyphenate: false
           });
           try {
@@ -473,6 +458,14 @@
         theme: "ace/theme/monokai",
         mode: "ace/mode/latex",
         minLines: 2
+      });
+      editor.setFontSize(14);
+      editor.getSession().setUseWrapMode(true);
+      editor.getSession().setTabSize(4);
+      editor.$blockScrolling = Infinity;
+      editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
       });
       editor.getSession().on('change', function(){
         olddata = maenodata,

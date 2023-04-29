@@ -455,13 +455,13 @@
     <script>
     
       const editor = ace.edit("naka",{
-        theme: "ace/theme/monokai",
-        mode: "ace/mode/latex",
         minLines: 2
       });
       editor.setFontSize(14);
       editor.getSession().setUseWrapMode(true);
       editor.getSession().setTabSize(4);
+      editor.setTheme('ace/theme/monokai');
+      editor.getSession().setMode('ace/mode/latex');
       editor.$blockScrolling = Infinity;
       editor.setOptions({
         enableBasicAutocompletion: true,

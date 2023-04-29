@@ -140,7 +140,7 @@
       <br>
       <hr>
 
-      <form align="center" action="" enctype="multipart/form-data" method="POST" id="select" onsubmit="return sendForm();">
+      <form align="center" action="" enctype="multipart/form-data" method="POST" id="select">
         <div>
           <input type="hidden" name="MAX_FILE_SIZE" value="214748364">
           <input name="file" type="file" title="最大ファイルサイズは200MBです。" accept="application/pdf" required>

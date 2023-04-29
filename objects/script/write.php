@@ -157,21 +157,21 @@
             time(),
             time(),
             "application/pdf",
-            "objects/articles/latex/{$ArticleID}/Data",
+            "objects/articles/pdf/{$ArticleID}/Data",
             "0",
-            "objects/articles/latex/{$ArticleID}/Comments"
+            "objects/articles/pdf/{$ArticleID}/Comments"
           ] );
         } catch (\Throwable $e) {
           MetaNote_Fatal_Die( $e->getMessage() );
         }
 
         if ( !move_uploaded_file(
-          $_FILES['file']['tmp_name'], MetaNote_Home . "objects/articles/latex/{$ArticleID}/DataFull"
+          $_FILES['file']['tmp_name'], MetaNote_Home . "objects/articles/pdf/{$ArticleID}/DataFull"
         ) )
           MetaNote_Fatal_Die( "ファイル保存時にエラーが発生しました" );
 
-        file_put_contents( MetaNote_Home . "objects/articles/latex/{$ArticleID}/Data", gzdeflate( file_get_contents( MetaNote_Home . "objects/articles/latex/{$ArticleID}/DataFull" ) ) );
-        unlink( MetaNote_Home . "objects/articles/latex/{$ArticleID}/DataFull" );
+        file_put_contents( MetaNote_Home . "objects/articles/pdf/{$ArticleID}/Data", gzdeflate( file_get_contents( MetaNote_Home . "objects/articles/pdf/{$ArticleID}/DataFull" ) ) );
+        unlink( MetaNote_Home . "objects/articles/pdf/{$ArticleID}/DataFull" );
 
         NCPRedirect( "/article/" . $ArticleID );
         exit();

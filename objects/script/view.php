@@ -119,38 +119,40 @@
 
     <div class="mainobj" align="center">
 
-      <br><br>
-      <h1 align="left"><?=$title?></h1>
-      <p align="left"><?=$subTitle?></p>
-      <p align="right">
-        著者: <?php
-          foreach( json_decode( $row["Writers"], true ) as $Writer )
-            echo htmlspecialchars( MetaNote_GetNameByID_bySQL( $dbh, $Writer )[0] ) . ";";
-        ?><br>
-        作成日: <?=date("Y/m/d H:i:s", $row["CreateTime"] * 1)?><br>
-        更新日: <?=date("Y/m/d H:i:s", $value["LastUpdateTime"] * 1)?><br>
-      </p>
-      <br>
-      <hr>
+      <div class="container marketing">
+        <br><br>
+        <h1 align="left"><?=$title?></h1>
+        <p align="left"><?=$subTitle?></p>
+        <p align="right">
+          著者: <?php
+            foreach( json_decode( $row["Writers"], true ) as $Writer )
+              echo htmlspecialchars( MetaNote_GetNameByID_bySQL( $dbh, $Writer )[0] ) . ";";
+          ?><br>
+          作成日: <?=date("Y/m/d H:i:s", $row["CreateTime"] * 1)?><br>
+          更新日: <?=date("Y/m/d H:i:s", $row["LastUpdateTime"] * 1)?><br>
+        </p>
+        <br>
+        <hr>
 
-      <div align="left" id="DATA"></div>
-      <div id="MarkDownSource" style="display:none;"><?
-      if (!file_exists(MetaNote_Home . $row["DataSrc"]))
-        MetaNote_Fatal_Die( "ソールファイルが存在しません。" );
-      $file = fopen(MetaNote_Home . $row["DataSrc"], "r");
-      $alltext = "";
-      if ($file) {
-        while ($line = @fgets($file))
-          $alltext .= $line;
-        if (@is_utf8($alltext))
-          echo @htmlspecialchars($alltext);
+        <div align="left" id="DATA"></div>
+        <div id="MarkDownSource" style="display:none;"><?
+        if (!file_exists(MetaNote_Home . $row["DataSrc"]))
+          MetaNote_Fatal_Die( "ソールファイルが存在しません。" );
+        $file = fopen(MetaNote_Home . $row["DataSrc"], "r");
+        $alltext = "";
+        if ($file) {
+          while ($line = @fgets($file))
+            $alltext .= $line;
+          if (@is_utf8($alltext))
+            echo @htmlspecialchars($alltext);
+          else
+            echo @htmlspecialchars(@mb_convert_encoding($alltext, 'UTF-8', 'SJIS'));
+        }
         else
-          echo @htmlspecialchars(@mb_convert_encoding($alltext, 'UTF-8', 'SJIS'));
-      }
-      else
-        MetaNote_Fatal_Die( "ソールファイルが存在しません。" );
-      fclose($file);
-      ?></div>
+          MetaNote_Fatal_Die( "ソールファイルが存在しません。" );
+        fclose($file);
+        ?></div>
+      </div>
 
       <hr>
 

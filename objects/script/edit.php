@@ -184,7 +184,8 @@
             type: "post",
             data: {
               confTitle: _("title2").value,
-              subTitle: _("stitle").value
+              subTitle: _("stitle").value,
+              public: _("mode").value
             },
             success: function(t) {
               "" == t ? (_("info").innerHTML="設定の変更を保存しました。",_("conf").style = "z-index:0;display:none;"):_("info").innerHTML="変更を保存できませんでした。"}

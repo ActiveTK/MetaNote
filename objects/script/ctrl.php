@@ -17,11 +17,7 @@
 
   if ( isset( $_GET["delete"] ) && is_string( $_GET["delete"] ) )
   {
-    if ( !isset( $_SERVER['HTTP_REFERER'] ) )
-      MetaNote_Fatal_Die( "Referrer不一致" );
-    $ref = @parse_url( $_SERVER['HTTP_REFERER'] );
-    if ( !isset( $ref["host"] ) || $ref["host"] != "metanote.org" )
-      MetaNote_Fatal_Die( "Referrer不一致" );
+    refCheck();
 
     $ArticleID = $_GET["delete"];
 
@@ -61,6 +57,67 @@
       }
     }
 
+  if ( isset( $_GET["public"] ) && isset( $_GET["id"] ) )
+  {
+    refCheck();
+
+    $ArticleID = $_GET["id"];
+
+    if (1 === 1){
+
+      try {
+        $stmt = $dbh->prepare('select * from MetaNoteArticles where ArticleID = ?');
+        $stmt->execute( [$ArticleID] );
+        $row = $stmt->fetch( PDO::FETCH_ASSOC );
+      } catch ( \Throwable $e ) {
+        MetaNote_Fatal_Die( $e->getMessage() );
+      }
+
+      if ( !isset( $row["Writers"] ) )
+        MetaNote_Fatal_Die( "存在しない論文ファイルを開きました。" );
+
+      $Writers = json_decode( $row["Writers"] );
+      $InWriter = false;
+      foreach( $Writers as $Writer )
+        if ($Writer === $LocalUser["UserIntID"])
+        {
+          $InWriter = true;
+          break;
+      }
+      if ( !$InWriter )
+        MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました。" );
+
+      if ( $_GET["public"] === "true" )
+      {
+        try {
+          $stmt = $dbh->prepare(
+            "update MetaNoteArticles set InPublic = 'true' where ArticleID = ? limit 1;"
+          );
+          $stmt->execute( [
+            $ArticleID
+          ] );
+        } catch (\Throwable $e) {
+          MetaNote_Fatal_Die( $e->getMessage() );
+        }
+      }
+      else if ( $_GET["public"] === "false" )
+      {
+        try {
+          $stmt = $dbh->prepare(
+            "update MetaNoteArticles set InPublic = 'false' where ArticleID = ? limit 1;"
+          );
+          $stmt->execute( [
+            $ArticleID
+          ] );
+        } catch (\Throwable $e) {
+          MetaNote_Fatal_Die( $e->getMessage() );
+        }
+      }
+      else
+        MetaNote_Fatal_Die( "不明な公開ステータスを設定しました。" );
+
+    }
+
     NCPRedirect( "/ctrl" );
     exit();
   }
@@ -78,7 +135,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/ctrl.css">
 
-    <script>function deleteA(id){if(window.confirm("記事 ["+id+"] を削除します。\nよろしいでしょうか？"))location.href="?delete="+id;}</script>
+    <script>
+    
+      function deleteA(id){if(window.confirm("記事 ["+id+"] を削除します。\nよろしいでしょうか？"))location.href="?delete="+id;}
+      function SetPublic(id, status) {
+        if (status)
+          if(window.confirm("記事 ["+id+"] を公開します。\nよろしいでしょうか？"))
+            location.href = "?public=true&id="+id;
+        else
+          if(window.confirm("記事 ["+id+"] を非公開にします。\nよろしいでしょうか？"))
+            location.href = "?public=false&id="+id;
+      }
+
+    </script>
 
   </head>
   <body>
@@ -122,9 +191,9 @@
           {
              $i++;
              if ($value["InPublic"] == "true")
-               $IsPublic = "公開済み";
+               $IsPublic = "公開済み (<a href='javascript:SetPublic(\"" + $value["ArticleID"] + "\", false)'>論文を非公開に変更</a>)";
              else
-               $IsPublic = "非公開";
+               $IsPublic = "非公開 (<a href='javascript:SetPublic(\"" + $value["ArticleID"] + "\", true)'>論文を公開する</a>)";
 
              $WritersLookup = "";
              $Writers = json_decode( $value["Writers"], true );

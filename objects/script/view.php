@@ -260,7 +260,7 @@
           generator = latexjs.parse(document.getElementById("LaTeXSource").innerText, {
               generator: generator
           });
-          document.getElementById("DATA").empty();
+          document.getElementById("DATA").innerHTML = "";
           output.appendChild(generator.stylesAndScripts("https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/"));
           output.appendChild(generator.domFragment());
         } catch (e) {

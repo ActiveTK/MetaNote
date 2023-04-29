@@ -449,7 +449,7 @@
 
     <script>
     
-      const editor = ace.edit("editor",{
+      const editor = ace.edit("naka",{
         theme: "ace/theme/monokai",
         mode: "ace/mode/latex",
         minLines: 2

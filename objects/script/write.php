@@ -104,6 +104,88 @@
       NCPRedirect( "/edit/" . $ArticleID );
       exit();
     }
+    else if ( $Typeof == "upload-pdf" )
+    {
+      $title = "pdfファイルをアップロード - MetaNote.";
+      ?>
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+
+    <title><?=$title?></title>
+
+    <?=MetaNote_Header_Default()?>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/write.css">
+
+  </head>
+  <body>
+    <?=Get_Body_Header($LocalUser["UserName"])?>
+
+    <div class="mainobj" align="center">
+
+      <br><br>
+      <h1><?=$title?></h1>
+      <p>
+        公開したいpdfファイルを選択して下さい。
+      </p>
+      <br>
+      <hr>
+
+      <form align="center">
+        <div>
+          <input type="hidden" name="MAX_FILE_SIZE" value="214748364">
+          <input name="file" type="file" title="最大ファイルサイズは200MBです。" accept="application/pdf">
+          <a href="javascript:sendForm();" class="btn2">
+            <h3 style="color:#212529;">アップロード</h3>
+          </a>
+          <br>
+          <p>200MB以下でJavaScriptが含まれていないpdfファイルが選択できます。</p>
+        </div>
+      </form>
+
+      <hr>
+
+      <div class="container marketing">
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+          <div class="row">
+            <div class="col-12 col-md">
+              <small class="d-block mb-3 text-muted"><?=Copyright?><br>Developed by ActiveTK.</small>
+            </div>
+            <div class="col-6 col-md">
+              <h5>サイトマップ</h5>
+              <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="/#about">サイト概要</a></li>
+                <li><a class="text-muted" href="https://github.com/ActiveTK/MetaNote">Githubリポジトリ</a></li>
+                <li><a class="text-muted" href="/#contact">お問い合わせ</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-md">
+              <h5>その他</h5>
+              <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="/license">利用規約</a></li>
+                <li><a class="text-muted" href="/privacy">プライバシーポリシー</a></li>
+                <li><a class="text-muted" href="https://profile.activetk.jp/">開発者</a></li>
+              </ul>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <br><br>
+
+    </div>
+
+    <script src="/js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+
+      <?php
+      exit();
+    }
     else
       MetaNote_Fatal_Die( "不正な種類の論文を新規作成しようとしました。" );
   }

@@ -35,10 +35,13 @@
   }
 
   try {
-    $stmt = $dbh->prepare('update MetaNoteArticles set PVCount = ? where ArticleID = ?');
-    $NextPV = $row["PVCount"] + 1;
-    $stmt->execute( [$NextPV, ArticleID] );
-    $stmt->fetch( PDO::FETCH_ASSOC );
+    if ( !isset( $_GET["pdf"] ) )
+    {
+      $stmt = $dbh->prepare('update MetaNoteArticles set PVCount = ? where ArticleID = ?');
+      $NextPV = $row["PVCount"] + 1;
+      $stmt->execute( [$NextPV, ArticleID] );
+      $stmt->fetch( PDO::FETCH_ASSOC );
+    }
   } catch ( \Throwable $e ) {
     MetaNote_Fatal_Die( $e->getMessage() );
   }

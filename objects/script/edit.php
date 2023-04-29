@@ -132,11 +132,12 @@
     <script>
       let beforeMarkdownData = "";
       function updateMarkdownViewer(){
-        if(_('naka').value !== beforeMarkdownData){
-          beforeMarkdownData = _('naka').value;
+        const nakaValue = document.getElementById("naka").value;
+        if(nakaValue !== beforeMarkdownData){
+          beforeMarkdownData = nakaValue;
           marknew();
         }
-        setTimeout(updateMarkdownViewer);
+        setTimeout(updateMarkdownViewer,100);
       }
     </script>
   </body>

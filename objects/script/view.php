@@ -18,7 +18,7 @@
   if ( !isset( $row["Writers"] ) )
     MetaNote_Fatal_Die( "存在しない論文ファイルを開きました。" );
 
-  if ( $row["InPulic"] !== "true" && isset( $LocalUser ) )
+  if ( $row["InPublic"] !== "true" && isset( $LocalUser ) )
   {
     $Writers = json_decode( $row["Writers"] );
     $InWriter = false;
@@ -62,7 +62,7 @@
     return true;
   }
 
-  if ( $row["DateType"] === "text/markdown" )
+  if ( $row["DateType"] === "Text/MarkDown" )
   {
     $title = htmlspecialchars( $row["ArticleTitle"] );
     $subTitle = htmlspecialchars( $row["ArticleSubtitle"] );

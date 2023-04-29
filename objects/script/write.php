@@ -121,7 +121,7 @@
 
     <script>
       function sendForm() {
-        if (document.getElementById("select").value === "")
+        if (document.getElementById("file").value === "")
           alert("ファイルを選択して下さい。");
         else
           document.getElementById("select").submit();
@@ -146,7 +146,7 @@
       <form align="center" action="" enctype="multipart/form-data" method="POST" id="select">
         <div>
           <input type="hidden" name="MAX_FILE_SIZE" value="214748364">
-          <input name="file" type="file" title="最大ファイルサイズは200MBです。" accept="application/pdf" required>
+          <input name="file" type="file" title="最大ファイルサイズは200MBです。" accept="application/pdf" id="file" required>
           <br><br>
           <p>200MB以下でJavaScriptが含まれていないPDFファイルが選択できます。</p>
           <br>

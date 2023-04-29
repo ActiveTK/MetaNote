@@ -270,7 +270,6 @@
     <meta name="favicon" content="/favicon.ico">
     <meta name="description" content="査読不要・審査なしの日本向け論文投稿サイト。">
     <meta name="copyright" content="<?=Copyright?>">
-    <meta name="thumbnail" content="https://<?=Domain?>/icon/index.jpg">
 
     <meta name="twitter:description" content="査読不要・審査なしの日本向け論文投稿サイト。">
     <meta name="twitter:domain" content="<?=Domain?>">
@@ -284,6 +283,9 @@
     <link rel="shortcut icon" href="https://<?=Domain?>/icon/index_64_64.ico" sizes="64x64">
     <link rel="shortcut icon" href="https://<?=Domain?>/icon/index_192_192.ico" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="https://<?=Domain?>/icon/index_150_150.ico">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWBFDJPMN6"></script>
+    <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-HWBFDJPMN6");</script>
 <?php
 
     } catch ( \Throwable $e ) {

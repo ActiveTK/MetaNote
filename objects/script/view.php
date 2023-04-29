@@ -276,7 +276,7 @@
   <body>
     <?=Get_Body_Header()?>
 
-    <div class="mainobj" align="center">
+    <div class="mainobj" align="center" style="font-size:1.4rem;">
 
       <div class="container marketing">
         <br><br>

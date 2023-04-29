@@ -500,7 +500,7 @@
               subTitle: _("stitle").value
             },
             success: function(t) {
-              window.reload();
+              window.location.reload();
             }
           })
           .fail(function(t,a,e){

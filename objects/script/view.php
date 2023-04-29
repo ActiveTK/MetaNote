@@ -433,8 +433,7 @@
         <br>
         <hr>
 
-        <embed src="?pdf" type="application/pdf" width="100%" height="100%" sandbox>
-        <iframe align="left" src="?pdf" style="width:100%;height:auto;" sandbox></iframe>
+        <embed src="?pdf" type="application/pdf" style="width:100%;height:80%;" sandbox>
       </div>
 
       <br><br>

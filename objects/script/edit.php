@@ -324,7 +324,7 @@
             if (e.name == "SyntaxError") {
                 $("#output").replaceWith('<div id="output"> <p>' + e.name + '</p><p>line ' + e.location["start"]["line"] + ' (column ' + e.location["start"]["column"] + '): ' + e.message +'</p></div>');
             } else {
-                $("#output").replaceWith('<div id="output"> <p>unexpected error' + '</p></div>');
+                $("#output").replaceWith('<div id="output"> <p>unexpected error: ' + e.message + '</p></div>');
             }
           }
         }

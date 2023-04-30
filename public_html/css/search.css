@@ -392,3 +392,16 @@ progress {
 ::-moz-progress-bar {
     background-color: aqua
 }
+
+.resultdata {
+    margin: 16px auto;
+    text-align: center;
+    display: block;
+    background-color: #ffffff;
+}
+.resultdec {
+    text-align: left;
+    display: inline-block;
+    word-wrap: break-word;
+    width: 60%;
+}

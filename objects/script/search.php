@@ -118,8 +118,8 @@
       }
 
     ?>
-    <div style="margin:16px auto;text-align:center;display:block;background-color:#ffffff;">
-      <div align="left" style="text-align:left;display:inline-block;word-wrap:break-word;width:60%;">
+    <div class="resultdata">
+      <div align="left" class="resultdec">
         <p><b><a href="https://metanote.org/article/<?=$value["ArticleID"]?>" target="_blank"><?=htmlspecialchars( substr( $value["ArticleTitle"], 0, 70) )?></a></b></p>
         <pre>著者: <?=$WritersLookup?></pre>
         <?=htmlspecialchars( $value["LEFT(ArticleSubtitle, 170)"] )?>..

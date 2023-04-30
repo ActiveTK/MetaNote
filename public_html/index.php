@@ -359,6 +359,13 @@
     include(MetaNote_Home . "objects/script/edit.php");
     exit();
 
+  } else if ( _MetaNote_URI_LOW == "setting" ) {
+
+    $title = "アカウント設定 - MetaNote.";
+
+    include(MetaNote_Home . "objects/script/setting.php");
+    exit();
+
   } else if ( _MetaNote_URI_LOW ) {
 
     try {

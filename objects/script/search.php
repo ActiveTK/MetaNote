@@ -36,7 +36,7 @@
     {
       foreach($Words as $word)
       {
-        $Query .= "ArticleTitle like ? and ";
+        $QueryTitle .= "ArticleTitle like ? and ";
         $WordsArr[] = $word;
       }
       $QueryTitle .= "'1' = '1' ";

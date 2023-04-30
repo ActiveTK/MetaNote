@@ -85,7 +85,7 @@
     $selects = array();
     try {
       $stmt = $dbh->prepare( $Query );
-      $stmt->execute( $WordsArr );
+      var_dump( $stmt->execute( $WordsArr ) );
       $selects = $stmt->fetch( PDO::FETCH_ASSOC );
       if ($selects === false)
         die("SQLの実行中にエラーが発生しました。");

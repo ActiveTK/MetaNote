@@ -26,8 +26,12 @@
 
     $Words = explode( " ", $_POST["search"] );
     $WordsArr = array();
-    $Query = "select * from MetaNoteArticles where ";
 
+    $limit = " limit 10";
+    if ( isset( $_POST["limit"] ) && $_POST["limit"] == "unlimited" )
+      $limit = " limit 1000";
+
+    $QueryTitle = "select * from MetaNoteArticles where ";
     if ( isset( $_POST["type"] ) && $_POST["type"] == "and" )
     {
       foreach($Words as $word)
@@ -35,34 +39,45 @@
         $Query .= "ArticleTitle like ? and ";
         $WordsArr[] = $word;
       }
-      foreach($Words as $word)
-      {
-        $Query .= "ArticleSubtitle like ? and ";
-        $WordsArr[] = $word;
-      }
-      $Query .= "'1' = '1' ";
+      $QueryTitle .= "'1' = '1' ";
     }
     else
     {
       foreach($Words as $word)
       {
-        $Query .= "ArticleTitle like ? or ";
+        $QueryTitle .= "ArticleTitle like ? or ";
         $WordsArr[] = $word;
       }
+      $QueryTitle .= "'1' = '0' ";
+    }
+    $QueryTitle .= " and InPublic = 'true'";
+    $QueryTitle .= " order by PVCount desc";
+    $QueryTitle .= $limit;
+
+    $QueryDesc = "select * from MetaNoteArticles where ";
+    if ( isset( $_POST["type"] ) && $_POST["type"] == "and" )
+    {
       foreach($Words as $word)
       {
-        $Query .= "ArticleSubtitle like ? or ";
+        $Query .= "ArticleSubtitle like ? and ";
         $WordsArr[] = $word;
       }
-      $Query .= "'1' = '0' ";
+      $QueryDesc .= "'1' = '1' ";
     }
-    $Query .= " and InPublic = 'true'";
-    $Query .= " order by PVCount desc";
+    else
+    {
+      foreach($Words as $word)
+      {
+        $QueryDesc .= "ArticleSubtitle like ? or ";
+        $WordsArr[] = $word;
+      }
+      $QueryDesc .= "'1' = '0' ";
+    }
+    $QueryDesc .= " and InPublic = 'true'";
+    $QueryDesc .= " order by PVCount desc";
+    $QueryTitle .= $limit;
 
-    $limit = " limit 20";
-    if ( isset( $_POST["limit"] ) && $_POST["limit"] == "unlimited" )
-      $limit = " limit 2000";
-    $Query .= $limit;
+    $Query = "(" . $QueryTitle . ") UNION (" . $QueryDesc . ")";
 
     exit($Query);
   }

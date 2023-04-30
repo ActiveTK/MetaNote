@@ -93,8 +93,6 @@
       die("SQLエラーが発生しました。");
     }
 
-    var_dump( $selects );
-
     $t = 0;
     $result = array();
     foreach ($selects as $value) {
@@ -105,6 +103,7 @@
     }
     foreach ($result as $name => $value){
 
+      $WritersLookup = "";
       $Writers = json_decode( $value["Writers"], true );
       $n = 0;
       foreach($Writers as $Writer)
@@ -119,10 +118,10 @@
       }
 
     ?>
-    <div style="margin:16px auto;text-align:center;display:block;border:1px solid #000;">
+    <div style="margin:16px auto;text-align:center;display:block;background-color:#ffffff;">
       <div align="left" style="text-align:left;display:inline-block;word-wrap:break-word;width:60%;">
         <p><b><a href="https://metanote.org/article/<?=$value["ArticleID"]?>" target="_blank"><?=htmlspecialchars( substr( $value["ArticleTitle"], 0, 70) )?></a></b></p>
-        <pre>著者: <?=$Writers?></pre>
+        <pre>著者: <?=$WritersLookup?></pre>
         <?=htmlspecialchars( $value["LEFT(ArticleSubtitle, 170)"] )?>..
       </div>
     </div>

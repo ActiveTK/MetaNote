@@ -149,7 +149,7 @@
           ?><br>
           作成日: <?=date("Y/m/d H:i:s", $row["CreateTime"] * 1)?><br>
           更新日: <?=date("Y/m/d H:i:s", $row["LastUpdateTime"] * 1)?><br>
-          <div class="controls">
+          <div class="controls" align="right">
             <div>
               <label for="paper-font">書体: </label>
               <select id="paper-font">

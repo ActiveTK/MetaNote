@@ -10,6 +10,63 @@
 
   $IndexFromBot = "All";
 
+  if ( isset( $_POST["search"] ) )
+  {
+    header( "Content-Type: text/html;charset=UTF-8" );
+
+    if ( empty( $_POST["search"] ) || !is_string( $_POST["search"] ) || strlen( $_POST["search"] ) > 800)
+    {
+    ?>
+      <p>検索結果はありません。</p>
+      <p>別のキーワードをお試し下さい。</p>
+      <hr size="10" color="#7fffd4">
+    <?php
+      exit();
+    }
+
+    $Words = explode( " ", $_POST["search"] );
+    $WordsArr = array();
+    $Query = "select * from MetaNoteArticles where ";
+
+    if ( isset( $_POST["type"] ) && $_POST["type"] == "and" )
+    {
+      foreach($Words as $word)
+      {
+        $Query .= "ArticleTitle like ? and ";
+        $WordsArr[] = $word;
+      }
+      foreach($Words as $word)
+      {
+        $Query .= "ArticleSubtitle like ? and ";
+        $WordsArr[] = $word;
+      }
+      $Query .= "'1' = '1' ";
+    }
+    else
+    {
+      foreach($Words as $word)
+      {
+        $Query .= "ArticleTitle like ? or ";
+        $WordsArr[] = $word;
+      }
+      foreach($Words as $word)
+      {
+        $Query .= "ArticleSubtitle like ? or ";
+        $WordsArr[] = $word;
+      }
+      $Query .= "'1' = '0' ";
+    }
+    $Query .= " and InPublic = 'true'";
+    $Query .= " order by PVCount desc";
+
+    $limit = " limit 20";
+    if ( isset( $_POST["limit"] ) && $_POST["limit"] == "unlimited" )
+      $limit = " limit 2000";
+    $Query .= $limit;
+
+    exit($Query);
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
@@ -113,7 +170,7 @@
         <h1 align="left" class="titlecomes"><?=$title?></h1>
         <form action="" method="POST" id="td">
           <hr size="10" color="#7fffd4">
-          <h2>$ Search <input type="text" id="save" style="height:40px;width:200px;" placeholder="query" style="font-size:2rem;"></h2>
+          <h2>$ Search <input type="text" id="save" style="height:40px;width:200px;" placeholder="検索ワード" style="font-size:2rem;" maxlength="800"></h2>
           <p><span title="チェックすると検索結果の精度が上がりますが、曖昧な検索をしたい場合にはチェックを外して下さい。"><input type="checkbox" id="andsearch" checked> AND検索 </span>
              <span title="チェックを外すと全ての検索結果を表示します。"><input type="checkbox" id="unlimitsearch" checked> 最初の20件のみを表示 </span></p>
           <input type="submit" value="検索" class="btn btn--yellow btn--cubic">

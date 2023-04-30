@@ -125,6 +125,10 @@
     <script>
       window.onload = function () {
         document.getElementById("DATA").innerHTML = DOMPurify.sanitize(marked.parse(document.getElementById("MarkDownSource").innerText));
+        
+        document.getElementById("paper-font").onchange = e => {
+          document.getElementById("paper").style.fontFamily = e.target.value;
+        };
       }
     </script>
 
@@ -134,7 +138,7 @@
 
     <div class="mainobj" align="center">
 
-      <div class="container marketing">
+      <div class="container marketing" id="paper">
         <br><br>
         <h1 align="left" class="titlecomes"><?=$title?></h1>
         <p align="left"><?=$subTitle?></p>
@@ -145,6 +149,15 @@
           ?><br>
           作成日: <?=date("Y/m/d H:i:s", $row["CreateTime"] * 1)?><br>
           更新日: <?=date("Y/m/d H:i:s", $row["LastUpdateTime"] * 1)?><br>
+          <div class="controls">
+            <div>
+              <label for="paper-font">書体: </label>
+              <select id="paper-font">
+                <option value="sans-serif">Sans Serif</option>
+                <option value="serif">Serif</option>
+              </select>
+            </div>
+          </div>
         </p>
         <br>
         <hr>

@@ -264,7 +264,7 @@
       <hr size="1" color="#7fffd4">
       <h2>論文執筆者の追加</h2>
       <p>論文の編集権限を以下の招待リンクから渡すことができます。</p>
-      招待リンク: <input type="text" value="https://metanote.org/edit/<?=ArticleID?>?join=<?=$row["JoinToken"]?>" id="inviteLink" readonly><a href="javascript:atk.copy(_('inviteLink').value);alert('コピーしました');">コピー</a>
+      招待リンク: <input type="text" value="https://metanote.org/edit/<?=ArticleID?>?join=<?=$row["JoinToken"]?>" id="inviteLink" readonly><input type="button" onclick="atk.copy(_('inviteLink').value);alert('コピーしました');" value="コピー">
       <hr size="1" color="#7fffd4">
     </div>
 
@@ -456,7 +456,7 @@
       <hr size="1" color="#7fffd4">
       <h2>論文執筆者の追加</h2>
       <p>論文の編集権限を以下の招待リンクから渡すことができます。</p>
-      招待リンク: <input type="text" value="https://metanote.org/edit/<?=ArticleID?>?join=<?=$row["JoinToken"]?>" id="inviteLink" readonly><a href="javascript:atk.copy(_('inviteLink').value);alert('コピーしました');">コピー</a>
+      招待リンク: <input type="text" value="https://metanote.org/edit/<?=ArticleID?>?join=<?=$row["JoinToken"]?>" id="inviteLink" readonly><input type="button" onclick="atk.copy(_('inviteLink').value);alert('コピーしました');" value="コピー">
       <hr size="1" color="#7fffd4">
     </div>
 
@@ -638,7 +638,7 @@
         <hr>
         <h2>論文執筆者の追加</h2>
         <p>論文の編集権限を以下の招待リンクから渡すことができます。</p>
-        招待リンク: <input type="text" value="https://metanote.org/edit/<?=ArticleID?>?join=<?=$row["JoinToken"]?>" id="inviteLink" readonly><a href="javascript:atk.copy(_('inviteLink').value);alert('コピーしました');">コピー</a>
+        招待リンク: <input type="text" value="https://metanote.org/edit/<?=ArticleID?>?join=<?=$row["JoinToken"]?>" id="inviteLink" readonly><input type="button" onclick="atk.copy(_('inviteLink').value);alert('コピーしました');" value="コピー">
         <hr size="1" color="#7fffd4">
       </div>
 

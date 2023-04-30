@@ -37,7 +37,7 @@
       foreach($Words as $word)
       {
         $QueryTitle .= "ArticleTitle like ? and ";
-        $WordsArr[] = $word;
+        $WordsArr[] = "%" . $word . "%";
       }
       $QueryTitle .= "'1' = '1' ";
     }
@@ -46,7 +46,7 @@
       foreach($Words as $word)
       {
         $QueryTitle .= "ArticleTitle like ? or ";
-        $WordsArr[] = $word;
+        $WordsArr[] = "%" . $word . "%";
       }
       $QueryTitle .= "'1' = '0' ";
     }
@@ -60,7 +60,7 @@
       foreach($Words as $word)
       {
         $QueryDesc .= "ArticleSubtitle like ? and ";
-        $WordsArr[] = $word;
+        $WordsArr[] = "%" . $word . "%";
       }
       $QueryDesc .= "'1' = '1' ";
     }
@@ -69,7 +69,7 @@
       foreach($Words as $word)
       {
         $QueryDesc .= "ArticleSubtitle like ? or ";
-        $WordsArr[] = $word;
+        $WordsArr[] = "%" . $word . "%";
       }
       $QueryDesc .= "'1' = '0' ";
     }
@@ -77,9 +77,8 @@
     $QueryDesc .= " order by PVCount desc";
     $QueryDesc .= $limit;
 
-    $Query = "(" . $QueryTitle . ") UNION (" . $QueryDesc . ")";
+    $Query = "(" . $QueryTitle . ") union (" . $QueryDesc . ")";
     echo $Query;
-    var_dump( $WordsArr );
 
     exit();
   }

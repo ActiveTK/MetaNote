@@ -59,7 +59,7 @@
     {
       foreach($Words as $word)
       {
-        $Query .= "ArticleSubtitle like ? and ";
+        $QueryDesc .= "ArticleSubtitle like ? and ";
         $WordsArr[] = $word;
       }
       $QueryDesc .= "'1' = '1' ";

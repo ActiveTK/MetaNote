@@ -75,7 +75,7 @@
     }
     $QueryDesc .= " and InPublic = 'true'";
     $QueryDesc .= " order by PVCount desc";
-    $QueryTitle .= $limit;
+    $QueryDesc .= $limit;
 
     $Query = "(" . $QueryTitle . ") UNION (" . $QueryDesc . ")";
 

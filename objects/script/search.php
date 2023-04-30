@@ -13,6 +13,8 @@
   if ( isset( $_POST["search"] ) )
   {
     header( "Content-Type: text/html;charset=UTF-8" );
+    header( "X-Robots-Tag: noindex" );
+    $time_start = microtime(true);
 
     if ( empty( $_POST["search"] ) || !is_string( $_POST["search"] ) || strlen( $_POST["search"] ) > 800)
     {
@@ -31,7 +33,7 @@
     if ( isset( $_POST["limit"] ) && $_POST["limit"] == "unlimited" )
       $limit = " limit 1000";
 
-    $QueryTitle = "select * from MetaNoteArticles where ";
+    $QueryTitle = "select ArticleID, ArticleTitle, LEFT(ArticleSubtitle, 170), Writers from MetaNoteArticles where ";
     if ( isset( $_POST["type"] ) && $_POST["type"] == "and" )
     {
       foreach($Words as $word)
@@ -54,7 +56,7 @@
     $QueryTitle .= " order by PVCount desc";
     $QueryTitle .= $limit;
 
-    $QueryDesc = "select * from MetaNoteArticles where ";
+    $QueryDesc = "select ArticleID, ArticleTitle, LEFT(ArticleSubtitle, 170), Writers from MetaNoteArticles where ";
     if ( isset( $_POST["type"] ) && $_POST["type"] == "and" )
     {
       foreach($Words as $word)
@@ -78,7 +80,55 @@
     $QueryDesc .= $limit;
 
     $Query = "(" . $QueryTitle . ") union (" . $QueryDesc . ")";
-    echo $Query;
+    echo htmlspecialchars( $Query ) . "<hr>";
+
+    $selects = array();
+    try {
+      $stmt = $dbh->prepare( $Query );
+      $stmt->execute( $WordsArr );
+      $selects = $stmt->fetch( PDO::FETCH_ASSOC );
+      if ($selects === false)
+        die("SQLの実行中にエラーが発生しました。");
+    } catch (\Throwable $e) {
+      die("SQLエラーが発生しました。");
+    }
+
+    $t = 0;
+    $result = array();
+    foreach ($selects as $value) {
+      $t++;
+      if ( empty( $value["ArticleTitle"] ) )
+        $value["ArticleTitle"] = "(タイトルなし)";
+      $result[ $value["ArticleID"] ] = $value;
+    }
+    foreach ($result as $name => $value){
+
+      $Writers = json_decode( $value["Writers"], true );
+      $n = 0;
+      foreach($Writers as $Writer)
+      {
+        $n++;
+        $WritersLookup .= htmlspecialchars(MetaNote_GetNameByID_bySQL($dbh, $Writer)[0]) . ";";
+        if ($n > 3)
+        {
+          $WritersLookup .= "et cetera";
+          break;
+        }
+      }
+
+    ?>
+    <div style="margin:16px auto;text-align:center;display:block;border:1px solid #000;">
+      <div align="left" style="text-align:left;display:inline-block;word-wrap:break-word;width:60%;">
+        <p><b><a href="https://metanote.org/article/<?=$value["ArticleID"]?>" target="_blank"><?=htmlspecialchars( substr( $value["ArticleTitle"], 0, 70) )?></a></b></p>
+        <pre>著者: <?=$Writers?></pre>
+        <?=htmlspecialchars( $value["LEFT(ArticleSubtitle, 170)"] )?>..
+      </div>
+    </div>
+    <hr size="10" color="#7fffd4">
+    <?php } if ($t == 0) { ?>
+    <p>検索結果はありません。別のキーワードをお試し下さい。</p>
+    <hr size="10" color="#7fffd4">
+    <?php } else { ?><pre><?=$t?> rows in set (<?=(microtime(true)-$time_start)?> sec)</pre><?php }
 
     exit();
   }

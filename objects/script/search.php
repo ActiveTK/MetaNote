@@ -93,6 +93,8 @@
       die("SQLエラーが発生しました。");
     }
 
+    var_dump( $selects );
+
     $t = 0;
     $result = array();
     foreach ($selects as $value) {

@@ -78,8 +78,10 @@
     $QueryDesc .= $limit;
 
     $Query = "(" . $QueryTitle . ") UNION (" . $QueryDesc . ")";
+    echo $Query;
+    var_dump( $WordsArr );
 
-    exit($Query);
+    exit();
   }
 
 ?>

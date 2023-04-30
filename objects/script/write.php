@@ -32,10 +32,10 @@
 
         $stmt = $dbh->prepare(
           "insert into MetaNoteArticles(
-              ArticleID, ArticleTitle, ArticleSubtitle, InPublic, Writers, LikedCount, DonateWayOrBTC, CreateIPAddress, CreateTime, LastUpdateTime, DateType, DataSrc, PVCount, CommentsJsonfp
+              ArticleID, ArticleTitle, ArticleSubtitle, InPublic, Writers, LikedCount, DonateWayOrBTC, CreateIPAddress, CreateTime, LastUpdateTime, DateType, DataSrc, PVCount, CommentsJsonfp, JoinToken
            )
            value(
-             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
            )"
         );
         $stmt->execute( [
@@ -52,7 +52,8 @@
           "Text/MarkDown",
           "objects/articles/markdown/{$ArticleID}/Data",
           "0",
-          "objects/articles/markdown/{$ArticleID}/Comments"
+          "objects/articles/markdown/{$ArticleID}/Comments",
+          MetaNote_GetRand( 12 )
         ] );
       } catch (\Throwable $e) {
         MetaNote_Fatal_Die( $e->getMessage() );
@@ -75,10 +76,10 @@
 
         $stmt = $dbh->prepare(
           "insert into MetaNoteArticles(
-              ArticleID, ArticleTitle, ArticleSubtitle, InPublic, Writers, LikedCount, DonateWayOrBTC, CreateIPAddress, CreateTime, LastUpdateTime, DateType, DataSrc, PVCount, CommentsJsonfp
+              ArticleID, ArticleTitle, ArticleSubtitle, InPublic, Writers, LikedCount, DonateWayOrBTC, CreateIPAddress, CreateTime, LastUpdateTime, DateType, DataSrc, PVCount, CommentsJsonfp, JoinToken
            )
            value(
-             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+             ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
            )"
         );
         $stmt->execute( [
@@ -95,7 +96,8 @@
           "Text/LaTeX",
           "objects/articles/latex/{$ArticleID}/Data",
           "0",
-          "objects/articles/latex/{$ArticleID}/Comments"
+          "objects/articles/latex/{$ArticleID}/Comments",
+          MetaNote_GetRand( 12 )
         ] );
       } catch (\Throwable $e) {
         MetaNote_Fatal_Die( $e->getMessage() );
@@ -139,10 +141,10 @@
 
           $stmt = $dbh->prepare(
             "insert into MetaNoteArticles(
-                ArticleID, ArticleTitle, ArticleSubtitle, InPublic, Writers, LikedCount, DonateWayOrBTC, CreateIPAddress, CreateTime, LastUpdateTime, DateType, DataSrc, PVCount, CommentsJsonfp
+                ArticleID, ArticleTitle, ArticleSubtitle, InPublic, Writers, LikedCount, DonateWayOrBTC, CreateIPAddress, CreateTime, LastUpdateTime, DateType, DataSrc, PVCount, CommentsJsonfp, JoinToken
              )
              value(
-               ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+               ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
              )"
           );
           $stmt->execute( [
@@ -159,7 +161,8 @@
             "application/pdf",
             "objects/articles/pdf/{$ArticleID}/Data",
             "0",
-            "objects/articles/pdf/{$ArticleID}/Comments"
+            "objects/articles/pdf/{$ArticleID}/Comments",
+            MetaNote_GetRand( 12 )
           ] );
         } catch (\Throwable $e) {
           MetaNote_Fatal_Die( $e->getMessage() );

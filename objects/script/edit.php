@@ -261,6 +261,9 @@
         <input type="button" value="保存" class="saveconf" onclick="saveconf()">
         <br>
       </div>
+      <h2>論文執筆者の追加</h2>
+      <p>論文の編集権限を以下の招待リンクから渡すことができます。</p>
+      招待リンク: <input type="text" value="https://metanote.org/edit/<?=ArticleID?>?join=<?=$row["JoinToken"]?>" readonly>
       <hr size="1" color="#7fffd4">
     </div>
 
@@ -449,6 +452,9 @@
         <input type="button" value="保存" class="saveconf" onclick="saveconf()">
         <br>
       </div>
+      <h2>論文執筆者の追加</h2>
+      <p>論文の編集権限を以下の招待リンクから渡すことができます。</p>
+      招待リンク: <input type="text" value="https://metanote.org/edit/<?=ArticleID?>?join=<?=$row["JoinToken"]?>" readonly>
       <hr size="1" color="#7fffd4">
     </div>
 
@@ -627,6 +633,10 @@
             <h3 style="color:#212529;">アップロード</h3>
           </a>
         </form>
+        <hr>
+        <h2>論文執筆者の追加</h2>
+        <p>論文の編集権限を以下の招待リンクから渡すことができます。</p>
+        招待リンク: <input type="text" value="https://metanote.org/edit/<?=ArticleID?>?join=<?=$row["JoinToken"]?>" readonly>
         <hr size="1" color="#7fffd4">
       </div>
 

@@ -18,7 +18,7 @@
   if ( !isset( $row["Writers"] ) )
     MetaNote_Fatal_Die( "存在しない論文ファイルを開きました。" );
 
-  $Writers = json_decode( $row["Writers"] );
+  $Writers = json_decode( $row["Writers"], true );
   $InWriter = false;
   foreach( $Writers as $Writer )
     if ($Writer === $LocalUser["UserIntID"])
@@ -26,8 +26,31 @@
       $InWriter = true;
       break;
   }
-  if ( !$InWriter )
+  if ( !$InWriter && !isset( $_GET["join"] ) )
     MetaNote_Fatal_Die( "編集権限のない論文ファイルを開きました。" );
+
+  if ( isset( $_GET["join"] ) ) {
+    if ( !empty( $_GET["join"] ) && $_GET["join"] === $row["JoinToken"] ) {
+      if ( !$InWriter ) {
+        $Writers[] = $LocalUser["UserIntID"];
+        try {
+          $stmt = $dbh->prepare(
+            "update MetaNoteArticles set Writers = ? where ArticleID = ?;"
+          );
+          $stmt->execute( [
+            json_encode( $Writers ),
+            ArticleID
+          ] );
+        } catch (\Throwable $e) {
+          MetaNote_Fatal_Die( $e->getMessage() );
+        }
+      }
+      NCPRedirect( "/edit/" . ArticleID );
+      exit();
+    }
+    else
+      MetaNote_Fatal_Die( "無効な招待リンクです。" );
+  }
 
   if ( isset( $_POST["save"] ) &&  isset( $_POST["title"] ) ) {
 

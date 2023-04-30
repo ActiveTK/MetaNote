@@ -80,7 +80,6 @@
     $QueryDesc .= $limit;
 
     $Query = "(" . $QueryTitle . ") union (" . $QueryDesc . ")";
-    echo htmlspecialchars( $Query ) . "<hr>";
 
     $selects = array();
     try {
@@ -125,11 +124,17 @@
         <?=htmlspecialchars( $value["LEFT(ArticleSubtitle, 170)"] )?>..
       </div>
     </div>
-    <hr size="10" color="#7fffd4">
-    <?php } if ($t == 0) { ?>
-    <p>検索結果はありません。別のキーワードをお試し下さい。</p>
-    <hr size="10" color="#7fffd4">
-    <?php } else { ?><pre><?=$t?> rows in set (<?=(microtime(true)-$time_start)?> sec)</pre><?php }
+    <?php }
+    
+    if ($t == 0) {
+      ?>
+        <p>検索結果はありません。別のキーワードをお試し下さい。</p>
+        <hr size="10" color="#7fffd4">
+      <?php } else { ?>
+        <hr size="10" color="#7fffd4">
+        <pre><?=$t?> rows in set (<?=(microtime(true)-$time_start)?> sec) / <a href="javascript:atk.copy(`<?=$Query?>`);alert(`コピーしました！`);">Copy SQLQuery</a></pre>
+      <?php
+    }
 
     exit();
   }

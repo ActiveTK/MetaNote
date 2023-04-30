@@ -405,3 +405,8 @@ progress {
     word-wrap: break-word;
     width: 60%;
 }
+@media (man-width:992px) {
+    .resultdec {
+        width: 100%;
+    }
+}

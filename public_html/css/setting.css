@@ -11,6 +11,10 @@ body {
     background-color: #e6e6fa;
     overflow: auto;
 }
+.errortext {
+    background-color: #404ff0;
+    color: #ff4500;
+}
 .titlecomes {
     background-color: #cfcfef;
 }

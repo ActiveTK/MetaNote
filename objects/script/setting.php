@@ -1,4 +1,4 @@
-<?php
+]<?php
 
   /*!
    * ユーザー設定ページ
@@ -18,7 +18,7 @@
       NCPRedirect( "?error=1" );
       exit();
     }
-    $UserName = htmlspecialchars($_POST["_call"]);
+    $UserName = htmlspecialchars( $_POST["_call"] );
 
     if ( empty( $_POST["_mailaddress"] ) ||
          !preg_match( "/^([a-zA-Z0-9])+([a-zA-Z0-9._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9._-]+)+$/", $_POST["_mailaddress"] ) )
@@ -41,7 +41,7 @@
       MetaNote_Fatal_Die( $e->getMessage() );
     }
 
-    header(" Location: /setting ");
+    header( "Location: /setting" );
     exit();
   }
 
@@ -92,7 +92,7 @@
           echo "指定されたユーザー名は無効です。";
         else
           echo "技術的なエラーが発生しました。";
-      ?></h2></div>
+      ?></h2></div><?php } ?>
         <form action="" method="POST">
           <hr size="10" color="#7fffd4">
           <p><b>ニックネーム:</b> <input type="text" name="_call" value="<?=htmlspecialchars( $LocalUser["UserName"] )?>" id="_call" placeholder="山田太郎" required></p>

@@ -1,4 +1,4 @@
-]<?php
+<?php
 
   /*!
    * ユーザー設定ページ
@@ -99,6 +99,7 @@
           <p><b>メールアドレス:</b> <input type="email" name="_mailaddress" value="<?=htmlspecialchars( $LocalUser["Mailadd"] )?>" placeholder="yamada@example.com" id="_mailaddress" required></p>
           <input type="submit" value="設定を保存" class="btn2">
           <hr size="10" color="#7fffd4">
+          <?=var_dump( $LocalUser )?>
         </form>
       </div>
 

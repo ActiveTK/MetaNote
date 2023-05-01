@@ -30,10 +30,10 @@
     try {
 
       $stmt = $dbh->prepare('update MetaNoteUsers set UserName = ?, MailAdd = ? where UserIntID = ? limit 1;');
-      $stmt->execute( [$UserName, $_POST["_mailaddress"], $UserIntID] );
+      $stmt->execute( [$UserName, $_POST["_mailaddress"], $LocalUser["UserIntID"] );
 
       $stmt2 = $dbh->prepare('select * from MetaNoteUsers where UserIntID = ? limit 1;');
-      $stmt2->execute( [$UserIntID] );
+      $stmt2->execute( [$LocalUser["UserIntID"]] );
       $row2 = $stmt2->fetch( PDO::FETCH_ASSOC );
       $_SESSION["logindata"] = json_encode( $row2 );
 

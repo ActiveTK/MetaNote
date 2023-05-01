@@ -96,7 +96,7 @@
         <form action="" method="POST">
           <hr size="10" color="#7fffd4">
           <p><b>ニックネーム:</b> <input type="text" name="_call" value="<?=htmlspecialchars( $LocalUser["UserName"] )?>" id="_call" placeholder="山田太郎" required></p>
-          <p><b>メールアドレス:</b> <input type="email" name="_mailaddress" value="<?=htmlspecialchars( $LocalUser["Mailadd"] )?>" placeholder="yamada@example.com" id="_mailaddress" required></p>
+          <p><b>メールアドレス:</b> <input type="email" name="_mailaddress" value="<?=htmlspecialchars( $LocalUser["MailAdd"] )?>" placeholder="yamada@example.com" id="_mailaddress" required></p>
           <input type="submit" value="設定を保存" class="btn2">
           <hr size="10" color="#7fffd4">
           <?=var_dump( $LocalUser )?>

@@ -9,7 +9,7 @@
 
   $IndexFromBot = "noindex, nofollow";
 
-  if ( isset( $_POST["_call"] ) && isset( $_POST["_mailaddress"] ) ) {
+  if ( isset( $_POST["_call"] ) && isset( $_POST["_mailaddress"] ) && isset( $_POST["_profile"] ) ) {
     mb_regex_encoding("UTF-8");
 
     if ( empty( $_POST["_call"] ) ||
@@ -29,8 +29,8 @@
 
     try {
 
-      $stmt = $dbh->prepare('update MetaNoteUsers set UserName = ?, MailAdd = ? where UserIntID = ? limit 1;');
-      $stmt->execute( [$UserName, $_POST["_mailaddress"], $LocalUser["UserIntID"]] );
+      $stmt = $dbh->prepare('update MetaNoteUsers set UserName = ?, MailAdd = ?, Profile = ? where UserIntID = ? limit 1;');
+      $stmt->execute( [$UserName, $_POST["_mailaddress"], htmlspecialchars( $_POST["_profile"], ENT_QUOTES ) , $LocalUser["UserIntID"]] );
 
       $stmt2 = $dbh->prepare('select * from MetaNoteUsers where UserIntID = ? limit 1;');
       $stmt2->execute( [$LocalUser["UserIntID"]] );
@@ -95,8 +95,10 @@
       ?></h2></div><?php } ?>
         <form action="" method="POST">
           <hr size="10" color="#7fffd4">
-          <p><b>ニックネーム:</b> <input type="text" name="_call" value="<?=htmlspecialchars( $LocalUser["UserName"] )?>" id="_call" placeholder="山田太郎" required></p>
-          <p><b>メールアドレス:</b> <input type="email" name="_mailaddress" value="<?=htmlspecialchars( $LocalUser["MailAdd"] )?>" placeholder="yamada@example.com" id="_mailaddress" required></p>
+          <p><b>ニックネーム:</b> <input type="text" name="_call" value="<?=htmlspecialchars( $LocalUser["UserName"], ENT_QUOTES )?>" id="_call" placeholder="山田太郎" required></p>
+          <p><b>メールアドレス:</b> <input type="email" name="_mailaddress" value="<?=htmlspecialchars( $LocalUser["MailAdd"], ENT_QUOTES )?>" placeholder="yamada@example.com" id="_mailaddress" required></p>
+          <p><b>プロフィール(公開): </b></p>
+          <textarea name="_profile" placeholder="公開されるプロフィールの内容をこちらへ入力してください(1080文字まで)" value="<?=htmlspecialchars( $LocalUser["Profile"], ENT_QUOTES )?>" style="height:200px;width:320px;"></textarea><br>
           <input type="submit" value="設定を保存" class="btn2">
           <hr size="10" color="#7fffd4">
           <?=var_dump( $LocalUser )?>

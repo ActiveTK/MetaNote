@@ -9,6 +9,42 @@
 
   $IndexFromBot = "noindex, nofollow";
 
+  if ( isset( $_POST["_call"] ) && isset( $_POST["_mailaddress"] ) ) {
+    mb_regex_encoding("UTF-8");
+
+    if ( empty( $_POST["_call"] ) ||
+         !preg_match( "/^[ぁ-んァ-ヶーa-zA-Z0-9一-龠０-９、。,. \n\r]+$/u" , $_POST["_call"] ) )
+    {
+      NCPRedirect( "?error=1" );
+      exit();
+    }
+    $UserName = htmlspecialchars($_POST["_call"]);
+
+    if ( empty( $_POST["_mailaddress"] ) ||
+         !preg_match( "/^([a-zA-Z0-9])+([a-zA-Z0-9._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9._-]+)+$/", $_POST["_mailaddress"] ) )
+    {
+      NCPRedirect( "?error=2" );
+      exit();
+    }
+
+    try {
+
+      $stmt = $dbh->prepare('update MetaNoteUsers set UserName = ?, MailAdd = ? where UserIntID = ? limit 1;');
+      $stmt->execute( [$UserName, $_POST["_mailaddress"], $UserIntID] );
+
+      $stmt2 = $dbh->prepare('select * from MetaNoteUsers where UserIntID = ? limit 1;');
+      $stmt2->execute( [$UserIntID] );
+      $row2 = $stmt2->fetch( PDO::FETCH_ASSOC );
+      $_SESSION["logindata"] = json_encode( $row2 );
+
+    } catch ( \Throwable $e ) {
+      MetaNote_Fatal_Die( $e->getMessage() );
+    }
+
+    header(" Location: /setting ");
+    exit();
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
@@ -49,9 +85,18 @@
       <div class="container marketing">
         <br><br>
         <h1><?=$title?></h1>
-        <form action="" method="POST" id="td">
+      <?php if ( isset( $_GET["error"] ) ) { ?><div class="errortext" align="center"><h2><?php
+        if ( $_GET["error"] == "2" )
+          echo "メールアドレスの入力形式が不正です。";
+        else if ( $_GET["error"] == "1" )
+          echo "指定されたユーザー名は無効です。";
+        else
+          echo "技術的なエラーが発生しました。";
+      ?></h2></div>
+        <form action="" method="POST">
           <hr size="10" color="#7fffd4">
-          <p>ユーザー名: <input type="text" name="UserName" value="<?=htmlspecialchars( $LocalUser["UserName"] )?>"></p>
+          <p><b>ニックネーム:</b> <input type="text" name="_call" value="<?=htmlspecialchars( $LocalUser["UserName"] )?>" id="_call" placeholder="山田太郎" required></p>
+          <p><b>メールアドレス:</b> <input type="email" name="_mailaddress" value="<?=htmlspecialchars( $LocalUser["Mailadd"] )?>" placeholder="yamada@example.com" id="_mailaddress" required></p>
           <input type="submit" value="設定を保存" class="btn2">
           <hr size="10" color="#7fffd4">
         </form>

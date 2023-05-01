@@ -101,7 +101,6 @@
           <textarea name="_profile" placeholder="公開されるプロフィールの内容をこちらへ入力してください(1080文字まで)" style="height:200px;width:320px;"><?=htmlspecialchars( $LocalUser["Profile"], ENT_QUOTES )?></textarea><br>
           <input type="submit" value="設定を保存" class="btn2">
           <hr size="10" color="#7fffd4">
-          <?=var_dump( $LocalUser )?>
         </form>
       </div>
 

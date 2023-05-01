@@ -108,10 +108,26 @@
         exit();
       }
       $_SESSION["logindata"] = json_encode( $row );
+
+      try {
+        $UA = "";
+        if ( isset( $_SERVER['HTTP_USER_AGENT'] ) )
+          $UA = $_SERVER['HTTP_USER_AGENT'];
+        $stmt2 = $dbh->prepare(
+          "update MetaNoteUsers set LastLoginIPadd = ?, LastLoginUA = ?, LastLoginTime = ? where UserIntID = ?;"
+        );
+        $stmt2->execute( [
+          $_SERVER["REMOTE_ADDR"],
+          $UA,
+          time(),
+          $row["UserIntID"]
+        ] );
+      } catch (\Throwable $e) { }
+
       if ( isset( $_POST["_return_back_address"] ) && !empty( $_POST["_return_back_address"] ) )
-        NCPRedirect( "/" . $_POST["_return_back_address"] );
+        header( "Location: /" . $_POST["_return_back_address"] );
       else
-        NCPRedirect( "/home" );
+        header( "Location: /home" );
       exit();
     }
     else

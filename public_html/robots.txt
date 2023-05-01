@@ -1,0 +1,4 @@
+Sitemap: https://metanote.org/sitemap.xml
+
+User-agent: Megalodon
+Disallow: /

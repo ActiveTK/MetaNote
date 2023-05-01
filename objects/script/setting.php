@@ -98,7 +98,7 @@
           <p><b>ニックネーム:</b> <input type="text" name="_call" value="<?=htmlspecialchars( $LocalUser["UserName"], ENT_QUOTES )?>" id="_call" placeholder="山田太郎" required></p>
           <p><b>メールアドレス:</b> <input type="email" name="_mailaddress" value="<?=htmlspecialchars( $LocalUser["MailAdd"], ENT_QUOTES )?>" placeholder="yamada@example.com" id="_mailaddress" required></p>
           <p><b>プロフィール(公開): </b></p>
-          <textarea name="_profile" placeholder="公開されるプロフィールの内容をこちらへ入力してください(1080文字まで)" value="<?=htmlspecialchars( $LocalUser["Profile"], ENT_QUOTES )?>" style="height:200px;width:320px;"></textarea><br>
+          <textarea name="_profile" placeholder="公開されるプロフィールの内容をこちらへ入力してください(1080文字まで)" style="height:200px;width:320px;"><?=htmlspecialchars( $LocalUser["Profile"], ENT_QUOTES )?></textarea><br>
           <input type="submit" value="設定を保存" class="btn2">
           <hr size="10" color="#7fffd4">
           <?=var_dump( $LocalUser )?>

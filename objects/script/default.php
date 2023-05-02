@@ -20,13 +20,11 @@
 
   if ( isset( $_POST["license_readme"] ) &&
        $_POST["license_readme"] == "ok" &&
-       isset( $_POST["contact_dec"] ) &&
        isset( $_POST["contact_name"] ) &&
        isset( $_POST["contact_mail"] ) &&
        isset( $_POST["contact_data"] )
     )
   {
-    $dec = $_POST["contact_dec"];
     $name = $_POST["contact_name"];
     $mail = $_POST["contact_mail"];
     $datax = $_POST["contact_data"];
@@ -66,7 +64,6 @@
     else
       $debuginfo["UserAgent"] = "";
 
-    $debuginfo["Dec"] = $dec;
     $debuginfo["Name"] = $name;
     $debuginfo["Mail"] = $mail;
     $debuginfo["Data"] = $datax;
@@ -75,7 +72,7 @@
     @fwrite( $a, json_encode( $debuginfo ) . "\n" );
     fclose( $a );
 
-    NotificationAdmin("お問い合わせ: " . htmlspecialchars($dec),
+    NotificationAdmin("お問い合わせ",
       "<p>送信時刻: " . date("Y/m/d - M (D) H:i:s") . "</p><p>IPアドレス: " . $_SERVER['REMOTE_ADDR'] . "</p><p>UserAgent: " . $debuginfo["UserAgent"] . "</p>" .
       "<hr color='#363636' size='2'><p>名前: " . htmlspecialchars($name) . "</p><p>返信先メールアドレス: " . htmlspecialchars($mail) . "</p><p>内容</p><pre>" . htmlspecialchars($datax) . "</pre><br>");
     

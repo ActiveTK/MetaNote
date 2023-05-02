@@ -34,6 +34,31 @@
   } 
 
   /**
+   * 通知用関数
+   */
+  function NotificationAdmin( string $title = "", string $str = "" ) {
+    try{
+      $body = '<body style="background-color:#e6e6fa;text:#363636;"><div align="center"><p>【' . htmlspecialchars($title) . '】</p><hr color="#363636" size="2">'. $str .
+      '<br><hr color="#363636" size="2"><font style="background-color:#06f5f3;">Copyright &copy; 2022 ActiveTK. All rights reserved.</font></div></body>';
+      mb_language("Japanese");
+      mb_internal_encoding("UTF-8");
+      define( "MAIL_SUBJECT", $title);
+      define( "MAIL_BODY", $body);
+      define( "MAIL_FROM_ADDRESS", "no-reply@activetk.jp");
+      define( "MAIL_FROM_NAME", "no-reply@activetk.jp");
+      define( "MAIL_HEADER",
+        "Content-Type: text/html; charset=UTF-8 \n".
+        "From: " . MAIL_FROM_NAME . "\n".
+        "Sender: " . MAIL_FROM_ADDRESS ." \n".
+        "Return-Path: " . MAIL_FROM_ADDRESS . " \n".
+        "Reply-To: " . MAIL_FROM_ADDRESS . " \n".
+        "Content-Transfer-Encoding: BASE64\n");
+      @mb_send_mail( ADMIN_MAIL_ADDRESS, MAIL_SUBJECT, MAIL_BODY, MAIL_HEADER, "-f ".MAIL_FROM_ADDRESS );
+    }
+    catch (Exception $e) { }
+  }
+
+  /**
    * エラーを無視したセッションのunset関数
    * 
    * @return bool エラーが投げられた場合にはfalse。それ以外はtrueです。

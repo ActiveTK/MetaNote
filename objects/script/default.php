@@ -18,6 +18,78 @@
     die();
   }
 
+  if ( isset( $_POST["license_readme"] ) &&
+       $_POST["license_readme"] == "ok" &&
+       isset( $_POST["contact_dec"] ) &&
+       isset( $_POST["contact_name"] ) &&
+       isset( $_POST["contact_mail"] ) &&
+       isset( $_POST["contact_data"] )
+    )
+  {
+    $dec = $_POST["contact_dec"];
+    $name = $_POST["contact_name"];
+    $mail = $_POST["contact_mail"];
+    $datax = $_POST["contact_data"];
+
+    /*
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = array(
+      'secret' => Google_ReCap_ACTIVETKDOTJP_SecretKey,
+      'response' => $_POST[ 'g-recaptcha-response' ]
+    );
+    $context = array(
+      'http' => array(
+        'method'  => 'POST',
+        'header'  => implode("\r\n", array('Content-Type: application/x-www-form-urlencoded',)),
+        'content' => http_build_query($data)
+      )
+    );
+    $api_response = file_get_contents($url, false, stream_context_create($context));
+    $result = json_decode( $api_response );
+    if ( $result->success ) {}
+    else {
+      die("<p>私はロボットではありませんにチェックを入れてください。</p>");
+    }
+    */
+
+    $LogFile = MetaNote_Home . "log/Contact.log";
+
+    $debuginfo = array();
+
+    $debuginfo["Time"] = date("Y/m/d - M (D) H:i:s");
+    $debuginfo["Time_Unix"] = microtime(true);
+
+    $debuginfo["IP"] = $_SERVER['REMOTE_ADDR'];
+      
+    if ( isset( $_SERVER['HTTP_USER_AGENT'] ) )
+      $debuginfo["UserAgent"] = $_SERVER['HTTP_USER_AGENT'];
+    else
+      $debuginfo["UserAgent"] = "";
+
+    $debuginfo["Dec"] = $dec;
+    $debuginfo["Name"] = $name;
+    $debuginfo["Mail"] = $mail;
+    $debuginfo["Data"] = $datax;
+
+    $a = fopen($LogFile, "a");
+    @fwrite( $a, json_encode( $debuginfo ) . "\n" );
+    fclose( $a );
+
+    NotificationAdmin("お問い合わせ: " . htmlspecialchars($dec),
+      "<p>送信時刻: " . date("Y/m/d - M (D) H:i:s") . "</p><p>IPアドレス: " . $_SERVER['REMOTE_ADDR'] . "</p><p>UserAgent: " . $debuginfo["UserAgent"] . "</p>" .
+      "<hr color='#363636' size='2'><p>名前: " . htmlspecialchars($name) . "</p><p>返信先メールアドレス: " . htmlspecialchars($mail) . "</p><p>内容</p><pre>" . htmlspecialchars($datax) . "</pre><br>");
+    
+    ?>
+        <meta name="robots" content="noindex, nofollow">
+        <body style="background-color:#e6e6fa;">
+          <h1>お問い合わせを受け付けました。</h1>
+          <p><b>指定されたメールアドレスに返信をお返しすると共に、このデータは、<a href="/privacy">プライバシーに関する声明</a>に基づき、サービスの改善に使用させていただきます。<br>また、返信は一週間程度の時間を要する場合がございますので、ご了承ください。</b></p>
+          <h3><a href="?">前のページに戻る</a></h3>
+        </body>
+      <?php
+    exit();
+  }
+
 ?>
 
 <!DOCTYPE html>

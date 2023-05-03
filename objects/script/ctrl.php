@@ -218,7 +218,7 @@
                   "  <th>" . $IsPublic . "</th>" .
                   "  <th>" . $WritersLookup . "</th>" .
                   "  <th>" . $value["PVCount"] . "</th>" .
-                  "  <th>" . count( file( MetaNote_Home . $row["CommentsJsonfp"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES ) ) . "</th>" .
+                  "  <th>" . count( file( MetaNote_Home . $value["CommentsJsonfp"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES ) ) . "</th>" .
                   "  <th>" . date("Y/m/d H:i:s", $value["CreateTime"] * 1) . "</th>" .
                   "  <th>" . date("Y/m/d H:i:s", $value["LastUpdateTime"] * 1) . "</th>" .
                   "  <th><a href='/edit/" . $value["ArticleID"] . "' target='_blank'>編集</a></th>" .

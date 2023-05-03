@@ -93,7 +93,7 @@
 <html lang="ja" dir="ltr">
   <head>
 
-    <title><?=$title?></title>
+    <title>MetaNote. - 査読不要・審査なしの論文投稿サイト。</title>
 
     <?=MetaNote_Header_Default()?>
 

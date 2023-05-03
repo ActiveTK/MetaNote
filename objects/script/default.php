@@ -196,8 +196,8 @@
           <div class="row featurette">
             <div class="col-md-7">
               <h2 class="featurette-heading"><span class="text-muted">特徴3.</span> <span class="inpblue">著作権の保護</span></h2>
-              <p class="lead">希望する場合には、コイン一枚分の金額でデータのメタデータをブロックチェーンに記録できます。
-              ブロックチェーンに書き込まれたデータの改竄はほぼ不可能であり、半永久的に著作の記録が残ります。</p>
+              <p class="lead">希望する場合には、データのメタデータをブロックチェーンに記録できます。
+              ブロックチェーンに書き込まれたデータの改竄はほぼ不可能であり、半永久的に著作の記録が残ります(試験段階)。</p>
             </div>
           </div>
       

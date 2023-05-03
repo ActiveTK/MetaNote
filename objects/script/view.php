@@ -249,7 +249,7 @@
 
             ?>
             <div class="comment">
-               <span class="titleof"><b><?=$Comment["Title"]?></b></span><br>
+               <span class="titleof">#<?=$Comment["Count"]?>) <b><?=$Comment["Title"]?></b></span><br>
                <?=date( "Y/m/d H:i:s", $Comment["Time"] )?>
                <span class="CreateUser"><?=MetaNote_GetNameByID_bySQL( $dbh, $Comment["CreateUserID"] )[0]?></span><br>
                <pre><?=$Comment["InnerText"]?></pre>

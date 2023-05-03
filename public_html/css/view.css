@@ -21,6 +21,17 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+.titleof {
+    font-size: 30px;
+}
+.comment {
+    background-color: #cfcfef;
+    color: #363636;
+    width: 90%;
+}
+.CreateUser {
+    color: #017022;
+}
 .add_title {
     width: 43%;
 }

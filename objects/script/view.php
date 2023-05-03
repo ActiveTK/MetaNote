@@ -248,10 +248,10 @@
             $Comment = json_decode( $CommentJson, true );
 
             ?>
-            <div style='background-color:#cfcfef;color:#363636;width:90%;'>
-               <span style='font-size:30px;'><b><?=$Comment["Title"]?></b></span><br>
+            <div class="comment">
+               <span class="titleof"><b><?=$Comment["Title"]?></b></span><br>
                <?=date( "Y/m/d H:i:s", $Comment["Time"] )?>
-               <font color='#00ff00'><?=MetaNote_GetNameByID_bySQL( $dbh, $Comment["CreateUserID"] )[0]?></font><br>
+               <span class="CreateUser"><?=MetaNote_GetNameByID_bySQL( $dbh, $Comment["CreateUserID"] )[0]?></span><br>
                <pre><?=$Comment["InnerText"]?></pre>
             </div><br>
             <?php

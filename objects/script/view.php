@@ -196,7 +196,6 @@
           <hr>
           <h2>公開コメント</h2>
           <p>最新の100件のみ表示されます。</p>
-          <hr>
           <?php
 
           $Comments = file( MetaNote_Home . $row["CommentsJsonfp"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
@@ -257,7 +256,11 @@
             </div><br>
             <?php
           }
+          if ( count( $Comments ) === 0 )
+            echo "<p>公開コメントはありません。</p>";
+
           ?>
+          <hr>
           <h2>公開コメントを追加</h2>
           <form action="" enctype="multipart/form-data" method="post">
             <input type="text" class="add_title" name="add_title" maxlength="120" placeholder="ここにタイトルを入力してください(120文字まで)" required>

@@ -196,7 +196,7 @@
           <div class="row featurette">
             <div class="col-md-7">
               <h2 class="featurette-heading"><span class="text-muted">特徴3.</span> 安全安心の<span class="inpblue">オープンソース</span></h2>
-              <p class="lead">本サイトは全て安心安心のオープンソースです。ソースコードは<a href="https://github.com/ActiveTK/MetaNote" target="_blank">[こちら]</a>からご覧いただけます。
+              <p class="lead">本サイトは全て安心安心のオープンソースで、誰でも開発に参加できます。ソースコードは<a href="https://github.com/ActiveTK/MetaNote" target="_blank">[こちら]</a>からご覧いただけます。
               「Issue」や「Pull request」も大歓迎です！</p>
             </div>
           </div>

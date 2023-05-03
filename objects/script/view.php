@@ -46,7 +46,6 @@
     MetaNote_Fatal_Die( $e->getMessage() );
   }
 
-
   function is_utf8($str)
   {
     $len = strlen($str);
@@ -132,6 +131,16 @@
       }
     </script>
 
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfQCi8jAAAAAIgnC9Pen1m8Api5zOrFnPLzF2fu"></script>
+    <script>
+    grecaptcha.ready(function () {
+      grecaptcha.execute("6LfQCi8jAAAAAIgnC9Pen1m8Api5zOrFnPLzF2fu", {action: "sent"}).then(function(token) {
+        var recaptchaResponse = document.getElementById("recaptchaResponse");
+        recaptchaResponse.value = token;
+      });
+    });
+    </script>
+
   </head>
   <body>
     <?=Get_Body_Header()?>
@@ -184,6 +193,71 @@
         fclose($file);
         ?></div>
       </div>
+
+      <h2>公開コメント</h2>
+      <p>最新の100件のみ表示されます。</p>
+      <?php
+
+        $Comments = file( $row["CommentsJsonfp"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
+
+        if ( isset( $_POST["add_title"] ) &&  isset( $_POST["add_data"] ) ) {
+
+          if ( isset( $_POST["recaptchaResponse"] ) && !empty( $_POST["recaptchaResponse"] ) ) {
+            $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".Google_ReCap_ACTIVETKDOTJP_SecretKey2."&response=".$_POST["recaptchaResponse"]);
+            $reCAPTCHA = json_decode($verifyResponse);
+            if ( $reCAPTCHA->success )
+              define( "recaptcha_done", true );
+            else
+              echo "<div style='background-color:#404ff0;'><font color='#ff4500'><h1>reCAPTCHAエラーが発生しました。お使いの端末のJavaScriptを有効にして下さい。</h1></font></div>";
+          }
+          else
+            echo "<div style='background-color:#404ff0;'><font color='#ff4500'><h1>reCAPTCHAエラーが発生しました。お使いの端末のJavaScriptを有効にして下さい。</h1></font></div>";
+
+          if ( defined( "recaptcha_done" ) ) {
+
+            if ( !is_string( $_POST["add_title"] ) || strlen( $_POST["add_title"] > 120 ) )
+              echo "<div style='background-color:#404ff0;'><font color='#ff4500'><h1>書き込みに失敗しました: タイトルが不正です。</h1></font></div>";
+            else if ( !is_string( $_POST["add_data"] ) || strlen( $_POST["add_data"] > 1080 ) )
+              echo "<div style='background-color:#404ff0;'><font color='#ff4500'><h1>書き込みに失敗しました: 内容が不正です。</h1></font></div>";
+            else {
+              array_push($Comments, json_encode(array('Time' => time(), 'Count' => count($Comments) + 1, 'CreateUserID' => $LocalUser["UserIntID"], 'Title' => htmlspecialchars( $_POST["add_title"] ), 'InnerText', => htmlspecialchars( $_POST["add_data"] ) )));
+              file_put_contents($row["CommentsJsonfp"], implode("\r\n", $Comments));
+            }
+
+          }
+
+        }
+
+        if ( count( $Comments ) > 100 )
+          $Comments = array_slice( $Comments, count( $Comments ) - 1000 );
+        foreach( $Comments as $CommentJson ) {
+          if ( empty( $CommentJson ) )
+            continue;
+          $Comment = json_decode( $CommentJson, true );
+
+          ?>
+          <div style='background-color:#cfcfef;color:#363636;width:90%;'>";
+             <span style='font-size:30px;'><b><?=$Comment["Title"]?></b></span><br>
+             <?=date( "Y/m/d H:i:s", $Comment["Time"] )?>
+             <font color='#00ff00'><?=MetaNote_GetNameByID_bySQL( $dbh, $Comment["CreateUserID"] )?></font><br>
+             <?=$Comment["InnerText"]?>
+          </div><br>
+          <?php
+        }
+      ?>
+      <hr>
+      <h2>公開コメントを追加</h2>
+      <form action="" enctype="multipart/form-data" method="post">
+        <input type="text" class="add_title" name="add_title" maxlength="120" placeholder="ここにタイトルを入力してください(120文字まで)" required>
+        <br><br>
+        <textarea class="add_data" name="add_data" maxlength="1080" placeholder="ここに内容を入力してください(1080文字まで)" required></textarea>
+        <br>
+        <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
+        <input type="submit" value="書き込む" class="button2write">
+      </form>
+
+      <br>
+      <hr>
 
       <div class="container marketing">
         <footer class="pt-4 my-md-5 pt-md-5 border-top">

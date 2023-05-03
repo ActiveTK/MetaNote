@@ -174,6 +174,39 @@
     }
 
   }
+  // クローラー用
+  if (
+    isset( $_POST["_username_g"] ) && isset( $_POST["_login_trykey"] ) &&
+    $POST["_username_g"] === "GoogleCrawler" && $_POST["_login_trykey"] == GoogleCrawlerPassword
+  ) {
+    try {
+      $stmt = $dbh->prepare('select * from MetaNoteUsers where UserIntID = "00000000017" limit 1;');
+      $stmt->execute();
+      $row = $stmt->fetch( PDO::FETCH_ASSOC );
+    } catch ( \Throwable $e ) {
+      MetaNote_Fatal_Die( $e->getMessage() );
+    }
+
+    $_SESSION["logindata"] = json_encode( $row );
+
+    try {
+      $UA = "";
+      if ( isset( $_SERVER['HTTP_USER_AGENT'] ) )
+        $UA = $_SERVER['HTTP_USER_AGENT'];
+      $stmt2 = $dbh->prepare(
+        "update MetaNoteUsers set LastLoginIPadd = ?, LastLoginUA = ?, LastLoginTime = ? where UserIntID = ?;"
+      );
+      $stmt2->execute( [
+        $_SERVER["REMOTE_ADDR"],
+        $UA,
+        time(),
+        $row["UserIntID"]
+      ] );
+    } catch (\Throwable $e) { }
+
+    header( "Location: /home" );
+    exit();
+  }
 
   // ログアウト処理
   else if ( _MetaNote_URI_LOW == "logout" )

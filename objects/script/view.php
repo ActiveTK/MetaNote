@@ -119,6 +119,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/view.css">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWBFDJPMN6"></script>
+    <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-HWBFDJPMN6");</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2939270978924591" crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/gh/markedjs/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.2/dist/purify.min.js"></script>
     <script>
@@ -355,6 +359,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/view.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWBFDJPMN6"></script>
+    <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-HWBFDJPMN6");</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2939270978924591" crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/latex.js/dist/latex.js"></script>
     <script>
       window.onload = function () {
@@ -604,6 +613,10 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/view.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWBFDJPMN6"></script>
+    <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-HWBFDJPMN6");</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2939270978924591" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=6LfQCi8jAAAAAIgnC9Pen1m8Api5zOrFnPLzF2fu"></script>
     <script>
     grecaptcha.ready(function () {

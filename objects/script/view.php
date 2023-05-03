@@ -198,7 +198,7 @@
       <p>最新の100件のみ表示されます。</p>
       <?php
 
-        $Comments = file( $row["CommentsJsonfp"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
+        $Comments = file( MetaNote_Home . $row["CommentsJsonfp"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
 
         if ( isset( $_POST["add_title"] ) &&  isset( $_POST["add_data"] ) ) {
 
@@ -233,7 +233,7 @@
                   )
                 )
               );
-              file_put_contents( $row["CommentsJsonfp"], implode("\r\n", $Comments) );
+              file_put_contents( MetaNote_Home . $row["CommentsJsonfp"], implode("\r\n", $Comments) );
             }
 
           }

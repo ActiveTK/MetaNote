@@ -195,9 +195,9 @@
       
           <div class="row featurette">
             <div class="col-md-7">
-              <h2 class="featurette-heading"><span class="text-muted">特徴3.</span> <span class="inpblue">著作権の保護</span></h2>
-              <p class="lead">希望する場合には、データのメタデータをブロックチェーンに記録できます。
-              ブロックチェーンに書き込まれたデータの改竄はほぼ不可能であり、半永久的に著作の記録が残ります(試験段階)。</p>
+              <h2 class="featurette-heading"><span class="text-muted">特徴3.</span> 安全安心の<span class="inpblue">オープンソース</span></h2>
+              <p class="lead">本サイトは全て安心安心のオープンソースです。ソースコードは<a href="https://github.com/ActiveTK/MetaNote" target="_blank">[こちら]</a>からご覧いただけます。
+              「Issue」や「Pull request」も大歓迎です！</p>
             </div>
           </div>
       

@@ -195,6 +195,7 @@
       </div>
 
       <div align="left">
+        <hr>
         <h2>公開コメント</h2>
         <p>最新の100件のみ表示されます。</p>
         <?php
@@ -258,7 +259,6 @@
           <?php
         }
         ?>
-        <hr>
         <h2>公開コメントを追加</h2>
         <form action="" enctype="multipart/form-data" method="post">
           <input type="text" class="add_title" name="add_title" maxlength="120" placeholder="ここにタイトルを入力してください(120文字まで)" required>

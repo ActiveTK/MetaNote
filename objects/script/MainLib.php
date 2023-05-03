@@ -311,6 +311,8 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWBFDJPMN6"></script>
     <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-HWBFDJPMN6");</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2939270978924591" crossorigin="anonymous"></script>
+
 <?php
 
     } catch ( \Throwable $e ) {

@@ -178,7 +178,7 @@
            <th>公開状況</th>
            <th>執筆者一覧</th>
            <th>PV数</th>
-           <th>いいね数</th>
+           <th>コメント数</th>
            <th>作成日</th>
            <th>最終更新日</th>
            <th><nobr>編集</nobr></th>
@@ -218,7 +218,7 @@
                   "  <th>" . $IsPublic . "</th>" .
                   "  <th>" . $WritersLookup . "</th>" .
                   "  <th>" . $value["PVCount"] . "</th>" .
-                  "  <th>" . $value["LikedCount"] . "</th>" .
+                  "  <th>" . count( file( MetaNote_Home . $row["CommentsJsonfp"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES ) ) . "</th>" .
                   "  <th>" . date("Y/m/d H:i:s", $value["CreateTime"] * 1) . "</th>" .
                   "  <th>" . date("Y/m/d H:i:s", $value["LastUpdateTime"] * 1) . "</th>" .
                   "  <th><a href='/edit/" . $value["ArticleID"] . "' target='_blank'>編集</a></th>" .

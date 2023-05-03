@@ -253,7 +253,7 @@
                <?=date( "Y/m/d H:i:s", $Comment["Time"] )?>
                <span class="CreateUser"><?=MetaNote_GetNameByID_bySQL( $dbh, $Comment["CreateUserID"] )[0]?></span><br>
                <pre><?=$Comment["InnerText"]?></pre>
-            </div><br>
+            </div>
             <?php
           }
           if ( count( $Comments ) === 0 )

@@ -23,16 +23,12 @@ body {
 }
 .add_title {
     width: 43%;
-    background-color: #000000;
-    color: #ffffff;
 }
 .add_data {
     text-align: left;
     overflow-wrap: break-word;
     width: 43%;
     height: 120px;
-    background-color: #000000;
-    color: #ffffff;
 }
 .button2write {
     width: 73px;

@@ -194,9 +194,10 @@
         ?></div>
       </div>
 
-      <h2>公開コメント</h2>
-      <p>最新の100件のみ表示されます。</p>
-      <?php
+      <div align="left">
+        <h2>公開コメント</h2>
+        <p>最新の100件のみ表示されます。</p>
+        <?php
 
         $Comments = file( MetaNote_Home . $row["CommentsJsonfp"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
 
@@ -256,18 +257,18 @@
           </div><br>
           <?php
         }
-      ?>
-      <hr>
-      <h2>公開コメントを追加</h2>
-      <form action="" enctype="multipart/form-data" method="post">
-        <input type="text" class="add_title" name="add_title" maxlength="120" placeholder="ここにタイトルを入力してください(120文字まで)" required>
-        <br><br>
-        <textarea class="add_data" name="add_data" maxlength="1080" placeholder="ここに内容を入力してください(1080文字まで)" required></textarea>
-        <br>
-        <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
-        <input type="submit" value="書き込む" class="button2write">
-      </form>
-
+        ?>
+        <hr>
+        <h2>公開コメントを追加</h2>
+        <form action="" enctype="multipart/form-data" method="post">
+          <input type="text" class="add_title" name="add_title" maxlength="120" placeholder="ここにタイトルを入力してください(120文字まで)" required>
+          <br><br>
+          <textarea class="add_data" name="add_data" maxlength="1080" placeholder="ここに内容を入力してください(1080文字まで)" required></textarea>
+          <br>
+          <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
+          <input type="submit" value="書き込む" class="button2write">
+        </form>
+      </div>
       <br>
       <hr>
 

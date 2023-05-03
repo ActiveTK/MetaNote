@@ -215,13 +215,25 @@
 
           if ( defined( "recaptcha_done" ) ) {
 
-            if ( !is_string( $_POST["add_title"] ) || strlen( $_POST["add_title"] > 120 ) )
+            if ( !is_string( $_POST["add_title"] ) || strlen( $_POST["add_title"] ) > 120 )
               echo "<div style='background-color:#404ff0;'><font color='#ff4500'><h1>書き込みに失敗しました: タイトルが不正です。</h1></font></div>";
-            else if ( !is_string( $_POST["add_data"] ) || strlen( $_POST["add_data"] > 1080 ) )
+            else if ( !is_string( $_POST["add_data"] ) || strlen( $_POST["add_data"] ) > 1080 )
               echo "<div style='background-color:#404ff0;'><font color='#ff4500'><h1>書き込みに失敗しました: 内容が不正です。</h1></font></div>";
-            else {
-              array_push($Comments, json_encode(array('Time' => time(), 'Count' => count($Comments) + 1, 'CreateUserID' => $LocalUser["UserIntID"], 'Title' => htmlspecialchars( $_POST["add_title"] ), 'InnerText', => htmlspecialchars( $_POST["add_data"] ) )));
-              file_put_contents($row["CommentsJsonfp"], implode("\r\n", $Comments));
+            else
+            {
+              array_push(
+                $Comments,
+                json_encode(
+                  array(
+                    'Time' => time(),
+                    'Count' => count($Comments) + 1,
+                    'CreateUserID' => $LocalUser["UserIntID"],
+                    'Title' => htmlspecialchars( $_POST["add_title"] ),
+                    'InnerText', => htmlspecialchars( $_POST["add_data"] )
+                  )
+                )
+              );
+              file_put_contents( $row["CommentsJsonfp"], implode("\r\n", $Comments) );
             }
 
           }

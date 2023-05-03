@@ -229,7 +229,7 @@
                     'Count' => count($Comments) + 1,
                     'CreateUserID' => $LocalUser["UserIntID"],
                     'Title' => htmlspecialchars( $_POST["add_title"] ),
-                    'InnerText', => htmlspecialchars( $_POST["add_data"] )
+                    'InnerText' => htmlspecialchars( $_POST["add_data"] )
                   )
                 )
               );

@@ -466,6 +466,12 @@
                 echo "<div style='background-color:#404ff0;'><font color='#ff4500'><h1>書き込みに失敗しました: 内容が不正です。</h1></font></div>";
               else
               {
+                if ( !isset( $LocalUser ) || !isset( $LocalUser["UserIntID"] ) )
+                {
+                  $LocalUser = array();
+                  $LocalUser["UserIntID"] = "_" . $_SERVER["REMOTE_ADDR"];
+                }
+                  
                 array_push(
                   $Comments,
                   json_encode(

@@ -257,6 +257,10 @@
   function MetaNote_GetNameByID_bySQL($dbh, $ID) : array {
 
     try {
+
+      if (substr($ID, 0, 1) == "_")
+        return array("ゲストユーザー", "guest", $ID);
+
       if (!is_alnum((string)$ID))
         MetaNote_Fatal_Die( "セキュリティエラーが発生しました。" );
       $akm = "";

@@ -117,7 +117,7 @@
     <link rel="apple-touch-icon-precomposed" href="https://<?=Domain?>/icon/index_150_150.ico">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/view.css">
+    <link rel="stylesheet" href="/css/view.css?v=2">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWBFDJPMN6"></script>
     <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-HWBFDJPMN6");</script>
@@ -150,7 +150,7 @@
 
     <div class="mainobj" align="center">
 
-      <div class="container marketing" id="paper">
+      <div class="container marketing width90" id="paper">
         <br><br>
         <h1 align="left" class="titlecomes"><?=$title?></h1>
         <p align="left"><?=$subTitle?></p>
@@ -358,7 +358,7 @@
     <link rel="apple-touch-icon-precomposed" href="https://<?=Domain?>/icon/index_150_150.ico">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/view.css">
+    <link rel="stylesheet" href="/css/view.css?v=2">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWBFDJPMN6"></script>
     <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-HWBFDJPMN6");</script>
@@ -401,7 +401,7 @@
 
     <div class="mainobj" align="center" style="font-size:1.4rem;">
 
-      <div class="container marketing">
+      <div class="container marketing width90">
         <br><br>
         <h1 align="left" class="titlecomes"><?=$title?></h1>
         <p align="left"><?=$subTitle?></p>

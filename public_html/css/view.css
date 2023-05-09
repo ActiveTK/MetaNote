@@ -24,6 +24,19 @@ body {
 .titleof {
     font-size: 30px;
 }
+.width90 {
+    width: 90%;
+}
+
+.onlyPC {
+    display: none;
+}
+
+@media screen and (min-width:480px) {
+    .width90 {
+        width: 100%;
+    }
+}
 .comment {
     background-color: #cfcfef;
     color: #363636;

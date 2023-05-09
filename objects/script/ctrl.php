@@ -200,6 +200,8 @@
              $i++;
              if ($value["InPublic"] == "true")
                $IsPublic = "<nobr>公開済み</nobr><nobr>(<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", false)'>非公開に変更</a>)</nobr>";
+             else if ($value["InPublic"] == "lim")
+               $IsPublic = "<nobr>限定公開</nobr><nobr>(<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", false)'>非公開に変更</a>)</nobr>";
              else
                $IsPublic = "非公開 (<a href='javascript:SetPublic(\"" . $value["ArticleID"] . "\", true)'>公開する</a>)";
 

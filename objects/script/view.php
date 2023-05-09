@@ -18,7 +18,7 @@
   if ( !isset( $row["Writers"] ) )
     MetaNote_Fatal_Die( "存在しない論文ファイルを開きました。" );
 
-  if ( $row["InPublic"] !== "true" )
+  if ( $row["InPublic"] !== "true" && $row["InPublic"] !== "lim" )
   {
     if ( !isset( $LocalUser["UserIntID"] ) )
       MetaNote_Fatal_Die( "閲覧権限のない論文ファイルを開きました" );

@@ -144,9 +144,9 @@
     });
     </script>
     <style>
-      code{
+      pre, code{
         background-color: #333;
-        color: #fff;
+        color: white;
       }
     </style>
   </head>

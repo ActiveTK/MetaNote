@@ -143,7 +143,12 @@
       });
     });
     </script>
-
+    <style>
+      code{
+        background-color: #333;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
     <?=Get_Body_Header()?>

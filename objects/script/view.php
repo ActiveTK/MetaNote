@@ -579,9 +579,6 @@
 
     if ( isset( $_GET["pdf"] ) )
     {
-      // No refCheck() because of Google Docs Viewer
-      // refCheck();
-
       header_remove( "X-Frame-Options" );
 
       MetaNote_Session_Close();
@@ -590,7 +587,6 @@
       header( "Content-Type: application/pdf;" );
       header( "Content-Disposition: inline" );
       header( "Content-Length: " . strlen( $data ) );
-      // header( "X-Frame-Options: sameorigin" );
 
       exit($data);
     }
@@ -669,45 +665,6 @@
         <hr>
 
         <iframe title="pdfjs-default-viewer" src="/lib/pdfjs/web/viewer.html?file=<?=urlencode("/article/".ArticleID."?pdf")?>" style="width:100%;height:800px;"></iframe>
-        <!--
-        <canvas id="pdf-canvas"></canvas>
-        <script src="/lib/pdfjs/pdf.js"></script>
-        <script>
-
-          pdfjsLib.GlobalWorkerOptions.workerSrc = "/lib/pdfjs/pdf.worker.js";
-
-          const loadingTask = pdfjsLib.getDocument("?pdf");
-          (async () => {
-            const pdf = await loadingTask.promise;
-
-            const page = await pdf.getPage(1);
-            const scale = 1.0;
-            const viewport = page.getViewport({ scale });
-            
-            const outputScale = window.devicePixelRatio || 1;
-
-            const canvas = document.getElementById("pdf-canvas");
-            const context = canvas.getContext("2d");
-
-            canvas.width = Math.floor(viewport.width * outputScale);
-            canvas.height = Math.floor(viewport.height * outputScale);
-            canvas.style.width = Math.floor(viewport.width) + "px";
-            canvas.style.height = Math.floor(viewport.height) + "px";
-
-            const transform = outputScale !== 1 
-              ? [outputScale, 0, 0, outputScale, 0, 0] 
-              : null;
-
-            const renderContext = {
-              canvasContext: context,
-              transform,
-              viewport,
-            };
-            page.render(renderContext);
-          })();
-
-        </script>
-        -->
 
         <div align="left">
           <hr>

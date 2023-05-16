@@ -1,0 +1,32 @@
+<html>
+  <body>
+    <style>
+      embed-pdf {
+        display: block;
+        width: 75%;
+        max-width: 700px;
+        height: min(60vw, 75vh);
+        margin: 2em;
+      }
+    </style>
+    <script src="../mod.js" type="module"></script>
+    This website is a demo page for the <a href="https://deno.land/x/embed_pdf">embed_pdf</a> library.<br>
+    <a href="https://github.com/ayame113/embed-pdf-element/blob/main/_tools/test.html">Here</a> is the source code.
+    <h2>Normal view</h2>
+    If you are using a pdf embeddable browser, the native pdf embedding support will be used.
+    Otherwise it will show a view using pdf.js.
+    <embed-pdf src="./test.pdf"></embed-pdf>
+  </body>
+  <script type="module">
+    Object.defineProperty(globalThis.navigator, "pdfViewerEnabled", { value: false });
+    const html = `
+    <h2>Mobile view</h2>
+    Browsers that do not support pdf embedding will display as follows.
+    <embed-pdf src="./test.pdf"></embed-pdf>
+    <h2>Fallback on error</h2>
+    If the resource fails to load for any reason, it will fallback to the download link.
+    <embed-pdf src="not_found_url"></embed-pdf>
+    `
+    document.body.insertAdjacentHTML("beforeend", html);
+  </script>
+</html>

@@ -647,7 +647,7 @@
       });
     });
     </script>
-    <script src="https://deno.land/x/embed_pdf@v1.2.0/mod.js" type="module"></script>
+    <script src="/lib/embed-pdf-element/mod.js" type="module"></script>
   </head>
   <body>
     <?=Get_Body_Header()?>

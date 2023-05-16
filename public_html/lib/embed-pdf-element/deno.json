@@ -1,0 +1,20 @@
+{
+  "tasks": {
+    "download": "deno run --allow-net=github.com,objects.githubusercontent.com --allow-read=./vendor/ --allow-write=./vendor/ ./_tools/download.ts",
+    "test:lint": "deno lint",
+    "test:fmt": "deno fmt --check",
+    "check": "deno check ./mod.js",
+    "test-server": "deno run --allow-net --allow-read=. ./_tools/test_server.ts"
+  },
+  "lint": {
+    "files": {
+      "exclude": ["./vendor"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "exclude": ["./vendor"]
+    }
+  },
+  "lock": false
+}

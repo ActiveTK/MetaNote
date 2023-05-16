@@ -669,10 +669,7 @@
         <br>
         <hr>
 
-        <!--
-        <embed src="/lib/pdfjs/web/viewer.html?file=<?=urlencode("https://metanote.org/article/".ArticleID."?pdf")?>&embedded=true" type="application/pdf" style="width:100%;height:800px;" sandbox>
-        -->
-        <embed-pdf src="?pdf"></embed-pdf>
+        <embed-pdf src="?pdf" style="width:100%;height:800px;"></embed-pdf>
 
         <div align="left">
           <hr>

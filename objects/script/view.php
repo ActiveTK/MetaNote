@@ -669,10 +669,10 @@
         <hr>
 
         <canvas id="pdf-canvas"></canvas>
-        <script src="/lib/pdf.js/pdf.js"></script>
+        <script src="/lib/pdfjs/pdf.js"></script>
         <script>
 
-          pdfjsLib.GlobalWorkerOptions.workerSrc = "/lib/pdf.js/pdf.worker.js";
+          pdfjsLib.GlobalWorkerOptions.workerSrc = "/lib/pdfjs/pdf.worker.js";
 
           const loadingTask = pdfjsLib.getDocument("?pdf");
           (async () => {

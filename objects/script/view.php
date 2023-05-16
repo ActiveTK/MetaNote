@@ -666,7 +666,7 @@
         <br>
         <hr>
 
-        <embed src="https://docs.google.com/viewer?url=<?=urlencode("https://metanote.org/article/".ArticleID."?pdf")?>&embedded=true" type="application/pdf" style="width:100%;height:800px;" sandbox>
+        <embed src="/lib/pdf.js/web/viewer.html?file=<?=urlencode("https://metanote.org/article/".ArticleID."?pdf")?>&embedded=true" type="application/pdf" style="width:100%;height:800px;" sandbox>
 
         <div align="left">
           <hr>

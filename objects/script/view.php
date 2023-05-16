@@ -582,13 +582,15 @@
       // No refCheck() because of Google Docs Viewer
       // refCheck();
 
+      header_remove( "X-Frame-Options" );
+
       MetaNote_Session_Close();
       $data = gzinflate( file_get_contents( MetaNote_Home . $row["DataSrc"] ) );
       
       header( "Content-Type: application/pdf;" );
       header( "Content-Disposition: inline" );
       header( "Content-Length: " . strlen( $data ) );
-      header( "X-Frame-Options: sameorigin" );
+      // header( "X-Frame-Options: sameorigin" );
 
       exit($data);
     }
@@ -666,7 +668,7 @@
         <br>
         <hr>
 
-        <embed src="/lib/pdf.js/web/viewer.html?file=<?=urlencode("https://metanote.org/article/".ArticleID."?pdf")?>&embedded=true" type="application/pdf" style="width:100%;height:800px;" sandbox>
+        <embed src="/lib/pdfjs/web/viewer.html?file=<?=urlencode("https://metanote.org/article/".ArticleID."?pdf")?>&embedded=true" type="application/pdf" style="width:100%;height:800px;" sandbox>
 
         <div align="left">
           <hr>

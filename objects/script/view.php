@@ -668,6 +668,8 @@
         <br>
         <hr>
 
+        <iframe title="pdfjs-default-viewer" src="/lib/pdfjs/web/viewer.html?file=<?=urlencode("/article/".ArticleID."?pdf")?>" style="width:100%;height:800px;"></iframe>
+        <!--
         <canvas id="pdf-canvas"></canvas>
         <script src="/lib/pdfjs/pdf.js"></script>
         <script>
@@ -705,6 +707,7 @@
           })();
 
         </script>
+        -->
 
         <div align="left">
           <hr>

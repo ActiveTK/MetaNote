@@ -647,6 +647,7 @@
       });
     });
     </script>
+    <script src="https://deno.land/x/embed_pdf@v1.2.0/mod.js" type="module"></script>
   </head>
   <body>
     <?=Get_Body_Header()?>
@@ -668,7 +669,10 @@
         <br>
         <hr>
 
+        <!--
         <embed src="/lib/pdfjs/web/viewer.html?file=<?=urlencode("https://metanote.org/article/".ArticleID."?pdf")?>&embedded=true" type="application/pdf" style="width:100%;height:800px;" sandbox>
+        -->
+        <embed-pdf src="?pdf"></embed-pdf>
 
         <div align="left">
           <hr>

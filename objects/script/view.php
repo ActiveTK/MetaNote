@@ -579,7 +579,9 @@
 
     if ( isset( $_GET["pdf"] ) )
     {
-      refCheck();
+      // No refCheck() because of Google Docs Viewer
+      // refCheck();
+
       MetaNote_Session_Close();
       $data = gzinflate( file_get_contents( MetaNote_Home . $row["DataSrc"] ) );
       
